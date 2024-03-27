@@ -1,43 +1,42 @@
-<div class="container">
+<main>
+    <div class="container">
 
-  <div id="img">
-    <img src="https://s3-alpha-sig.figma.com/img/5711/71a4/6301fb9cf49f572fe960ed659d71e811?Expires=1710720000&Key-Pair-Id=APKAQ4GOSFWCVNEHN3O4&Signature=IxyFlFNreGGymLH1PZOvOG293GL6WFh7-fk8U2O5lsgT9OVkKyGW~ruuj1AJm91IeALYe3AtpvIlfj77ioTynh-9QW6ybML0lRiRz~fGYh-Yagq-F5rWvELv6UGJMwunpWTCGXTu743wzQJM~w83fP3ZqkSSLVQ5bqSj17ic3t8WrG7ZGETMZ7QPIQRlqimQukdO~hyX9cShbPyAOv~NT838F8q-qQ9YtJh82cNF9bTfP0M1lEJ40AeyKZJAxmNpPoy-9A6YsTZbYlUtdJ4QQXUDzR1VtFACLuvxGxh0blJJG6kRzSTtvQEOYSfT16oiV7PsG-OD2P2Yjn-fDGhQxA__" class="img-class">
-  </div>
-
-  <h1>Doctor <span id="title">UNIRV</span>erse Quiz</h1>
-
-  <form [formGroup]="formData" (submit)="onSubmit()" >
-
-    <mat-form-field>
-      <mat-label>Email</mat-label>
-      <input matInput placeholder="pat@example.com" formControlName="email" required>
-      <mat-error *ngIf="formData.get('email')!.invalid">{{getErrorMessage()}}</mat-error>
-    </mat-form-field>
-
-    <mat-form-field>
-      <mat-label>Senha</mat-label>
-      <input matInput [type]="hide ? 'password' : 'text'" formControlName="senha">
-      <mat-error *ngIf="formData.get('senha')!.invalid">{{"senha é um campo obrigatorio"}}</mat-error>
-      <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
-        <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-      </button>
-    </mat-form-field>
-
-    <div id="container-novaSenha">
-      <a id="novaSenha" href="http://">esqueceu a senha?</a>
-    </div>
-
-    <button type="submit" id="submit">Entrar</button>
-
-  </form>
-
-  <button id="login-google">Faça login com Google</button>
-
-  <p id="register">não tem uma conta?
-    <a href="http://" ><Strong>inscreva-se</Strong></a>
-  </p>
-
-
-
-</div>
-
+        <div id="img">
+          <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcUpgClOXzl0qhIqggyLUtbzdwnSlsast9YUEnH6dyRw&s" class="img-class">
+        </div>
+      
+        <h1>Doctor <span id="title">UNIRV</span>erse Quiz</h1>
+      
+        <form id="search-form" [formGroup]="formData" (submit)="onSubmit()" >
+      
+          <mat-form-field appearance="outline" #myFormField>
+            <mat-label>Email</mat-label>
+            <input matInput placeholder="pat@example.com" formControlName="email" required>
+            <mat-error *ngIf="formData.get('email')!.invalid">{{getErrorMessage()}}</mat-error>
+          </mat-form-field>
+      
+          <mat-form-field appearance="outline">
+            <mat-label>Senha</mat-label>
+            <input matInput [type]="hide ? 'password' : 'text'" formControlName="senha">
+            <mat-error *ngIf="formData.get('senha')!.invalid">{{"senha é um campo obrigatorio"}}</mat-error>
+            <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'" [attr.aria-pressed]="hide">
+              <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+            </button>
+          </mat-form-field>
+      
+          <div class="new-password">
+            <a id="novaSenha" href="http://">esqueceu a senha?</a>
+          </div>
+      
+          <!-- <button type="submit" id="submit">Entrar</button> -->
+          <button mat-flat-button color="primary" class="submit-button">Primary</button>
+      
+        </form>
+      
+        <button id="login-google">Faça login com Google</button>
+      
+        <p id="register">não tem uma conta?
+          <a href="http://" ><Strong>inscreva-se</Strong></a>
+        </p>
+      </div>      
+</main>
