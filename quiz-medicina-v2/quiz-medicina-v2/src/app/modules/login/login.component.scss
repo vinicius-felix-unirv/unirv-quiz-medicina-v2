@@ -5,8 +5,9 @@ body{
 }
 
 main{
-    border: 1px solid red;
-    padding: 4rem 8rem;
+    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+    border-radius: 12px;
+    padding: 2rem 6rem;
 }
 
 .container{
@@ -22,9 +23,20 @@ main{
     height: 216px;
 }
 
+.container h1{
+    margin-top: 5px;
+    font-weight: 700;
+    font-size: 24px;
+}
+
+.container h1 span{
+    color: var(--green);
+}
+
 .container form{
     display: flex;
     flex-direction: column;
+    margin-bottom: 10px;
 }
 
 
@@ -32,7 +44,14 @@ main{
     display: flex;
     justify-content: end;
     margin-top: -20px;
-    padding-right: 7px;
+    padding-right: 5px;
+}
+
+.container form .new-password a{
+    color: var(--gray-lite);
+    text-decoration: none;
+    font-size: 14px;
+    font-weight: 400;
 }
 
 .container form .submit-button{
@@ -55,7 +74,72 @@ main{
 
     .mdc-text-field{
         align-items: center;
-        border-top-right-radius: var(--mdc-shape-small, 15px) !important;
     }
-     
+
+    .mdc-button__label{
+        font-weight: 700;
+    }
+
+    .mat-mdc-unelevated-button{
+        height: 45px;
+    }
+
+    .mat-mdc-button-touch-target{
+        height: 45px;
+    }
+
+    .mat-mdc-unelevated-button.mat-unthemed {
+        --mdc-filled-button-container-color: var(--green);
+        --mdc-filled-button-label-text-color: #fff;
+    }
+
 }
+
+
+#button-img{
+
+    margin-bottom: 45px;
+
+    .mdc-button{
+        width: 350px;
+        height: 45px;
+
+    }
+
+    .mdc-button__label{
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+
+        font-weight: 700;
+    }
+
+    .mat-mdc-button-touch-target{
+        height: 45px;
+        border: 1px solid var(--gray-lite);
+        border-radius: 4px;
+    }
+
+}
+
+.register{
+    width: 350px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 3px;
+}
+    
+.register span{
+    color: var(--gray-lite);
+    font-size: 14px;
+    font-weight: 400;
+}
+
+.register a{
+    text-decoration: none;
+    font-weight: 500;
+    color: black;
+}
+
