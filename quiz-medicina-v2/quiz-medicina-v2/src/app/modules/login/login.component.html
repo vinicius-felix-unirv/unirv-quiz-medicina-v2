@@ -8,7 +8,6 @@
         <h1>Doctor <span id="title">UNIRV</span>erse Quiz</h1>
       
         <form id="search-form" [formGroup]="formData" (submit)="onSubmit()" >
-      
           <mat-form-field appearance="outline" #myFormField>
             <mat-label>Email</mat-label>
             <input matInput placeholder="pat@example.com" formControlName="email" required>
@@ -23,6 +22,7 @@
               <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
             </button>
           </mat-form-field>
+          
       
           <div class="new-password">
             <a href="http://">Esqueceu a senha?</a>

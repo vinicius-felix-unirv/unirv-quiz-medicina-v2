@@ -93,6 +93,15 @@ main{
         --mdc-filled-button-label-text-color: #fff;
     }
 
+    .mat-mdc-form-field-error {
+        display: block;
+    }
+
+    //espaço entre os dois inputs.
+    .mat-mdc-form-field-subscript-wrapper{
+        
+    }
+
 }
 
 
