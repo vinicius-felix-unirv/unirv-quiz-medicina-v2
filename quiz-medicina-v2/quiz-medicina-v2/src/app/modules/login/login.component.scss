@@ -45,13 +45,38 @@ main{
     justify-content: end;
     margin-top: -20px;
     padding-right: 5px;
-}
 
-.container form .new-password a{
-    color: var(--gray-lite);
-    text-decoration: none;
-    font-size: 14px;
-    font-weight: 400;
+    .mdc-button__label{
+        color: var(--gray-lite);
+        font-size: 14px;
+        font-weight: 400;
+    }
+
+    .mat-mdc-button-touch-target{
+        max-height: 12px;
+    }
+
+    .mat-mdc-raised-button, .mat-mdc-unelevated-button {
+        --mat-mdc-button-persistent-ripple-color: #000;
+        --mat-mdc-button-ripple-color: #fff;
+    }
+
+    .mat-mdc-raised-button{
+        padding-inline: 0;
+        text-decoration: none;
+        box-shadow: none;
+        height: auto;
+
+        background-color: transparent;
+
+        :hover{
+            background-color: white;
+        }
+    }
+
+    .mat-mdc-focus-indicator{
+        background-color: white;
+    }
 }
 
 .container form .submit-button{

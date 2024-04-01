@@ -8,6 +8,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';//Dialog...
+import { ResetPasswordDialogComponent } from './reset-password-dialog/reset-password-dialog.component';
 
 
 const routes: Routes = [
@@ -20,6 +21,7 @@ const routes: Routes = [
 @NgModule({
   declarations: [
     LoginComponent,
+    ResetPasswordDialogComponent
   ],
   imports: [
     CommonModule,

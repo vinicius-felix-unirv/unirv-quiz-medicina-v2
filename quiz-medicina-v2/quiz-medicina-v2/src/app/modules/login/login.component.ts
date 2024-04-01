@@ -1,5 +1,7 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { ResetPasswordDialogComponent } from './reset-password-dialog/reset-password-dialog.component';
+import { MatDialog } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-login',
@@ -14,7 +16,9 @@ export class LoginComponent {
 
   hide = true;
   formData!: FormGroup;
-  constructor(private _formBuilder: FormBuilder){}
+  dialog: any;
+  constructor(private _formBuilder: FormBuilder, public _dialog: MatDialog){}
+  
 
   private createFormData(): FormGroup {
     return this.formData = this._formBuilder.group({
@@ -42,6 +46,17 @@ export class LoginComponent {
       console.log("error");
     }
   }
+
+  openDialog(): void {
+    const dialogRef = this._dialog.open(ResetPasswordDialogComponent, {
+      data: "Sua senha será redefinida por e-mail",
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      console.log("fechou")
+    });
+  }
+
 }
 
 
