@@ -7,6 +7,10 @@ const routes: Routes = [
     path: 'login',
     loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule)
   },
+  {
+    path: 'new-password',
+    loadChildren: () => import('./modules/new-password/new-password.module').then(m => m.NewPasswordComponentModule)
+  },
 ];
 
 @NgModule({
