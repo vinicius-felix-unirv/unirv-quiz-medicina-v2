@@ -23,9 +23,10 @@
             </button>
           </mat-form-field>
           
-      
+          <div class="new-password">
+            <button mat-raised-button (click)="openDialog()">Esqueceu a senha?</button>
+          </div>
           
-      
           <button mat-flat-button class="submit-button">Entrar</button>
       
         </form>
@@ -37,11 +38,6 @@
             Faça login com Google
           </button>
         </div>
-
-        <div class="new-password">
-          <button mat-raised-button (click)="openDialog()">Esqueceu a senha?</button>
-        </div>
-        
       
         <div class="register">
           <span>não tem uma conta?</span>
