@@ -14,6 +14,8 @@ export class ResetPasswordDialogComponent {
     // @Inject(MAT_DIALOG_DATA) public data: string,
   ) {}
 
+  teste: boolean = true;
+
   email = new FormControl('', [Validators.required, Validators.email]);
 
   getErrorMessage() {
@@ -35,7 +37,8 @@ export class ResetPasswordDialogComponent {
 
   onNoClick(): void {
     // this.dialogRef.close();
-    console.log("esta fechando pelo btn")
+    console.log("esta fechando pelo btn");
+    this.teste = false;
   }
 
   // enviarDados(): void{

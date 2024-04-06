@@ -1,11 +1,6 @@
-body{
-    display: flex;
-    align-items: center;
-    justify-content: center;
-}
+app-login{
 
-main{
-    box-shadow: rgba(0, 0, 0, 0.35) 0px 5px 15px;
+.content {
     border-radius: 12px;
     padding: 2rem 6rem;
 }
@@ -15,29 +10,28 @@ main{
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 350px;
-}
 
-.container .img-class{
-    width: 259px;
-    height: 216px;
-}
+    .img-class{
+        width: 259px;
+        height: 216px;
+    }
 
-.container h1{
-    margin-top: 5px;
-    font-weight: 700;
-    font-size: 24px;
-}
+    h1{
+        margin-top: 5px;
+        font-weight: 700;
+        font-size: 24px;
+    }
 
-.container h1 span{
-    color: var(--green);
-}
+    form{
+        display: flex;
+        flex-direction: column;
+        margin-bottom: 10px;
+    }
 
-.container form{
-    display: flex;
-    flex-direction: column;
-    margin-bottom: 10px;
-}
+    h1 span{
+        color: var(--green);
+    }
+} 
 
 
 .container form .new-password{
@@ -49,7 +43,7 @@ main{
     .mdc-button__label{
         color: var(--gray-lite);
         font-size: 14px;
-        font-weight: 400;
+        font-weight: 0;
     }
 
     .mat-mdc-button-touch-target{
@@ -96,8 +90,8 @@ main{
         width: 350px;
         height: 45px;
     }
-
-    .mdc-text-field{
+    
+    .mdc-text-field {
         align-items: center;
     }
 
@@ -112,6 +106,10 @@ main{
     .mat-mdc-button-touch-target{
         height: 45px;
     }
+
+    .mdc-text-field--outlined {
+        --mdc-outlined-text-field-container-shape: 28px !important;
+      }
 
     .mat-mdc-unelevated-button.mat-unthemed {
         --mdc-filled-button-container-color: var(--green);
@@ -146,7 +144,6 @@ main{
         justify-content: center;
         gap: 10px;
 
-        font-weight: 700;
     }
 
     .mat-mdc-button-touch-target{
@@ -168,7 +165,7 @@ main{
 .register span{
     color: var(--gray-lite);
     font-size: 14px;
-    font-weight: 400;
+    font-weight: 500;
 }
 
 .register a{
@@ -177,3 +174,4 @@ main{
     color: black;
 }
 
+}

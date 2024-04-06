@@ -9,6 +9,7 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import {MatDialogModule} from '@angular/material/dialog';//Dialog...
 import { ResetPasswordDialogComponent } from './reset-password-dialog/reset-password-dialog.component';
+import { MaterialModule } from 'src/app/shared/materialmodule/material.module';
 
 
 const routes: Routes = [
@@ -26,12 +27,8 @@ const routes: Routes = [
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-    MatFormFieldModule,
-    MatInputModule,
-    MatButtonModule,
-    MatIconModule,
     ReactiveFormsModule,
-    MatDialogModule
+    MaterialModule
   ],
   exports: []
 

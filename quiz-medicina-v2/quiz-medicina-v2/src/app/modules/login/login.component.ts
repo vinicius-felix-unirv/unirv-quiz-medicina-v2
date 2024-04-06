@@ -49,7 +49,7 @@ export class LoginComponent {
 
   openDialog(): void {
     const dialogRef = this._dialog.open(ResetPasswordDialogComponent, {
-      data: "Sua senha será redefinida por e-mail",
+      // data: "Sua senha será redefinida por e-mail",
     });
 
     dialogRef.afterClosed().subscribe(() => {
