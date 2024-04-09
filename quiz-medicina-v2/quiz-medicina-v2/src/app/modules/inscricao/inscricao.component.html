@@ -1,1 +1,23 @@
-<p>inscricao works!</p>
+<form [formGroup]="formulario">
+    <div class="form-group">
+      <label for="title">Inscreva-se</label>
+      <label for="sub-title">Informações Pessoais</label>
+      <input type="text" formControlName="nomeCompleto" placeholder="Nome Completo" required>
+      <div *ngIf="formulario?.get('nomeCompleto')?.hasError('required') && formulario?.get('nomeCompleto')?.touched">
+        O nome completo é obrigatório.
+      </div>
+    </div>
+
+    <div class="form-group">
+      <label for="telefone">Telefone</label>
+      <input type="text" formControlName="telefone" placeholder="Telefone">
+      <div *ngIf="formulario?.get('telefone')?.hasError('required') && formulario?.get('telefone')?.touched">
+        O número de telefone é obrigatório.
+      </div>
+      <div *ngIf="formulario?.get('telefone')?.hasError('pattern') && formulario?.get('telefone')?.touched">
+        O número de telefone deve ter pelo menos 10 dígitos.
+      </div>
+    </div>      
+    <input type="submit" [value]="btnText">
+  </form>
+  
