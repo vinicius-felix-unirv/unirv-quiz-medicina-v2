@@ -1,48 +1,30 @@
-@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+/* Estilos para o título em telas menores */
+@media screen and (max-width: 630px) {
+    
+    body{
+        width: 100%; /* Altere a largura do corpo para ocupar toda a largura da tela */
+        overflow-x: hidden; /* Oculta a rolagem horizontal */
 
-/* Estilo para a label */
-.mat-form-field-label {
-    font-weight: bold;
-}
+    }
+    .title {
+        color: red;
+    }
+    
+    /* Adicione aqui os estilos específicos para essas dimensões */
+    .mat-input-element,
+    .mat-select,
+    .mat-datepicker-input,
+    .mat-form-field,
+    .mat-raised-button {
+        width: calc(100% - 16px); /* Remove o padding horizontal */
+        margin: 8px; /* Adiciona um pequeno espaçamento entre os elementos */
+    }
 
-/* Estilo para o input */
-.mat-input-element,
-.mat-select-trigger {
-    width: calc(100% - 32px); /* Garante que o ícone do Material Design se encaixe */
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
+    .mat-form-field-label {
+        font-size: 16px; /* Reduz o tamanho da fonte do rótulo */
+    }
 
-/* Estilo para o input de data */
-.mat-datepicker-input {
-    width: calc(100% - 32px); /* Garante que o ícone do Material Design se encaixe */
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
-}
-
-/* Estilo para o botão de submit */
-.mat-raised-button {
-    background-color: #4CAF50;
-    color: white;
-    border-radius: 4px;
-}
-
-/* Estilo para mensagens de erro */
-.mat-error {
-    color: red;
-    font-size: 12px;
-    margin-top: 4px;
-}
-
-/* Seletor global para o select de Estado e Cidade */
-.mat-form-field {
-    width: 100%;
-    padding: 8px;
-    border: 1px solid #ccc;
-    border-radius: 4px;
-    box-sizing: border-box;
+    .mat-error {
+        font-size: 12px; /* Reduz o tamanho da fonte da mensagem de erro */
+    }
 }

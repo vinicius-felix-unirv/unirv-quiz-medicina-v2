@@ -44,6 +44,7 @@ export class InscricaoComponent implements OnInit {
     this.formulario = this.formBuilder.group({
       nomeCompleto: ['', Validators.required],
       telefone: ['', [Validators.required, Validators.pattern(/^\d{10,}$/)]],
+      sexo: ['', Validators.required],
       uf: ['', Validators.required],
       cidade: ['', Validators.required],
       dataNascimento: ['', Validators.required],

@@ -1,4 +1,5 @@
 <form [formGroup]="formulario" *ngIf="formulario" (ngSubmit)="submitForm()">
+    <div class="title"><h1>Inscreva-se</h1></div>
     <div class="subtitle"><h1>Informações Pessoais</h1></div>
     <div class="form-group">
         <mat-form-field appearance="fill">
@@ -24,7 +25,22 @@
             </mat-error>
         </mat-form-field>
     </div>
-  
+    <div class="form-group">
+        <mat-form-field appearance="fill">
+            <mat-label>Sexo</mat-label>
+            <select matNativeControl formControlName="sexo" required>
+                <option value="" disabled selected>Selecione o sexo</option>
+                <option value="masculino">Masculino</option>
+                <option value="feminino">Feminino</option>
+                <option value="outros">Outros</option>
+            </select>
+            <mat-error *ngIf="formulario.get('sexo')?.hasError('required') && formulario.get('sexo')?.touched">
+                Selecione o sexo.
+            </mat-error>
+        </mat-form-field>
+    </div>
+    
+    
     <div class="form-group">
         <mat-form-field appearance="fill">
             <mat-label>Estado</mat-label>
