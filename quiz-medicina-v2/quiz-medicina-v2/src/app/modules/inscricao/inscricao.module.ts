@@ -3,6 +3,8 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { InscricaoComponent } from './inscricao.component';
 import { ReactiveFormsModule } from '@angular/forms';
+import { IbgeService } from './ibge.service';
+import { HttpClientModule } from '@angular/common/http';
 
 const routes: Routes = [
   {
@@ -17,9 +19,10 @@ const routes: Routes = [
   ],
   imports: [
     CommonModule,
-    ReactiveFormsModule, // Corrigido para ser importado aqui
-    RouterModule.forChild(routes)
+    ReactiveFormsModule,
+    RouterModule.forChild(routes),
+    HttpClientModule
   ],
-  exports: []
+  providers: [IbgeService]
 })
 export class InscricaoModule { }
