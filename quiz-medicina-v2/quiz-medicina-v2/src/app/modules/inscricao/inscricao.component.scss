@@ -1,0 +1,48 @@
+@import '~@angular/material/prebuilt-themes/indigo-pink.css';
+
+/* Estilo para a label */
+.mat-form-field-label {
+    font-weight: bold;
+}
+
+/* Estilo para o input */
+.mat-input-element,
+.mat-select-trigger {
+    width: calc(100% - 32px); /* Garante que o ícone do Material Design se encaixe */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Estilo para o input de data */
+.mat-datepicker-input {
+    width: calc(100% - 32px); /* Garante que o ícone do Material Design se encaixe */
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}
+
+/* Estilo para o botão de submit */
+.mat-raised-button {
+    background-color: #4CAF50;
+    color: white;
+    border-radius: 4px;
+}
+
+/* Estilo para mensagens de erro */
+.mat-error {
+    color: red;
+    font-size: 12px;
+    margin-top: 4px;
+}
+
+/* Seletor global para o select de Estado e Cidade */
+.mat-form-field {
+    width: 100%;
+    padding: 8px;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    box-sizing: border-box;
+}

@@ -1,11 +1,12 @@
-import { Component, Input, OnInit, Inject } from '@angular/core';
+import { Component, Input, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { IbgeService } from './ibge.service';
 
 @Component({
   selector: 'app-inscricao',
   templateUrl: './inscricao.component.html',
-  styleUrls: ['./inscricao.component.scss']
+  styleUrls: ['./inscricao.component.scss'],
+    encapsulation: ViewEncapsulation.None
 })
 export class InscricaoComponent implements OnInit {
   @Input() btnText!: string;
@@ -13,6 +14,28 @@ export class InscricaoComponent implements OnInit {
   estados: any[] = [];
   cidades: any[] = [];
   selectedEstadoId: number = 0; 
+  cursos: string[] = [
+    'Administração',
+    'Agronomia',
+    'Arquitetura e Urbanismo',
+    'Ciências Contábeis',
+    'Design de Interiores',
+    'Design Gráfico',
+    'Direito',
+    'Enfermagem',
+    'Engenharia Civil',
+    'Engenharia de Software',
+    'Engenharia Mecânica',
+    'Fisioterapia',
+    'Marketing',
+    'Medicina',
+    'Medicina Veterinária',
+    'Odontologia',
+    'Pedagogia',
+    'Psicologia',
+    'Outro'
+  ];
+  periodos: string[] = ['Primeiro', 'Segundo', 'Terceiro', 'Quarto', 'Quinto', 'Sexto', 'Sétimo', 'Oitavo', 'Nono', 'Décimo, Outro'];
 
   constructor(
     private formBuilder: FormBuilder,
@@ -23,6 +46,11 @@ export class InscricaoComponent implements OnInit {
       telefone: ['', [Validators.required, Validators.pattern(/^\d{10,}$/)]],
       uf: ['', Validators.required],
       cidade: ['', Validators.required],
+      dataNascimento: ['', Validators.required],
+      campus: [''], 
+      curso: [''], 
+      turma: [''],
+      periodo: ['']
     });
   }
 
@@ -35,7 +63,9 @@ export class InscricaoComponent implements OnInit {
       this.btnText = 'Enviar';
     }
   }
-
+  submitForm() {
+    // Implemente o que deseja fazer quando o formulário for submetido
+  }
   onEstadoChange() {
     // Verificar se this.formulario e this.formulario.get('uf') não são nulos
     if (this.formulario && this.formulario.get('uf')) {
