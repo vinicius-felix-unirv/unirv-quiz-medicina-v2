@@ -1,0 +1,62 @@
+[
+  {
+    "id": 1,
+    "tipo": "texto",
+    "conteudo": "Qual é a função principal do coração no corpo humano?",
+    "alternativas": [
+      { "id": 1, "resposta": "Bombear sangue para o corpo", "correta": true },
+      { "id": 2, "resposta": "Produzir insulina", "correta": false },
+      { "id": 3, "resposta": "Controlar a respiração", "correta": false },
+      { "id": 4, "resposta": "Armazenar vitaminas", "correta": false }
+    ],
+    "nivelDificuldade": "fácil"
+  },
+  {
+    "id": 2,
+    "tipo": "texto",
+    "conteudo": "Qual é a função do sistema imunológico?",
+    "alternativas": [
+      { "id": 5, "resposta": "Produzir energia", "correta": false },
+      { "id": 6, "resposta": "Combater infecções e doenças", "correta": true },
+      { "id": 7, "resposta": "Regular a temperatura do corpo", "correta": false },
+      { "id": 8, "resposta": "Digestão de alimentos", "correta": false }
+    ],
+    "nivelDificuldade": "médio"
+  },
+  {
+    "id": 3,
+    "tipo": "texto",
+    "conteudo": "O que é a insulina e qual é o seu papel no organismo?",
+    "alternativas": [
+      { "id": 9, "resposta": "Hormônio responsável pela produção de células de defesa", "correta": false },
+      { "id": 10, "resposta": "Hormônio que regula os níveis de glicose no sangue", "correta": true },
+      { "id": 11, "resposta": "Enzima envolvida na digestão de proteínas", "correta": false },
+      { "id": 12, "resposta": "Neurotransmissor que controla o humor", "correta": false }
+    ],
+    "nivelDificuldade": "médio"
+  },
+  {
+    "id": 4,
+    "tipo": "texto",
+    "conteudo": "O que é o sistema respiratório e qual é a sua função no corpo humano?",
+    "alternativas": [
+      { "id": 13, "resposta": "Conjunto de órgãos responsáveis pela digestão de alimentos", "correta": false },
+      { "id": 14, "resposta": "Conjunto de órgãos responsáveis pela circulação sanguínea", "correta": false },
+      { "id": 15, "resposta": "Conjunto de órgãos responsáveis pela respiração e troca de gases", "correta": true },
+      { "id": 16, "resposta": "Conjunto de órgãos responsáveis pela visão", "correta": false }
+    ],
+    "nivelDificuldade": "fácil"
+  },
+  {
+    "id": 5,
+    "tipo": "texto",
+    "conteudo": "O que é a vacinação e qual é a sua importância para a saúde pública?",
+    "alternativas": [
+      { "id": 17, "resposta": "Método de tratamento para doenças cardíacas", "correta": false },
+      { "id": 18, "resposta": "Processo de limpeza do sangue", "correta": false },
+      { "id": 19, "resposta": "Método de prevenção de doenças através da introdução de agentes patogênicos no organismo", "correta": false },
+      { "id": 20, "resposta": "Método de prevenção de doenças através da indução de imunidade contra agentes patogênicos", "correta": true }
+    ],
+    "nivelDificuldade": "difícil"
+  }
+]
