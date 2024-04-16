@@ -1,177 +1,184 @@
 app-login{
 
-.content {
-    border-radius: 12px;
-    padding: 2rem 6rem;
-}
-
-.container{
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center;
-
-    .img-class{
-        width: 259px;
-        height: 216px;
+    .content {
+        border-radius: 12px;
+        padding: 2rem 6rem;
     }
-
-    h1{
-        margin-top: 5px;
-        font-weight: 700;
-        font-size: 24px;
-    }
-
-    form{
+    
+    .container{
         display: flex;
         flex-direction: column;
-        margin-bottom: 10px;
-    }
-
-    h1 span{
-        color: var(--green);
-    }
-} 
-
-
-.container form .new-password{
-    display: flex;
-    justify-content: end;
-    margin-top: -20px;
-    padding-right: 5px;
-
-    .mdc-button__label{
-        color: var(--gray-lite);
-        font-size: 14px;
-        font-weight: 0;
-    }
-
-    .mat-mdc-button-touch-target{
-        max-height: 12px;
-    }
-
-    .mat-mdc-raised-button, .mat-mdc-unelevated-button {
-        --mat-mdc-button-persistent-ripple-color: #000;
-        --mat-mdc-button-ripple-color: #fff;
-    }
-
-    .mat-mdc-raised-button{
-        padding-inline: 0;
-        text-decoration: none;
-        box-shadow: none;
-        height: auto;
-
-        background-color: transparent;
-
-        :hover{
+        align-items: center;
+        justify-content: center;
+    
+        .img-class{
+            width: 259px;
+            height: 216px;
+        }
+    
+        h1{
+            margin-top: 5px;
+            font-weight: 700;
+            font-size: 24px;
+        }
+    
+        form{
+            display: flex;
+            flex-direction: column;
+            margin-bottom: 10px;
+        }
+    
+        h1 span{
+            color: var(--green);
+        }
+    } 
+    
+    
+    .container form .new-password{
+        display: flex;
+        justify-content: end;
+        margin-top: -20px;
+        padding-right: 5px;
+    
+        .mdc-button__label{
+            color: var(--gray-lite);
+            font-size: 14px;
+            font-weight: 0;
+        }
+    
+        .mat-mdc-button-touch-target{
+            max-height: 12px;
+        }
+    
+        .mat-mdc-raised-button, .mat-mdc-unelevated-button {
+            --mat-mdc-button-persistent-ripple-color: #000;
+            --mat-mdc-button-ripple-color: #fff;
+        }
+    
+        .mat-mdc-raised-button{
+            padding-inline: 0;
+            text-decoration: none;
+            box-shadow: none;
+            height: auto;
+    
+            background-color: transparent;
+    
+            :hover{
+                background-color: white;
+            }
+        }
+    
+        .mat-mdc-focus-indicator{
             background-color: white;
         }
     }
-
-    .mat-mdc-focus-indicator{
-        background-color: white;
-    }
-}
-
-.container form .submit-button{
-    margin-top: 25px;
-}
-
-#search-form{
-    .mdc-floating-label{
-        top: 50%; 
-    }
-
-    .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above {
-        --mat-mdc-form-field-label-transform: translateY(-28px) scale(var(--mat-mdc-form-field-floating-label-scale, 0.75));
-    }
-
-    .mat-mdc-text-field-wrapper {
-        width: 350px;
-        height: 45px;
+    
+    .container form .submit-button{
+        margin-top: 25px;
     }
     
-    .mdc-text-field {
-        align-items: center;
-    }
-
-    .mdc-button__label{
-        font-weight: 700;
-    }
-
-    .mat-mdc-unelevated-button{
-        height: 45px;
-    }
-
-    .mat-mdc-button-touch-target{
-        height: 45px;
-    }
-
-    .mdc-text-field--outlined {
-        --mdc-outlined-text-field-container-shape: 28px !important;
-      }
-
-    .mat-mdc-unelevated-button.mat-unthemed {
-        --mdc-filled-button-container-color: var(--green);
-        --mdc-filled-button-label-text-color: #fff;
-    }
-
-    .mat-mdc-form-field-error {
-        display: block;
-    }
-
-    //espaço entre os dois inputs.
-    .mat-mdc-form-field-subscript-wrapper{
+    #search-form{
+        .mdc-floating-label{
+            top: 50%; 
+        }
+    
+        .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above {
+            --mat-mdc-form-field-label-transform: translateY(-28px) scale(var(--mat-mdc-form-field-floating-label-scale, 0.75));
+        }
+    
+        .mat-mdc-text-field-wrapper {
+            width: 350px;
+            height: 45px;
+        }
         
+        .mdc-text-field {
+            align-items: center;
+        }
+    
+        .mdc-button__label{
+            font-weight: 700;
+        }
+    
+        .mat-mdc-unelevated-button{
+            height: 45px;
+        }
+    
+        .mat-mdc-button-touch-target{
+            height: 45px;
+        }
+    
+        .mdc-text-field--outlined {
+            --mdc-outlined-text-field-container-shape: 28px !important;
+          }
+    
+        .mat-mdc-unelevated-button.mat-unthemed {
+            --mdc-filled-button-container-color: var(--green);
+            --mdc-filled-button-label-text-color: #fff;
+        }
+    
+        .mat-mdc-form-field-error {
+            display: block;
+        }
+    
+        //espaço entre os dois inputs.
+        .mat-mdc-form-field-subscript-wrapper{
+            
+        }
+    
     }
-
-}
-
-
-#button-img{
-
-    margin-bottom: 45px;
-
-    .mdc-button{
+    
+    
+    #button-img{
+    
+        margin-bottom: 45px;
+    
+        .mdc-button{
+            width: 350px;
+            height: 45px;
+    
+        }
+    
+        .mdc-button__label{
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+    
+        }
+    
+        .mat-mdc-button-touch-target{
+            height: 45px;
+            border: 1px solid var(--gray-lite);
+            border-radius: 4px;
+        }
+    
+    }
+    
+    .register{
         width: 350px;
-        height: 45px;
-
-    }
-
-    .mdc-button__label{
         display: flex;
         align-items: center;
         justify-content: center;
-        gap: 10px;
-
+        gap: 3px;
     }
-
-    .mat-mdc-button-touch-target{
-        height: 45px;
-        border: 1px solid var(--gray-lite);
-        border-radius: 4px;
+        
+    .register span{
+        color: var(--gray-lite);
+        font-size: 14px;
+        font-weight: 500;
     }
-
-}
-
-.register{
-    width: 350px;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    gap: 3px;
-}
     
-.register span{
-    color: var(--gray-lite);
-    font-size: 14px;
-    font-weight: 500;
-}
-
-.register a{
-    text-decoration: none;
-    font-weight: 500;
-    color: black;
-}
-
-}
+    .register a{
+        text-decoration: none;
+        font-weight: 500;
+        color: black;
+    }
+    
+    @media screen and (max-width: 630px){
+        .content{
+            width: 100%;
+            height: 100%;
+        }
+    }
+    
+    }
