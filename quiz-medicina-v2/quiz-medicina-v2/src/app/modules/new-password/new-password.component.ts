@@ -20,8 +20,6 @@ export class NewPasswordComponent {
     });
   }
 
-  //criar função 
-
   ngOnInit(): void {
     this.createFormData();
   }
