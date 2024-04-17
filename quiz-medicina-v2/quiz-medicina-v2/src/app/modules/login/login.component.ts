@@ -39,6 +39,12 @@ export class LoginComponent {
     return this.formData.get('email')!.hasError('email') ? 'Não é um e-mail válido' : '';
   }
 
+  getIncorrectData(){
+    // if(){
+
+    // }
+  }
+
   onSubmit(): void {
     if(this.formData.valid){
       console.log(this.formData.value);
@@ -49,7 +55,6 @@ export class LoginComponent {
 
   openDialog(): void {
     const dialogRef = this._dialog.open(ResetPasswordDialogComponent, {
-      // data: "Sua senha será redefinida por e-mail",
     });
 
     dialogRef.afterClosed().subscribe(() => {

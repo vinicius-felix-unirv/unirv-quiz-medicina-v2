@@ -11,11 +11,10 @@ import {MatDialogModule} from '@angular/material/dialog';//Dialog...
 import { ResetPasswordDialogComponent } from './reset-password-dialog/reset-password-dialog.component';
 import { MaterialModule } from 'src/app/shared/materialmodule/material.module';
 
-
 const routes: Routes = [
   {
     path: '',
-    component: LoginComponent
+    component: LoginComponent,
   }
 ]
 

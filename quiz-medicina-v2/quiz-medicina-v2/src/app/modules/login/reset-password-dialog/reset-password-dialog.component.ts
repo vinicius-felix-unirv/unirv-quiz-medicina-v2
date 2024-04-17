@@ -26,26 +26,17 @@ export class ResetPasswordDialogComponent {
     return this.email.hasError('email') ? 'Não é um e-mail válido' : '';
   }
 
-  onSubmit(): void {
+  onSubmit(event: Event): void {
+    this.email.markAsTouched();
     if(this.email.valid){
-      console.log(this.email.value);
+      this.teste = false;
     }else{
-      console.log(this.email.value);
-      console.log("error");
+      event.preventDefault();
     }
   }
 
-  onNoClick(): void {
-    // this.dialogRef.close();
-    console.log("esta fechando pelo btn");
-    this.teste = false;
+  closeDialog(): void {
+    this.dialogRef.close();
   }
-
-  // enviarDados(): void{
-  //   if(this.email != null){
-  //     this.dialogRef.close();
-  //     console.log("esta fechando pelo btn")
-  //   }
-  // }
 
 }
