@@ -1,0 +1,79 @@
+.category-box {
+  display: inline-block;
+  min-width: 20%; /* Largura mínima da categoria */
+  min-height: 8%; /* Altura mínima da categoria */
+  box-sizing: border-box;
+  padding: 10px;
+  border: 1px solid #000;
+  background-color: #fff;
+  margin-bottom: 20px;
+  margin-right: 10px; 
+  margin-left: 10px;
+  position: relative; /* adicionado */
+  border-radius: 8px;
+
+}
+.category-content p {
+  font-family:'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif ; /* Define a fonte desejada */
+  font-weight: bold; /* Deixa o texto em negrito */
+  font-size: 16px
+}
+
+.category {
+  text-align: center;
+}
+
+.category img {
+  width: 70px;
+  height: 70px;
+  cursor: pointer;
+  transition: transform 0.3s;
+}
+
+
+.progress-bar {
+  height: 2px;
+  padding: 1px;
+  background-color: #11af11; /* Corrigido para a cor da barra de progresso */
+  position: absolute;
+  bottom: -10px;
+  left: 0;
+  right: 0;
+  border: 1px solid #000;
+  border-radius: 8px;
+}
+
+.bar {
+  height: 100%;
+}
+
+.category-screen {
+  background-color: #aaa;
+  width: 100vw;
+  height: 100vh;
+  overflow: hidden;
+  margin: -1;
+  border: -1;
+}
+
+body {
+  display: flex;
+  margin: 0px;
+}
+
+.category-grid {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+.image-container {
+  background-color: #aaa;
+  width: 100%; /* Largura ajustada */
+  height: 80px; /* Altura ajustada */
+  overflow: hidden;
+  border: 1px solid #080808; /* Adiciona uma borda preta */
+  display: flex; /* Usando flexbox */
+  justify-content: center; /* Centraliza horizontalmente */
+  align-items: center; /* Centraliza verticalmente */
+  border-radius: 8px;
+}
