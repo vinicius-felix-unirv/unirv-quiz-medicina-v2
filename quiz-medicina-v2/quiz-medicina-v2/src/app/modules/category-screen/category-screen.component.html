@@ -1,0 +1,18 @@
+<div class="category-screen">
+  <h1>Início</h1>
+  <div class="category-grid">
+    <div class="category-box" *ngFor="let category of categories" (click)="startCategory(category)">
+      <div class="category">
+        <div class="category-content">
+          <div class="image-container">
+            <img [src]="category.icon" alt="{{category.name}}">
+          </div>
+          <p>{{category.name}}</p>
+        </div>
+      </div>
+      <div class="progress-bar">
+        <div class="bar" [style.width]="getCategoryProgress(category) + '%'"></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,23 @@
+<div class="container">
+  <div class="question-container" *ngIf="question && !showResult">
+    <div class="temporizador">
+      <div class="barra-progresso" [style.width.%]="timer / tempoLimite * 100"></div>
+    </div>
+    <h2>{{ question.conteudo }}</h2>
+    <ul>
+      <li *ngFor="let alternativa of question.alternativas">
+        <label class="alternativa-label">
+          <input type="radio" name="alternativa" [value]="alternativa.id" (click)="selectAnswer(alternativa.id)">
+          <div class="alternativa-box" [class.selected]="alternativa.id === selectedAnswer"
+            [class.resposta-errada]="alternativa.respostaIncorreta"
+            [class.shake]="alternativa.shaking">
+            {{ alternativa.resposta }}
+          </div>
+        </label>
+      </li>
+    </ul>
+    <div class="button-container">
+      <button class="confirm-button" (click)="confirmAnswer()">Confirmar</button>
+    </div>
+  </div>
+</div>
