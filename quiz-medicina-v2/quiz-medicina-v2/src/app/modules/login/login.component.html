@@ -22,14 +22,17 @@
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>
         </mat-form-field>
-        
-        <div class="new-password">
-          <button mat-raised-button (click)="openDialog()">Esqueceu a senha?</button>
-        </div>
-        
-        <button mat-flat-button class="submit-button">Entrar</button>
-    
       </form>
+
+      <div class="new-password">
+        <button mat-raised-button (click)="openDialog()">Esqueceu a senha?</button>
+      </div>
+      
+     <div id="submit-container">
+      <button mat-flat-button class="submit-button" (click)="onSubmit()">Entrar</button>
+     </div>
+  
+    
       <div id="button-img">
         <button mat-stroked-button>
           <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 48 48">

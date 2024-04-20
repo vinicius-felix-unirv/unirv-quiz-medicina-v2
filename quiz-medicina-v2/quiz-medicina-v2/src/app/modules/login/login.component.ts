@@ -1,5 +1,5 @@
 import { Component, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { ResetPasswordDialogComponent } from './reset-password-dialog/reset-password-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
 import { MatSnackBar,  MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
@@ -19,8 +19,6 @@ export class LoginComponent {
   hide = true;
   formData!: FormGroup;
   dialog: any;
-
-  
 
   constructor(private _formBuilder: FormBuilder, public _dialog: MatDialog, private _snackBar: MatSnackBar){}
 
