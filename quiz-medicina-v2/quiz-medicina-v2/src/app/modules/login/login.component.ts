@@ -58,9 +58,7 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
     this.serviceAuth.authenticate(this.formData.value).subscribe(async resposta => {
       if (this.serviceAuth.isAuthenticated()) {
-        await this.openDialogSnackBar('Auth');
-      } else {
-        await this.openDialogSnackBar('Not Auth');
+        this.openDialogSnackBar('Auth');
       }
     }, (err: HttpErrorResponse) => {
       if (err.status == 0) {
