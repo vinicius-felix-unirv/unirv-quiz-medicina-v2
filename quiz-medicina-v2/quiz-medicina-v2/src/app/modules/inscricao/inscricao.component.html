@@ -1,117 +1,138 @@
-<form [formGroup]="formulario" *ngIf="formulario" (ngSubmit)="submitForm()">
-    <div class="title"><h1>Inscreva-se</h1></div>
-    <div class="subtitle"><h1>Informações Pessoais</h1></div>
-    <div class="form-group">
-        <mat-form-field appearance="fill">
-            <mat-label>Nome Completo</mat-label>
-            <input matInput formControlName="nomeCompleto" placeholder="Nome Completo" required>
-            <mat-icon matSuffix>person</mat-icon>
-            <mat-error *ngIf="formulario.get('nomeCompleto')?.errors?.['required'] && formulario.get('nomeCompleto')?.touched">
-                O nome completo é obrigatório.
-            </mat-error>
-        </mat-form-field>
+<div class="main">
+   
+
+    <div class="formulario">
+        
+        <form [formGroup]="formulario" *ngIf="formulario" (ngSubmit)="submitForm()">
+
+            <div class="inf-pessoais">
+                <div class="container-title">
+                    <label class="title">Inscreva-se</label>
+                </div>
+                <div class="subtitle"><label class="subtitle">Informações Pessoais</label></div>
+                <div class="NomeCompleto">
+                    <mat-form-field appearance="outline" class="custom-mat-field">
+                        <mat-label class="custom-label">Nome Completo</mat-label>
+                        <input matInput formControlName="nomeCompleto" placeholder="Nome Completo" required class="custom-input">
+                        <mat-icon matSuffix>person</mat-icon>
+                        <mat-error *ngIf="formulario.get('nomeCompleto')?.errors?.['required'] && formulario.get('nomeCompleto')?.touched">
+                            Campo Obrigatório.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="Telefone">
+                    <mat-form-field appearance="outline" class="edicaoTelefone">
+                        <mat-label>Telefone</mat-label>
+                        <div class="tell">
+                            <input matInput formControlName="telefone" placeholder="Telefone" required pattern="^\d{10,}$">
+                        </div>
+                        <mat-icon matSuffix>phone</mat-icon>
+                        <mat-error *ngIf="formulario.get('telefone')?.errors?.['required'] && formulario.get('telefone')?.touched">
+                            Campo Obrigatório
+                        </mat-error>
+                        <mat-error *ngIf="formulario.get('telefone')?.errors?.['pattern'] && formulario.get('telefone')?.touched">
+                            O número de telefone deve ter pelo menos 10 dígitos.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="Sexo">
+                    <mat-form-field appearance="outline" class="edicaoSexo">
+                        <mat-label>Sexo</mat-label>
+                        <select matNativeControl formControlName="sexo" required>
+                            <option value="" disabled selected>Selecione</option>
+                            <option value="masculino">Masculino</option>
+                            <option value="feminino">Feminino</option>
+                            <option value="outros">Outros</option>
+                        </select>
+                        <mat-error *ngIf="formulario.get('sexo')?.hasError('required') && formulario.get('sexo')?.touched">
+                            Campo Obrigatório.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+
+                <div class="form-group">
+                    <mat-form-field appearance="outline" class="estadoEdicao">
+                        <mat-label>Estado</mat-label>
+                        <select matNativeControl formControlName="uf" (change)="onEstadoChange()" required>
+                            <option value="" disabled selected>Selecione um estado</option>
+                            <option *ngFor="let estado of estados" [value]="estado.id">{{ estado.nome }}</option>
+                        </select>
+                        <mat-error *ngIf="formulario.get('uf')?.errors?.['required'] && formulario.get('uf')?.touched">
+                            Selecione um estado.
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="forms">
+
+                </div>
+                <div class="form-group">
+                    <mat-form-field appearance="outline" class="cidadeEdicao">
+                        <mat-label>Cidade</mat-label>
+                        <select matNativeControl formControlName="cidade" required>
+                            <option value="" disabled selected>Selecione uma cidade</option>
+                            <option *ngFor="let cidade of cidades" [value]="cidade.id">{{ cidade.nome }}</option>
+                        </select>
+                        <mat-error *ngIf="formulario.get('cidade')?.errors?.['required'] && formulario.get('cidade')?.touched">
+                            Campo Obrigatório
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="form-group">
+                    <mat-form-field appearance="outline" class="dataEdicao">
+                        <mat-label>Data de Nascimento</mat-label>
+                        <input matInput [matDatepicker]="picker" formControlName="dataNascimento" placeholder="Escolha uma data" required>
+                        <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
+                        <mat-datepicker #picker></mat-datepicker>
+                        <mat-error *ngIf="formulario.get('dataNascimento')?.errors?.['required'] && formulario.get('dataNascimento')?.touched">
+                            Campo Obrigatório
+                        </mat-error>
+                    </mat-form-field>
+                </div>
+
+                <div class="inf-academicas">
+                    <h1 class="subtitleAcademico">Informações Acadêmicas</h1>
+                    <div class="form-group">
+                        <mat-form-field appearance="outline" class="edicaoCampus">
+                            <mat-label>Campus</mat-label>
+                            <input matInput formControlName="campus" placeholder="Informe seu campus">
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="outline" class="edicaoCurso">
+                            <mat-label>Curso</mat-label>
+                            <mat-select formControlName="curso" placeholder="Selecione um curso">
+                                <mat-option *ngFor="let curso of cursos" [value]="curso">{{ curso }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                    </div>
+
+                    <div class="form-group">
+                        <mat-form-field appearance="outline" class="edicaoTurma">
+                            <mat-label>Turma</mat-label>
+                            <input matInput formControlName="turma" placeholder="Nome da Turma">
+                        </mat-form-field>
+                    </div>
+
+                    
+                        <mat-form-field appearance="outline" class="edicaoPeriodo">
+                            <mat-label>Período</mat-label>
+                            <mat-select formControlName="periodo" placeholder="Selecione o período">
+                                <mat-option *ngFor="let periodo of periodos" [value]="periodo">{{ periodo }}</mat-option>
+                            </mat-select>
+                        </mat-form-field>
+                </div>
+            </div>
+            <div class="botao-container">
+                <button mat-raised-button type="submit" class="botao">{{ btnText }}</button>
+            </div>
+        </form>
+        
     </div>
-  
-    <div class="form-group">
-        <mat-form-field appearance="fill">
-            <mat-label>Telefone</mat-label>
-            <input matInput formControlName="telefone" placeholder="Telefone" required pattern="^\d{10,}$">
-            <mat-icon matSuffix>phone</mat-icon>
-            <mat-error *ngIf="formulario.get('telefone')?.errors?.['required'] && formulario.get('telefone')?.touched">
-                O número de telefone é obrigatório.
-            </mat-error>
-            <mat-error *ngIf="formulario.get('telefone')?.errors?.['pattern'] && formulario.get('telefone')?.touched">
-                O número de telefone deve ter pelo menos 10 dígitos.
-            </mat-error>
-        </mat-form-field>
-    </div>
-    <div class="form-group">
-        <mat-form-field appearance="fill">
-            <mat-label>Sexo</mat-label>
-            <select matNativeControl formControlName="sexo" required>
-                <option value="" disabled selected>Selecione o sexo</option>
-                <option value="masculino">Masculino</option>
-                <option value="feminino">Feminino</option>
-                <option value="outros">Outros</option>
-            </select>
-            <mat-error *ngIf="formulario.get('sexo')?.hasError('required') && formulario.get('sexo')?.touched">
-                Selecione o sexo.
-            </mat-error>
-        </mat-form-field>
-    </div>
-    
-    
-    <div class="form-group">
-        <mat-form-field appearance="fill">
-            <mat-label>Estado</mat-label>
-            <select matNativeControl formControlName="uf" (change)="onEstadoChange()" required>
-                <option value="" disabled selected>Selecione um estado</option>
-                <option *ngFor="let estado of estados" [value]="estado.id">{{ estado.nome }}</option>
-            </select>
-            <mat-error *ngIf="formulario.get('uf')?.errors?.['required'] && formulario.get('uf')?.touched">
-                Selecione um estado.
-            </mat-error>
-        </mat-form-field>
-    </div>
-    
-    <div class="form-group">
-        <mat-form-field appearance="fill">
-            <mat-label>Cidade</mat-label>
-            <select matNativeControl formControlName="cidade" required>
-                <option value="" disabled selected>Selecione uma cidade</option>
-                <option *ngFor="let cidade of cidades" [value]="cidade.id">{{ cidade.nome }}</option>
-            </select>
-            <mat-error *ngIf="formulario.get('cidade')?.errors?.['required'] && formulario.get('cidade')?.touched">
-                Selecione uma cidade.
-            </mat-error>
-        </mat-form-field>
-    </div>
-    
-    <div class="form-group">
-        <mat-form-field appearance="fill">
-            <mat-label>Data de Nascimento</mat-label>
-            <input matInput [matDatepicker]="picker" formControlName="dataNascimento" placeholder="Escolha uma data" required>
-            <mat-datepicker-toggle matSuffix [for]="picker"></mat-datepicker-toggle>
-            <mat-datepicker #picker></mat-datepicker>
-            <mat-error *ngIf="formulario.get('dataNascimento')?.errors?.['required'] && formulario.get('dataNascimento')?.touched">
-                A data de nascimento é obrigatória.
-            </mat-error>
-        </mat-form-field>
-    </div>
-    
-    
-    <div class="subtitle"><h1>Informações Acadêmicas</h1></div>
-    <div class="form-group">
-        <mat-form-field appearance="fill">
-            <mat-label>Campus</mat-label>
-            <input matInput formControlName="campus" placeholder="Informe seu campus">
-        </mat-form-field>
-    </div>
-  
-    <div class="form-group">
-        <mat-form-field appearance="fill">
-            <mat-label>Curso</mat-label>
-            <mat-select formControlName="curso" placeholder="Selecione um curso">
-                <mat-option *ngFor="let curso of cursos" [value]="curso">{{ curso }}</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-  
-    <div class="form-group">
-        <mat-form-field appearance="fill">
-            <mat-label>Turma</mat-label>
-            <input matInput formControlName="turma" placeholder="Nome da Turma">
-        </mat-form-field>
-    </div>
-  
-    <div class="form-group">
-        <mat-form-field appearance="fill">
-            <mat-label>Período</mat-label>
-            <mat-select formControlName="periodo" placeholder="Selecione o período">
-                <mat-option *ngFor="let periodo of periodos" [value]="periodo">{{ periodo }}</mat-option>
-            </mat-select>
-        </mat-form-field>
-    </div>
-    
-    <button mat-raised-button type="submit">{{ btnText }}</button>
-</form>
+</div>

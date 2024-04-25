@@ -66,6 +66,7 @@ export class InscricaoComponent implements OnInit {
   }
   submitForm() {
     // Implemente o que deseja fazer quando o formulário for submetido
+    console.log(this.formulario)
   }
   onEstadoChange() {
     // Verificar se this.formulario e this.formulario.get('uf') não são nulos
