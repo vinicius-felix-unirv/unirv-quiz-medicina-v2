@@ -5,6 +5,9 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { ResetPasswordDialogComponent } from './modules/login/reset-password-dialog/reset-password-dialog.component';
+
+import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
+
 import { HttpClientModule } from '@angular/common/http';
 // import { NewPasswordComponent } from './modules/new-password/new-password.component';
 
@@ -12,7 +15,7 @@ import { HttpClientModule } from '@angular/common/http';
 @NgModule({
   declarations: [
     AppComponent,
- 
+
   ],
   imports: [
     BrowserModule,
@@ -20,9 +23,11 @@ import { HttpClientModule } from '@angular/common/http';
     BrowserAnimationsModule,
     HttpClientModule
     
+  ],
+  providers: [
+    AuthInterceptorProvider
 
   ],
-  providers: [],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

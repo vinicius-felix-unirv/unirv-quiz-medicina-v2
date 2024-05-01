@@ -1,8 +1,12 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 
-
 const routes: Routes = [
+  {
+    path: '',
+    pathMatch: 'full',
+    redirectTo: 'login',
+  },
   {
     path: 'login',
     loadChildren: () => import('./modules/login/login.module').then(m => m.LoginModule)
@@ -10,6 +14,7 @@ const routes: Routes = [
   {
     path: 'new-password',
     loadChildren: () => import('./modules/new-password/new-password.module').then(m => m.NewPasswordComponentModule)
+
   },
   {
     path: 'category-screen',
@@ -21,6 +26,7 @@ const routes: Routes = [
     loadChildren: () => import('./modules/tela-perguntas/tela-perguntas.module').then(m => m.TelaPerguntasComponentModule)
   },
 ];
+
 
 @NgModule({
   imports: [

@@ -1,7 +1,13 @@
-import { Component, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators } from '@angular/forms';
+import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
 import { ResetPasswordDialogComponent } from './reset-password-dialog/reset-password-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { AuthService } from 'src/app/security/auth.service';
+import { Router } from '@angular/router';
+import { HttpErrorResponse } from '@angular/common/http';
+import { LoginResponse } from 'src/app/models/loginResponse';
+
 
 @Component({
   selector: 'app-login',
@@ -9,16 +15,15 @@ import { MatDialog } from '@angular/material/dialog';
   styleUrls: ['./login.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
-export class LoginComponent {
 
+export class LoginComponent implements OnInit, AfterViewInit {
 
   // O que falta: fazer o submiti, mensagem de erro caso o email ou a senha não sejam validos
+  constructor(private _formBuilder: FormBuilder, private router: Router, public _dialog: MatDialog, private _snackBar: MatSnackBar, private serviceAuth: AuthService) { }
 
   hide = true;
   formData!: FormGroup;
   dialog: any;
-  constructor(private _formBuilder: FormBuilder, public _dialog: MatDialog){}
-  
 
   private createFormData(): FormGroup {
     return this.formData = this._formBuilder.group({
@@ -31,7 +36,11 @@ export class LoginComponent {
     this.createFormData();
   }
 
-  getErrorMessage() {
+  ngAfterViewInit(): void {
+    throw new Error('Method not implemented.');
+  }
+
+  public getErrorMessage() {
     if (this.formData.get('email')!.hasError('required')) {
       return 'Você deve inserir um valor';
     }
@@ -39,18 +48,28 @@ export class LoginComponent {
     return this.formData.get('email')!.hasError('email') ? 'Não é um e-mail válido' : '';
   }
 
-  getIncorrectData(){
+  public getIncorrectData() {
     // if(){
 
     // }
   }
 
-  onSubmit(): void {
-    if(this.formData.valid){
-      console.log(this.formData.value);
-    }else{
-      console.log("error");
-    }
+  public onSubmit(): void {
+
+    this.serviceAuth.authenticate(this.formData.value).subscribe(async resposta => {
+      if (this.serviceAuth.isAuthenticated()) {
+        this.openDialogSnackBar('Auth');
+      }
+    }, (err: HttpErrorResponse) => {
+      if (err.status == 0) {
+        this.openDialogSnackBar('Erro de Conexão Com Servidor');
+      } else {
+        if (this.formData.valid)
+          this.openDialogSnackBar('Email e/ou Senha Incorreta');
+        else
+          this.openDialogSnackBar('Email e/ou Senha Não Informados');
+      }
+    });
   }
 
   openDialog(): void {
@@ -61,6 +80,21 @@ export class LoginComponent {
       console.log("fechou")
     });
   }
+
+  verticalPosition: MatSnackBarVerticalPosition = 'top'
+
+  openSnackBar(message: string, action: string) {
+    this._snackBar.open(message, action, {
+      verticalPosition: this.verticalPosition,
+      duration: 2000,
+    });
+  }
+
+  private openDialogSnackBar(message: string): void {
+    this._snackBar.open(message, 'Fechar',
+      { duration: 2000, verticalPosition: 'top', horizontalPosition: 'right' });
+  }
+
 
 }
 
