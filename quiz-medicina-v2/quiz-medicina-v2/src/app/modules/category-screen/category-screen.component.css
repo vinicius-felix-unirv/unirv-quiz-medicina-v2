@@ -48,7 +48,7 @@
 }
 
 .category-screen {
-  background-color: #aaa;
+  background-color: #e6e2e2;
   width: 100vw;
   height: 100vh;
   overflow: hidden;
@@ -67,7 +67,7 @@ body {
   justify-content: space-between;
 }
 .image-container {
-  background-color: #aaa;
+  background-color: #e6e2e2;
   width: 100%; /* Largura ajustada */
   height: 80px; /* Altura ajustada */
   overflow: hidden;

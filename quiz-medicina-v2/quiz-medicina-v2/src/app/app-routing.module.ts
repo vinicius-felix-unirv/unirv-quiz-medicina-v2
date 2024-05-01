@@ -11,6 +11,15 @@ const routes: Routes = [
     path: 'new-password',
     loadChildren: () => import('./modules/new-password/new-password.module').then(m => m.NewPasswordComponentModule)
   },
+  {
+    path: 'category-screen',
+    loadChildren: () => import('./modules/category-screen/category-screen.module').then(m => m.CategoryScreenComponentModule)
+
+  },
+  {
+    path: 'tela-perguntas',
+    loadChildren: () => import('./modules/tela-perguntas/tela-perguntas.module').then(m => m.TelaPerguntasComponentModule)
+  },
 ];
 
 @NgModule({
