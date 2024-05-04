@@ -1,0 +1,172 @@
+.container{
+    border-radius: 12px;
+
+    padding: 2.5rem 6rem 2rem;
+
+    .content{
+        width: 350px;
+        height: 470px;
+        // border: 1px solid blue;
+
+        .header{
+            display: flex;
+            align-items: center;
+            justify-content: space-between;  
+            margin-bottom: 15px;
+
+            button{
+                border: none;
+                background-color: transparent;
+                cursor: pointer;
+
+                font-size: 32px;
+                font-weight: 700;
+            }
+
+            .divisoria{
+                height: 40px;
+                width: 1.5px;
+                background-color: rgb(194, 191, 191);
+                // border: 1px solid red;
+            }
+        }
+
+        form{           
+            display: flex;
+            flex-direction: column;
+
+            h2{
+                margin: 0;
+                font-weight: 700;
+                font-size: 25px;
+                margin-bottom: 5px;
+
+            }
+
+            .inputImage{
+                height: 140px;
+                border: 1.7px dashed var(--gray-lite);
+                border-radius: 4px;
+                margin-bottom: 20px;
+    
+                label{
+                    height: 100%;
+                    display: flex;
+                    flex-direction: column;
+                    align-items: center;
+                    justify-content: center;
+                    gap: 10px;
+
+                    font-weight: 700;
+                    font-size: 20px;
+                    color: var(--gray-lite);
+                    cursor: pointer;
+    
+                    img{
+                        width: 50px;
+                        height: 50px;
+                    }
+                }
+    
+                input{
+                    display: none;
+                }
+            }
+
+            .inputs-config{
+                display: flex;
+                gap: 10px;
+                .mat-mdc-text-field-wrapper {
+                    width: 170px;
+                    height: 45px;
+                }
+    
+                .mdc-text-field {
+                    align-items: center;
+                }
+    
+                .mdc-floating-label{
+                    top: 50%; 
+                }
+            }
+
+            .time{
+                display: flex;
+                align-items: center;
+                height: auto;
+                gap: 10px;
+
+                margin-bottom: 20px;
+
+                label{
+                    font-weight: 700;
+                    font-size: 20px;
+                }
+
+                input{
+                    height: 40px;
+                    border: none;
+                    outline: none;
+                }
+            }
+
+            .mat-mdc-text-field-wrapper {
+                width: 350px;
+                height: 60px;
+            }
+
+            .mdc-text-field {
+                align-items: center;
+            }
+
+            .mdc-floating-label{
+                top: 50%; 
+            }
+
+            .mat-mdc-text-field-wrapper.mdc-text-field--outlined .mdc-notched-outline--upgraded .mdc-floating-label--float-above {
+                --mat-mdc-form-field-label-transform: translateY(-28px) scale(var(--mat-mdc-form-field-floating-label-scale, 0.75));
+            }
+
+            .inputType{
+                margin-top: -5px;
+                margin-bottom: 50px;
+
+                li {
+                    list-style-type: none;
+                    // border: 1px solid red;
+                    display: flex;
+                    align-items: center;
+                    gap: 4px;
+
+                    padding-left: 10px;
+
+                    input{
+                        width: 14px;
+                        height: 14px;
+                        // color: red;
+                    }
+                }
+
+            }
+
+            #submit-btn {
+                .mat-mdc-unelevated-button{
+                    width: 350px;
+                    height: 45px;
+                }
+            
+                .mat-mdc-button-touch-target{
+                    height: 45px;
+                }
+        
+                .mat-mdc-unelevated-button.mat-unthemed {
+                    --mdc-filled-button-container-color: var(--green);
+                    --mdc-filled-button-label-text-color: #fff;
+                }
+            }
+        }
+
+    }
+
+
+}

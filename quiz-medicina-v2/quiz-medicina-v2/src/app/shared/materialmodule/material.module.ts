@@ -6,6 +6,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { MatRadioModule } from '@angular/material/radio';
+import { MatSelectModule } from '@angular/material/select';
+
 
 
 @NgModule({
@@ -17,14 +20,19 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatIconModule,
     MatDialogModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    MatSelectModule
+
   ],
   exports:[
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule, 
+    MatRadioModule,
+    MatSnackBarModule,
+    MatSelectModule
   ]
 })
 export class MaterialModule { }

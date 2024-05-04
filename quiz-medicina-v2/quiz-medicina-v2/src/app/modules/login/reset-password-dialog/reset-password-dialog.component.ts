@@ -1,6 +1,6 @@
-import { Component, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
 
 @Component({
   selector: 'app-reset-password-dialog',
@@ -8,10 +8,10 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
   styleUrls: ['./reset-password-dialog.component.scss'],
   encapsulation: ViewEncapsulation.None
 })
+
 export class ResetPasswordDialogComponent {
   constructor(
     public dialogRef: MatDialogRef<ResetPasswordDialogComponent>,
-    // @Inject(MAT_DIALOG_DATA) public data: string,
   ) {}
 
   teste: boolean = true;
