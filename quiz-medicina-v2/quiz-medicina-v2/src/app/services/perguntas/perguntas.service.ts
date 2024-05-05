@@ -24,7 +24,7 @@ export class PerguntaService extends ServiceBase<Pergunta> {
   }
 
   putStatusPergunta(id: number): Observable<Pergunta>{
-    return this.httpClient.get<Pergunta>(`${API_CONFIG.baseUrl}/${this.url}/${id}/status`);
+    return this.httpClient.put<Pergunta>(`${API_CONFIG.baseUrl}/${this.url}/${id}/status`, '');
   }
 
 }
