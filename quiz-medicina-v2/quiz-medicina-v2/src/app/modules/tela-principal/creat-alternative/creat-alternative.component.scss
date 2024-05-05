@@ -36,6 +36,16 @@
             }
         }
 
+        .mat-mdc-unelevated-button{
+            width: 50px;
+            height: 35px;
+        }
+    
+        .mat-mdc-button-touch-target{
+            height: 35px;
+            border: 1.5px solid var(--green);
+            border-radius: 4px;
+        }
         
     }
 

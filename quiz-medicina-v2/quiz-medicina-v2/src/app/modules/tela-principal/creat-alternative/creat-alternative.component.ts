@@ -1,5 +1,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormGroup, Validators } from '@angular/forms';
+import { MatDialog } from '@angular/material/dialog';
+import { AlternativeComponent } from '../alternative/alternative.component';
+
 
 @Component({
   selector: 'app-creat-alternative',
@@ -12,6 +15,10 @@ export class CreatAlternativeComponent {
   private _formBuilder: any;
   formData: any;
 
+  constructor(public _dialog: MatDialog){  }
+
+  dialog: any;
+
   private createFormData(): FormGroup {
     return this.formData = this._formBuilder.group({
       imagem: ['', [Validators.required]],
@@ -22,5 +29,14 @@ export class CreatAlternativeComponent {
 
   onSubmit(){
     
+  }
+
+  openDialog(): void {
+    const dialogRef = this._dialog.open(AlternativeComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      console.log("fechou")
+    });
   }
 }

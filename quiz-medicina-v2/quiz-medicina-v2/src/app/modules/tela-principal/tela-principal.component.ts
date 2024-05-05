@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NewQuizComponent } from './new-quiz/new-quiz.component';
 import { MatDialog } from '@angular/material/dialog';
 import { CreatQuestionComponent } from './creat-question/creat-question.component';
+import { CreatAlternativeComponent } from './creat-alternative/creat-alternative.component';
 
 @Component({
   selector: 'app-tela-principal',
@@ -16,7 +17,6 @@ export class TelaPrincipalComponent {
     console.log("Abriu a dialog")
     const dialogRef = this._dialog.open(CreatQuestionComponent, {
     });
-
 
     dialogRef.afterClosed().subscribe(() => {
       console.log("fechou")

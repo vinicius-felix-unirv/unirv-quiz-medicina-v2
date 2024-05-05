@@ -8,6 +8,8 @@ import { ReactiveFormsModule } from '@angular/forms';
 import { NewQuizComponent } from './new-quiz/new-quiz.component';
 import { CreatQuestionComponent } from './creat-question/creat-question.component';
 import { CreatAlternativeComponent } from './creat-alternative/creat-alternative.component';
+import { AlternativeComponent } from './alternative/alternative.component';
+
 
 const routes: Routes = [
   {
@@ -21,7 +23,8 @@ const routes: Routes = [
     TelaPrincipalComponent,
     NewQuizComponent,
     CreatQuestionComponent,
-    CreatAlternativeComponent
+    CreatAlternativeComponent,
+    AlternativeComponent
   ],
   imports: [
     CommonModule,
