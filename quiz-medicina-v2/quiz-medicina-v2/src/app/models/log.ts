@@ -1,6 +1,6 @@
 export class Log {
 
   id?: number;
-  usuariosid!: number;
-  descricao!: string;
+  usuariosid: number = 0;
+  descricao: string = '';
 }

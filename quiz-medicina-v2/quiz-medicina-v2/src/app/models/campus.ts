@@ -1,8 +1,4 @@
-export interface Campus {
+export class Campus {
   id?: number;
-  cursoid: number;
-  turma: string;
-  periodo: number;
-  nome: string;
-  usuariosid: number;
+  nomecampus: string = '';
 }

@@ -1,9 +1,9 @@
 export class Alternativa {
 
   id?: number;
-  perguntasid?: number;
-  resposta: string = "";
-  pathimage: string = "";
-  correta?: boolean;
+  perguntasid: number = 0;
+  resposta: string | null = "";
+  pathimage: string | null = "";
+  correta: boolean = false;
 
 }
