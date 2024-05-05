@@ -6,7 +6,7 @@
             <button (click)="changeColor()" [ngStyle]="{'color': buttonColor}">Alternativas</button>
         </div>
 
-        <form  [formGroup]="formData" (submit)="onSubmit()">
+        <form *ngIf="false"  [formGroup]="formData" (submit)="onSubmit()">
             <div>
                 <mat-form-field appearance="outline" #myFormField>
                     <textarea matInput placeholder="Insira a pergunta.." formControlName="titulo" required></textarea>
@@ -52,6 +52,8 @@
             </div>
             
         </form>
+
+        <app-creat-alternative *ngIf="true"></app-creat-alternative>
 
     </div>
 </div>

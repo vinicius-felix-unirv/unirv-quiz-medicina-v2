@@ -1,0 +1,19 @@
+<form *ngIf="true" [formGroup]="formData">
+    <div class="creat-alternative">
+        <div class="count-alternatives">
+            <span>Alternativas criadas  <p>0</p> </span>
+            
+            <button mat-flat-button (click)="onSubmit()">Criar</button>
+        </div>
+        
+
+        <div class="list-of-alternative">
+            <div class="empty-list">
+                <img src="../../../../assets/Clipboard.png" alt="">
+                <p>Você ainda não tem alternativas cadastradas</p>
+            </div>
+
+        </div>
+
+    </div>
+</form>
