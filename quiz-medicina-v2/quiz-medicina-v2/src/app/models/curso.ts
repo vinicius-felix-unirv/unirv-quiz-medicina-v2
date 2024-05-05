@@ -1,5 +1,5 @@
-export interface Curso {
+export class Curso {
   id?: number;
-  nome: string;
-  imagem: string;
+  nome: string = '';
+  imagem: string = '';
 }

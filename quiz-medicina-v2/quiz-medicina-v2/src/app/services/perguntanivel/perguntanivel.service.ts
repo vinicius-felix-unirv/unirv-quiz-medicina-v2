@@ -9,6 +9,6 @@ import { ServiceBase } from '../servicebase/base.service';
 export class PerguntanivelService extends ServiceBase<PerguntasNivel>{
 
   constructor(private http: HttpClient) {
-    super(http, "perguntas");
+    super(http, "niveis");
   }
 }
