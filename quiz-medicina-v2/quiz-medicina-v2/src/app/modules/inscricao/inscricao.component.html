@@ -41,19 +41,18 @@
                 <div class="Sexo">
                     <mat-form-field appearance="outline" class="edicaoSexo">
                         <mat-label>Sexo</mat-label>
-                        <select matNativeControl formControlName="sexo" required>
-                            <option value="" disabled selected>Selecione</option>
-                            <option value="masculino">Masculino</option>
-                            <option value="feminino">Feminino</option>
-                            <option value="outros">Outros</option>
-                        </select>
+                        <mat-select formControlName="sexo" placeholder="Selecione" required>
+                            <mat-option disabled selected></mat-option>
+                            <mat-option value="masculino">Masculino</mat-option>
+                            <mat-option value="feminino">Feminino</mat-option>
+                            <mat-option value="outros">Outros</mat-option>
+                        </mat-select>
                         <mat-error *ngIf="formulario.get('sexo')?.hasError('required') && formulario.get('sexo')?.touched">
                             Campo Obrigatório.
                         </mat-error>
                     </mat-form-field>
                 </div>
-
-
+                
                 <div class="form-group">
                     <mat-form-field appearance="outline" class="estadoEdicao">
                         <mat-label>Estado</mat-label>
@@ -68,20 +67,21 @@
                 </div>
 
                 <div class="forms">
-
                 </div>
+                
                 <div class="form-group">
                     <mat-form-field appearance="outline" class="cidadeEdicao">
                         <mat-label>Cidade</mat-label>
-                        <select matNativeControl formControlName="cidade" required>
-                            <option value="" disabled selected>Selecione uma cidade</option>
-                            <option *ngFor="let cidade of cidades" [value]="cidade.id">{{ cidade.nome }}</option>
-                        </select>
+                        <mat-select formControlName="cidade" placeholder="Selecione uma cidade" required>
+                            <mat-option disabled selected></mat-option>
+                            <mat-option *ngFor="let cidade of cidades" [value]="cidade.id">{{ cidade.nome }}</mat-option>
+                        </mat-select>
                         <mat-error *ngIf="formulario.get('cidade')?.errors?.['required'] && formulario.get('cidade')?.touched">
                             Campo Obrigatório
                         </mat-error>
                     </mat-form-field>
                 </div>
+                
 
                 <div class="form-group">
                     <mat-form-field appearance="outline" class="dataEdicao">
@@ -100,9 +100,15 @@
                     <div class="form-group">
                         <mat-form-field appearance="outline" class="edicaoCampus">
                             <mat-label>Campus</mat-label>
-                            <input matInput formControlName="campus" placeholder="Informe seu campus">
+                            <mat-select formControlName="campus" placeholder="Informe seu campus">
+                                <mat-option value="campus1">Teste1</mat-option>
+                                <mat-option value="campus2">Teste2</mat-option>
+                                <mat-option value="campus3">Teste3</mat-option>
+                            </mat-select>
                         </mat-form-field>
                     </div>
+                    
+                    
 
                     <div class="form-group">
                         <mat-form-field appearance="outline" class="edicaoCurso">

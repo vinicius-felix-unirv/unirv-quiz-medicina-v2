@@ -218,6 +218,12 @@
     padding-top: 0px; /* Espaçamento superior */
     width: 290px; /* Largura do contêiner */
   }
+
+  .edicaoCampus select {
+    margin-left: 25px; /* Espaçamento esquerdo */
+    padding-top: 0px; /* Espaçamento superior */
+    width: 290px; /* Largura do contêiner */
+  }
   /* Estilo para o ícone de sufixo */
   .mat-icon.matSuffix {
     color: #777; /* Cor do ícone */
@@ -390,6 +396,7 @@ body{
     width: 210px; /* Largura do contêiner */
     border-right: 0px;
   }
+  
 
   .cidadeEdicao {
     display: flex;
