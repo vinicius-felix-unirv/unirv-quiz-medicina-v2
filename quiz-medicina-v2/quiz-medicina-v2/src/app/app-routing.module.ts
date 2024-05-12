@@ -23,8 +23,12 @@ const routes: Routes = [
   },
   {
     path: 'tela-perguntas',
-    loadChildren: () => import('./modules/tela-perguntas/tela-perguntas.module').then(m => m.TelaPerguntasComponentModule)
+      loadChildren:  () => import('./modules/tela-perguntas/tela-perguntas.module').then(m => m.TelaPerguntasComponentModule)
   },
+  {
+    path: 'inscricao',
+    loadChildren: () => import('./modules/inscricao/inscricao.module').then(m =>m.InscricaoModule)
+  }
 ];
 
 

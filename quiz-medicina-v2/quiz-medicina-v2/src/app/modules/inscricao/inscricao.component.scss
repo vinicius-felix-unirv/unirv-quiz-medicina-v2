@@ -1,0 +1,484 @@
+@media screen and (max-width: 630px) {
+
+  .container-title{
+    padding-top: 20px;
+  }
+  .title{
+      margin-left: 30px;
+      font-weight: bold;
+      font-size: 30px;
+  }
+  .subtitle{
+      margin-top: 15px;
+      margin-bottom: 10px;
+      font-weight: bold;
+      font-size: 25px;
+      margin-left: 15px;
+  }
+  
+     /* Estilo para o contêiner NomeCompleto */
+  .NomeCompleto {
+      margin-left: 25px;
+      margin-top: 40px;
+      margin-bottom: 20px;
+      height: 57px;
+      width: 300px;
+    }
+    
+    /* Estilo para o campo de entrada */
+    .custom-mat-field {
+      width: 300px;
+      height: 57px;
+      margin-bottom: 20px;
+    }
+    
+    /* Estilo para o rótulo */
+    .custom-label {
+      color: #333;
+      font-size: 16px;
+    }
+    
+    /* Estilo para o campo de entrada */
+    .custom-input {
+      font-size: 16px;
+    }
+    
+    /* Estilo para o ícone de sufixo */
+    mat-icon.matSuffix {
+      color: #777;
+    }
+    
+    /* Estilo para a mensagem de erro */
+    mat-error {
+      
+      font-size: 14px;
+      color: #ff0000;
+    }
+  
+  
+  
+    /* Estilo para o contêiner Telefone */
+  .Telefone {
+    margin-bottom: 20px;
+    margin-left: 25px;
+    padding-top: 0px;
+    width: 80px;
+    height: 57px;
+  }
+  
+  /* Estilo para o campo de entrada de telefone */
+  .tell{
+    font-size: 16px;
+  }
+  .edicaoTelefone{
+    height: 57px;
+    width: 180px;
+  }
+  
+  /* Estilo para o ícone de sufixo */
+  mat-icon.matSuffix {
+    color: #777;
+  }
+  
+  /* Estilo para a mensagem de erro */
+  mat-error {
+    font-size: 14px;
+    color: #ff0000;
+    width: 500px;
+    margin-left: -20px;
+    width: 190px;
+  }
+  
+  
+  
+  /* Estilo para o contêiner Sexo */
+  .Sexo {
+    margin-left: 220px; /* Espaçamento esquerdo */
+    margin-top: -77px; /* Espaçamento superior */
+    width: 180px; /* Largura do contêiner */
+  }
+  
+  /* Estilo para o campo de seleção de sexo */
+  .Sexo select {
+    font-size: 10px; /* Tamanho da fonte */
+    height: 57px; /* Altura do campo */
+    width: 100%; /* Largura do campo */
+  }
+  
+  .edicaoSexo{
+    width: 100px;
+    font-size: 11px;
+  }
+  
+  /* Estilo para o ícone de sufixo */
+  .mat-icon.matSuffix {
+    color: #777; /* Cor do ícone */
+  }
+  
+  /* Estilo para a mensagem de erro */
+  mat-error {
+    font-size: 14px; /* Tamanho da fonte */
+    color: #ff0000; /* Cor do texto de erro */
+    width: 190px; /* Largura da mensagem de erro */
+    margin-left: -20px; /* Margem esquerda */
+  }
+  
+  
+  
+  /* Estilo para o contêiner Estado */
+  .estadoEdicao {
+    margin-left: 25px; /* Espaçamento esquerdo */
+    padding-top: 0px; /* Espaçamento superior */
+    width: 290px; /* Largura do contêiner */
+  }
+  
+  /* Estilo para o campo de seleção de estado */
+  .estadoEdicao select {
+    font-size: 16px; /* Tamanho da fonte */
+    height: 57px; /* Altura do campo */
+    width: 100%; /* Largura do campo */
+  }
+  
+  /* Estilo para o ícone de sufixo */
+  .mat-icon.matSuffix {
+    color: #777; /* Cor do ícone */
+  }
+  
+  /* Estilo para a mensagem de erro */
+  mat-error {
+    font-size: 14px; /* Tamanho da fonte */
+    color: #ff0000; /* Cor do texto de erro */
+    width: 190px; /* Largura da mensagem de erro */
+    margin-left: -20px; /* Margem esquerda */
+  }
+  
+  
+  /* Estilo para o contêiner Cidade */
+  .cidadeEdicao {
+    margin-left: 25px; /* Espaçamento esquerdo */
+    padding-top: 0px; /* Espaçamento superior */
+    width: 290px; /* Largura do contêiner */
+  }
+  
+  /* Estilo para o campo de seleção de cidade */
+  .cidadeEdicao select {
+    font-size: 16px; /* Tamanho da fonte */
+    height: 57px; /* Altura do campo */
+    width: 100%; /* Largura do campo */
+  }
+  
+  /* Estilo para o ícone de sufixo */
+  .mat-icon.matSuffix {
+    color: #777; /* Cor do ícone */
+  }
+  
+  /* Estilo para a mensagem de erro */
+  mat-error {
+    font-size: 14px; /* Tamanho da fonte */
+    color: #ff0000; /* Cor do texto de erro */
+    width: 190px; /* Largura da mensagem de erro */
+    margin-left: -20px; /* Margem esquerda */
+  }
+  
+  
+  
+  /* Estilo para o contêiner Data de Nascimento */
+  .dataEdicao {
+    margin-left: 25px; /* Espaçamento esquerdo */
+    width: 290px; /* Largura do contêiner */
+  }
+  
+  /* Estilo para o campo de entrada de data */
+  .dataEdicao input {
+    font-size: 16px; /* Tamanho da fonte */
+    height: 57px; /* Altura do campo */
+    width: calc(100% - 24px); /* Largura do campo */
+    padding-left: 12px; /* Preenchimento à esquerda */
+  }
+  
+  /* Estilo para o ícone de sufixo */
+  .mat-datepicker-toggle {
+    color: #777; /* Cor do ícone */
+  }
+  
+  /* Estilo para a mensagem de erro */
+  mat-error {
+    font-size: 14px; /* Tamanho da fonte */
+    color: #ff0000; /* Cor do texto de erro */
+    width: 250px; /* Largura da mensagem de erro */
+    margin-left: -20px; /* Margem esquerda */
+  }
+  
+  
+  
+  
+  /* Estilo para o contêiner Campus */
+  .edicaoCampus {
+    margin-left: 25px; /* Espaçamento esquerdo */
+    padding-top: 0px; /* Espaçamento superior */
+    width: 290px; /* Largura do contêiner */
+  }
+
+  .edicaoCampus select {
+    margin-left: 25px; /* Espaçamento esquerdo */
+    padding-top: 0px; /* Espaçamento superior */
+    width: 290px; /* Largura do contêiner */
+  }
+  /* Estilo para o ícone de sufixo */
+  .mat-icon.matSuffix {
+    color: #777; /* Cor do ícone */
+  }
+  
+  
+  
+  /* Estilo para o contêiner Curso */
+  .edicaoCurso {
+    margin-left: 25px; /* Espaçamento esquerdo */
+    padding-top: 0px; /* Espaçamento superior */
+    width: 290px; /* Largura do contêiner */
+  }
+  
+  /* Estilo para o campo de seleção de cidade */
+  .edicaoCurso select {
+    font-size: 16px; /* Tamanho da fonte */
+    height: 57px; /* Altura do campo */
+    width: 100%; /* Largura do campo */
+  }
+  
+  /* Estilo para o ícone de sufixo */
+  .mat-icon.matSuffix {
+    color: #777; /* Cor do ícone */
+  }
+  
+  /* Estilo para o contêiner Curso */
+  .edicaoTurma {
+    margin-left: 25px; /* Espaçamento esquerdo */
+    padding-top: 0px; /* Espaçamento superior */
+    width: 100px; /* Largura do contêiner */
+  }
+  
+  
+  
+  /* Estilo para o campo de seleção de turma */
+  .edicaoTurma select {
+    font-size: 16px; /* Tamanho da fonte */
+    height: 57px; /* Altura do campo */
+    width: 100%; /* Largura do campo */
+  }
+  
+  /* Estilo para o ícone de sufixo */
+  .mat-icon.matSuffix {
+    color: #777; /* Cor do ícone */
+  }
+  
+  
+  /* Estilo para o contêiner Curso */
+  .edicaoPeriodo {
+    margin-left: 140px; /* Espaçamento esquerdo */
+    width: 177px; /* Largura do contêiner */
+    margin-bottom: -20px;
+    position: relative;
+    top: -77px;
+  }
+  
+  /* Estilo para o campo de seleção de cidade */
+  .edicaoPeriodo select {
+    font-size: 16px; /* Tamanho da fonte */
+    height: 57px; /* Altura do campo */
+    width: 100%; /* Largura do campo */
+  }
+  
+  /* Estilo para o ícone de sufixo */
+  .mat-icon.matSuffix {
+    color: #777; /* Cor do ícone */
+  }
+  
+  h1.subtitleAcademico{
+    font-weight: bold;
+    font-family: 60px;
+    padding-left: 25px;
+  }
+  
+  .botao-container {
+    display: flex; /* Define o layout como flexível */
+    margin-top: 20px; /* Espaçamento superior */
+    margin-left: 225px;
+    padding-bottom: 20px;
+  }
+  
+  .botao {
+    position: absolute;
+    margin-top: 0px;
+    top: -60px;
+    left: -110px;
+    width: 300px;
+    color: #ffffff !important; /* Cor do texto */
+    padding: 10px 20px; /* Preenchimento interno */
+    border: none; /* Remove a borda */
+    border-radius: 12px !important; /* Borda arredondada */
+    font-size: 16px; /* Tamanho da fonte */
+    cursor: pointer; /* Ícone de cursor */
+    transition: background-color 0.3s ease; /* Transição suave */
+    background-color: #11c900 !important;
+    position: relative;
+  }
+  
+  .botao:hover {
+    background-color: #f8f8f8 !important; /* Cor de fundo ao passar o mouse */
+    color:  #11c900 !important;
+    border-color: #11c900;
+    border: solid 3px;
+    transition: background-color 0.3s ease; /* Transição suave */
+  }
+  
+}
+
+
+
+
+@media screen and (min-width: 630px) {
+
+
+body{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.formulario{
+  display: block;
+  width: 980px;
+  height: 600px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.3);
+
+  .title{
+    font-weight: bold;
+   font-size: 36px;
+   top: 90px; 
+  }
+}
+.inf-pessoais{
+  position: absolute;
+  display: flex;
+  width: 600px;
+  height: 500px;
+  flex-direction: column;
+  margin-left: 60px;
+  margin-top: 40px;
+
+  .subtitle{
+    font-weight: bold;
+    font-size: 26px;
+    margin-top: 40px;
+    margin-bottom: 15px;
+  }
+  .custom-mat-field {
+    width: 400px;
+    height: 47px;
+    margin-bottom: 25px;
+  }
+
+  .edicaoTelefone{
+    height: 57px;
+    width: 180px; 
+    margin-top: 10px;   
+  }
+
+  .Sexo {
+    margin-left: 190px; /* Espaçamento esquerdo */
+    margin-top: -57px; /* Espaçamento superior */
+    width: 180px; /* Largura do contêiner */
+  }
+
+  .estadoEdicao {
+    margin-top: 10px;
+    display: flex;
+    width: 210px; /* Largura do contêiner */
+    border-right: 0px;
+  }
+  
+
+  .cidadeEdicao {
+    display: flex;
+    margin-left: 220px; /* Espaçamento esquerdo */
+    margin-top: -77px; /* Espaçamento superior */
+    width: 187px; /* Largura do contêiner */
+    font-size: 13px;
+  }
+
+  .dataEdicao {
+    margin-top: 10px;
+    width: 290px; /* Largura do contêiner */
+  }
+}
+.inf-academicas{
+  position: absolute;
+  display: flex;
+  width: 400px;
+  height: 500px;
+  flex-direction: column;
+  margin-left: 450px;
+  text-align: left;
+  margin-top: 59px;
+}
+
+h1.subtitleAcademico{
+    margin-top: 5px;
+    font-weight: bold;
+    font-size: 28px;
+    margin-bottom: 5px;
+}
+
+.edicaoCampus {
+  margin-bottom: 8px;
+  width: 290px; /* Largura do contêiner */
+}
+
+.edicaoCurso {
+  width: 290px; /* Largura do contêiner */
+  margin-bottom: -10px;
+}
+
+.edicaoTurma{
+  display: flex;
+  width: 90px; /* Largura do contêiner */
+  margin-bottom: -140px;
+  margin-top: 20px;
+}
+
+.edicaoPeriodo{
+  display: flex;
+  margin-top: -18px;
+  margin-left: 100px;
+  width: 190px; /* Largura do contêiner */
+  position: relative;
+  top: -20px;
+}
+
+
+.botao {
+  position: absolute;
+  top: 480px;
+  left: 350px; /* Distância da esquerda */
+  width: 300px;
+  color: #ffffff !important; /* Cor do texto */
+  padding: 10px 20px; /* Preenchimento interno */
+  border: none; /* Remove a borda */
+  border-radius: 12px !important; /* Borda arredondada */
+  font-size: 16px; /* Tamanho da fonte */
+  cursor: pointer; /* Ícone de cursor */
+  transition: background-color 0.3s ease; /* Transição suave */
+  background-color: #11c900 !important;
+}
+
+.botao:hover {
+  background-color: #f8f8f8 !important; /* Cor de fundo ao passar o mouse */
+  color:  #11c900 !important;
+  border-color: #11c900;
+  border: solid 3px;
+  transition: background-color 0.3s ease; /* Transição suave */
+}
+
+}
+
+
