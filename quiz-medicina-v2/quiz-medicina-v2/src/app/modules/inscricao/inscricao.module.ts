@@ -3,7 +3,7 @@ import { CommonModule } from '@angular/common';
 import { RouterModule, Routes } from '@angular/router';
 import { InscricaoComponent } from './inscricao.component';
 import { ReactiveFormsModule } from '@angular/forms';
-import { IbgeService } from './ibge.service';
+import { IbgeService } from '../../services/cidades/ibge.service';
 import { HttpClientModule } from '@angular/common/http';
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';

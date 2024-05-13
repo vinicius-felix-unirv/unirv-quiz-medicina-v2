@@ -1,6 +1,10 @@
 import { Component, Input, OnInit, Inject, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
-import { IbgeService } from './ibge.service';
+import { IbgeService } from '../../services/cidades/ibge.service';
+import { Curso } from 'src/app/models/curso';
+import { CursosService } from 'src/app/services/cursos/cursos.service';
+import { Campus } from 'src/app/models/campus';
+import { CampusService } from 'src/app/services/campus/campus.service';
 
 @Component({
   selector: 'app-inscricao',
@@ -10,55 +14,51 @@ import { IbgeService } from './ibge.service';
 })
 export class InscricaoComponent implements OnInit {
   @Input() btnText!: string;
-  formulario: FormGroup; 
+  formulario!: FormGroup;
   estados: any[] = [];
   cidades: any[] = [];
-  selectedEstadoId: number = 0; 
-  cursos: string[] = [
-    'Administração',
-    'Agronomia',
-    'Arquitetura e Urbanismo',
-    'Ciências Contábeis',
-    'Design de Interiores',
-    'Design Gráfico',
-    'Direito',
-    'Enfermagem',
-    'Engenharia Civil',
-    'Engenharia de Software',
-    'Engenharia Mecânica',
-    'Fisioterapia',
-    'Marketing',
-    'Medicina',
-    'Medicina Veterinária',
-    'Odontologia',
-    'Pedagogia',
-    'Psicologia',
-    'Outro'
+  selectedEstadoId: number = 0;
+  cursos!: Curso[];
+  campusList!: Campus[];
+  sexos: {sexo: string, id: number}[] = [
+    {sexo: 'Masculino', id: 1},
+    {sexo: 'Feminino', id: 2},
+    {sexo: 'Outros', id: 3},
   ];
-  periodos: string[] = ['Primeiro', 'Segundo', 'Terceiro', 'Quarto', 'Quinto', 'Sexto', 'Sétimo', 'Oitavo', 'Nono', 'Décimo, Outro'];
+  periodos: {nome: string, numero: number}[] = [
+    {nome:'Primeiro', numero: 1}, {nome:'Segundo', numero: 2}, {nome:'Terceiro', numero: 3},
+    {nome:'Quarto', numero: 4}, {nome:'Quinto', numero: 5}, {nome:'Sexto', numero: 6},
+    {nome:'Sétimo', numero: 7}, {nome:'Oitavo', numero: 8}, {nome:'Nono', numero: 9},
+    {nome:'Décimo', numero: 10},
+    ];
 
   constructor(
     private formBuilder: FormBuilder,
-    @Inject(IbgeService) private ibgeService: IbgeService
-  ) {
-    this.formulario = this.formBuilder.group({
+    @Inject(IbgeService) private ibgeService: IbgeService,
+    private cursoService: CursosService,
+    private campusService: CampusService
+  ) { }
+
+  private createFormData(): FormGroup {
+    return this.formulario = this.formBuilder.group({
       nomeCompleto: ['', Validators.required],
       telefone: ['', [Validators.required, Validators.pattern(/^\d{10,}$/)]],
       sexo: ['', Validators.required],
       uf: ['', Validators.required],
       cidade: ['', Validators.required],
       dataNascimento: ['', Validators.required],
-      campus: [''], 
-      curso: [''], 
-      turma: [''],
-      periodo: ['']
+      campus: ['', Validators.required],
+      curso: ['', Validators.required],
+      turma: ['', Validators.required],
+      periodo: ['', Validators.required]
     });
   }
 
   ngOnInit(): void {
-    this.ibgeService.getEstados().subscribe(estados => {
-      this.estados = estados;
-    });
+    this.createFormData();
+    this.campusService.findAll().subscribe(campus => this.campusList = campus);
+    this.cursoService.findAll().subscribe(cursos => this.cursos =cursos);
+    this.ibgeService.getEstados().subscribe(estados => this.estados = estados);
 
     if (!this.btnText) {
       this.btnText = 'Enviar';
@@ -73,7 +73,7 @@ export class InscricaoComponent implements OnInit {
     if (this.formulario && this.formulario.get('uf')) {
       // Obter o ID do estado selecionado
       const selectedEstadoId = this.formulario.get('uf')!.value;
-      
+
       // Verificar se foi selecionado algum estado
       if (selectedEstadoId) {
         // Obter as cidades correspondentes ao estado selecionado

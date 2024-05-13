@@ -1,8 +1,8 @@
 <div class="main">
-   
+
 
     <div class="formulario">
-        
+
         <form [formGroup]="formulario" *ngIf="formulario" (ngSubmit)="submitForm()">
 
             <div class="inf-pessoais">
@@ -42,23 +42,20 @@
                     <mat-form-field appearance="outline" class="edicaoSexo">
                         <mat-label>Sexo</mat-label>
                         <mat-select formControlName="sexo" placeholder="Selecione" required>
-                            <mat-option disabled selected></mat-option>
-                            <mat-option value="masculino">Masculino</mat-option>
-                            <mat-option value="feminino">Feminino</mat-option>
-                            <mat-option value="outros">Outros</mat-option>
+                            <mat-option *ngFor="let sexo of sexos" [value]="sexo.id">{{sexo.sexo}}</mat-option>
                         </mat-select>
                         <mat-error *ngIf="formulario.get('sexo')?.hasError('required') && formulario.get('sexo')?.touched">
                             Campo Obrigatório.
                         </mat-error>
                     </mat-form-field>
                 </div>
-                
+
                 <div class="form-group">
                     <mat-form-field appearance="outline" class="estadoEdicao">
                         <mat-label>Estado</mat-label>
                         <select matNativeControl formControlName="uf" (change)="onEstadoChange()" required>
                             <option value="" disabled selected>Selecione um estado</option>
-                            <option *ngFor="let estado of estados" [value]="estado.id">{{ estado.nome }}</option>
+                            <option *ngFor="let estado of estados" [value]="estado.sigla">{{ estado.nome }}</option>
                         </select>
                         <mat-error *ngIf="formulario.get('uf')?.errors?.['required'] && formulario.get('uf')?.touched">
                             Selecione um estado.
@@ -68,20 +65,19 @@
 
                 <div class="forms">
                 </div>
-                
+
                 <div class="form-group">
                     <mat-form-field appearance="outline" class="cidadeEdicao">
                         <mat-label>Cidade</mat-label>
                         <mat-select formControlName="cidade" placeholder="Selecione uma cidade" required>
-                            <mat-option disabled selected></mat-option>
-                            <mat-option *ngFor="let cidade of cidades" [value]="cidade.id">{{ cidade.nome }}</mat-option>
+                            <mat-option *ngFor="let cidade of cidades" [value]="cidade.nome">{{ cidade.nome }}</mat-option>
                         </mat-select>
                         <mat-error *ngIf="formulario.get('cidade')?.errors?.['required'] && formulario.get('cidade')?.touched">
                             Campo Obrigatório
                         </mat-error>
                     </mat-form-field>
                 </div>
-                
+
 
                 <div class="form-group">
                     <mat-form-field appearance="outline" class="dataEdicao">
@@ -101,20 +97,18 @@
                         <mat-form-field appearance="outline" class="edicaoCampus">
                             <mat-label>Campus</mat-label>
                             <mat-select formControlName="campus" placeholder="Informe seu campus">
-                                <mat-option value="campus1">Teste1</mat-option>
-                                <mat-option value="campus2">Teste2</mat-option>
-                                <mat-option value="campus3">Teste3</mat-option>
+                                <mat-option *ngFor="let campus of campusList" [value]="campus.id">{{campus.nomecampus}}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
-                    
-                    
+
+
 
                     <div class="form-group">
                         <mat-form-field appearance="outline" class="edicaoCurso">
                             <mat-label>Curso</mat-label>
                             <mat-select formControlName="curso" placeholder="Selecione um curso">
-                                <mat-option *ngFor="let curso of cursos" [value]="curso">{{ curso }}</mat-option>
+                                <mat-option *ngFor="let curso of cursos" [value]="curso.id">{{ curso.nome }}</mat-option>
                             </mat-select>
                         </mat-form-field>
                     </div>
@@ -126,11 +120,11 @@
                         </mat-form-field>
                     </div>
 
-                    
+
                         <mat-form-field appearance="outline" class="edicaoPeriodo">
                             <mat-label>Período</mat-label>
                             <mat-select formControlName="periodo" placeholder="Selecione o período">
-                                <mat-option *ngFor="let periodo of periodos" [value]="periodo">{{ periodo }}</mat-option>
+                                <mat-option *ngFor="let periodo of periodos" [value]="periodo.numero">{{ periodo.nome }}</mat-option>
                             </mat-select>
                         </mat-form-field>
                 </div>
@@ -139,6 +133,6 @@
                 <button mat-raised-button type="submit" class="botao">{{ btnText }}</button>
             </div>
         </form>
-        
+
     </div>
 </div>
