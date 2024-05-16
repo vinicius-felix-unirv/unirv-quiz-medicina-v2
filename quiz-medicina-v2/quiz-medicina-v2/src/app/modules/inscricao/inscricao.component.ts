@@ -13,7 +13,7 @@ import { CampusService } from 'src/app/services/campus/campus.service';
     encapsulation: ViewEncapsulation.None
 })
 export class InscricaoComponent implements OnInit {
-  @Input() btnText!: string;
+
   formulario!: FormGroup;
   estados: any[] = [];
   cidades: any[] = [];
@@ -30,7 +30,13 @@ export class InscricaoComponent implements OnInit {
     {nome:'Quarto', numero: 4}, {nome:'Quinto', numero: 5}, {nome:'Sexto', numero: 6},
     {nome:'Sétimo', numero: 7}, {nome:'Oitavo', numero: 8}, {nome:'Nono', numero: 9},
     {nome:'Décimo', numero: 10},
-    ];
+  ];
+
+  template = true;
+  isActive = true;
+  hideSenha = true;
+  hideConfirmarSenha = true;
+  testando = false;
 
   constructor(
     private formBuilder: FormBuilder,
@@ -50,8 +56,24 @@ export class InscricaoComponent implements OnInit {
       campus: ['', Validators.required],
       curso: ['', Validators.required],
       turma: ['', Validators.required],
-      periodo: ['', Validators.required]
+      periodo: ['', Validators.required],
+      email: ['', Validators.required],
+      senha: ['', Validators.required],
+      confirmarSenha: ['', Validators.required],
     });
+  }
+
+  public getErrorMessage() {
+    if (this.formulario.get('email')!.hasError('required')) {
+      return 'Você deve inserir um valor';
+    }
+
+    return this.formulario.get('email')!.hasError('email') ? 'Não é um e-mail válido' : '';
+  }
+
+  public trocarTemplate(): void{
+    this.template = !this.template;
+    this.isActive = !this.isActive;
   }
 
   ngOnInit(): void {
@@ -60,13 +82,11 @@ export class InscricaoComponent implements OnInit {
     this.cursoService.findAll().subscribe(cursos => this.cursos =cursos);
     this.ibgeService.getEstados().subscribe(estados => this.estados = estados);
 
-    if (!this.btnText) {
-      this.btnText = 'Enviar';
-    }
   }
-  submitForm() {
+  onSubmit() {
     // Implemente o que deseja fazer quando o formulário for submetido
     console.log(this.formulario)
+    this.trocarTemplate();
   }
   onEstadoChange() {
     // Verificar se this.formulario e this.formulario.get('uf') não são nulos
