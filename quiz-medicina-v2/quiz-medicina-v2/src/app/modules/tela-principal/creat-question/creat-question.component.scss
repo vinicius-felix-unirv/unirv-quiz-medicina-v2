@@ -74,8 +74,33 @@
             }
 
             .inputs-config{
+                // border: 1px solid red;
                 display: flex;
-                gap: 10px;
+                flex-direction: column;
+
+                .container-category{
+                    display: flex;
+                    align-items: start;
+                    gap: 1rem;
+                    border: 1px solid blue;
+
+                    .mat-mdc-unelevated-button{
+                        width: 50px;
+                        // height: 55px;
+                    }
+                
+                    .mat-mdc-button-touch-target{
+                        height: 35px;
+                        border: 1.5px solid var(--green);
+                        border-radius: 4px;
+                    }
+
+                }
+
+                .container-nivel-time{
+                    display: flex;
+                }
+
                 .mat-mdc-text-field-wrapper {
                     width: 170px;
                     height: 45px;

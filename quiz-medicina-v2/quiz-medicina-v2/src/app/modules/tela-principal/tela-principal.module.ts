@@ -9,6 +9,7 @@ import { NewQuizComponent } from './new-quiz/new-quiz.component';
 import { CreatQuestionComponent } from './creat-question/creat-question.component';
 import { CreatAlternativeComponent } from './creat-alternative/creat-alternative.component';
 import { AlternativeComponent } from './alternative/alternative.component';
+import { CreateCategoriaComponent } from './create-categoria/create-categoria.component';
 
 
 const routes: Routes = [
@@ -24,7 +25,8 @@ const routes: Routes = [
     NewQuizComponent,
     CreatQuestionComponent,
     CreatAlternativeComponent,
-    AlternativeComponent
+    AlternativeComponent,
+    CreateCategoriaComponent
   ],
   imports: [
     CommonModule,

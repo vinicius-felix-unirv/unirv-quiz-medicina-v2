@@ -1,7 +1,8 @@
 import { Component, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
-import { MatDialogRef } from '@angular/material/dialog';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { CreateCategoriaComponent } from '../create-categoria/create-categoria.component';
 
 
 interface Food {
@@ -16,9 +17,10 @@ interface Food {
   encapsulation: ViewEncapsulation.None
 })
 export class CreatQuestionComponent {
+  // private _dialog: any;
   constructor(
     public dialogRef: MatDialogRef<CreatQuestionComponent>,
-    private _formBuilder: FormBuilder
+    private _formBuilder: FormBuilder, public _dialog: MatDialog
   ) {}
 
   foods: Food[] = [
@@ -54,6 +56,16 @@ export class CreatQuestionComponent {
 
   changeColor(): void {
     this.buttonColor = this.buttonColor === 'black' ? 'green' : 'black'; 
+  }
+  
+  openDialog(): void {
+    console.log("Abriu a dialog")
+    const dialogRef = this._dialog.open(CreateCategoriaComponent, {
+    });
+
+    dialogRef.afterClosed().subscribe(() => {
+      console.log("fechou")
+    });
   }
   
 }

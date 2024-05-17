@@ -2,11 +2,9 @@
     <div class="content">
         <div class="header">
             <button (click)="changeColor()" [ngStyle]="{'color': buttonColor}">Pergunta</button>
-            <div class="divisoria"></div>
-            <button (click)="changeColor()" [ngStyle]="{'color': buttonColor}">Alternativas</button>
         </div>
 
-        <form *ngIf="false"  [formGroup]="formData" (submit)="onSubmit()">
+        <form [formGroup]="formData" (submit)="onSubmit()">
             <div>
                 <mat-form-field appearance="outline" #myFormField>
                     <textarea matInput placeholder="Insira a pergunta.." formControlName="titulo" required></textarea>
@@ -23,29 +21,37 @@
             </div>
 
             <div class="inputs-config">
-                <mat-form-field appearance="outline">
-                    <mat-label>Categoria</mat-label>
-                    <mat-select>
-                      <mat-option *ngFor="let food of foods" [value]="food.value">
-                        {{food.viewValue}}
-                      </mat-option>
-                    </mat-select>
-                </mat-form-field>
+                <div class="container-category">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Categoria</mat-label>
+                        <mat-select>
+                          <mat-option *ngFor="let food of foods" [value]="food.value">
+                            {{food.viewValue}}
+                          </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+    
+                    <button mat-raised-button (click)="openDialog()">Criar +</button>    
+                </div>
 
-                  <mat-form-field appearance="outline">
-                    <mat-label>Nivel</mat-label>
-                    <mat-select>
-                      <mat-option *ngFor="let food of foods" [value]="food.value">
-                        {{food.viewValue}}
-                      </mat-option>
-                    </mat-select>
-                  </mat-form-field>
+                <div class="container-nivel-time">
+                    <mat-form-field appearance="outline">
+                        <mat-label>Nivel</mat-label>
+                        <mat-select>
+                            <mat-option *ngFor="let food of foods" [value]="food.value">
+                            {{food.viewValue}}
+                            </mat-option>
+                        </mat-select>
+                        </mat-form-field>
+        
+                        <div class="time">
+                            <label for="time">Tempo:</label>
+                            <input type="time" id="time">
+                        </div>
+                </div>
             </div>
 
-            <div class="time">
-                <label for="time">Tempo:</label>
-                <input type="time" id="time">
-            </div>
+            
 
             <div id="submit-btn">
                 <button mat-flat-button [disabled]="this.formData.invalid" (click)="onSubmit()">Continuar</button>
@@ -53,7 +59,7 @@
             
         </form>
 
-        <app-creat-alternative *ngIf="true"></app-creat-alternative>
+        <!-- <app-creat-alternative *ngIf="true"></app-creat-alternative> -->
 
     </div>
 </div>
