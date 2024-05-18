@@ -6,7 +6,7 @@ import { MatInputModule } from '@angular/material/input';
 import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
-
+import { FormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [],
@@ -17,14 +17,16 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatIconModule,
     MatDialogModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+    FormsModule
   ],
   exports:[
     MatFormFieldModule,
     MatInputModule,
     MatIconModule,
     MatDialogModule,
-    MatButtonModule
+    MatButtonModule,
+    FormsModule
   ]
 })
 export class MaterialModule { }
