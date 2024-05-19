@@ -15,11 +15,17 @@ import { Observable, combineLatest, combineLatestAll, map } from 'rxjs';
 })
 export class TelaPerguntasComponent implements OnInit {
 
-  // listaPerguntas$!: Observable<Pergunta[]>;
-  listaPerguntas!: Pergunta[];
+  listaPerguntas$!: Observable<Pergunta[]>;
   alternativasByPergunta$!: Observable<Alternativa[]>;
   perguntaAtual!: Pergunta | null;
   contadorPergunta: number = 0;
+  layout: boolean = false;
+
+  userId: number = 2;
+  quizId: number = 1;
+  categoriaId: number = 1;
+  skip: number = 0;
+  take: number = 3;
 
   constructor(private http: HttpClient,
     private perguntasService: PerguntaService,
@@ -31,40 +37,55 @@ export class TelaPerguntasComponent implements OnInit {
 
 
   ngOnInit(): void {
-
     this.perguntaAtual = null;
-    this.perguntasService.getAllPerguntasQuizByCategoria(2, 1, 1, 0, 3).subscribe(perguntas => {
-      this.listaPerguntas = perguntas;
+    this.listaPerguntas$ = this.perguntasService.getAllPerguntasQuizByCategoria(this.userId, this.quizId, this.categoriaId, this.skip, this.take);
+    this.listaPerguntas$.subscribe(perguntas => {
       this.perguntaAtual = perguntas[0];
-
-      this.alternativasByPergunta$ = this.alternativasService.getAllAlternativasByPerguntaId(perguntas[0].id!);});
-
+      this.alternativasByPergunta$ = this.alternativasService.getAllAlternativasByPerguntaId(perguntas[0].id!);
+    });
   }
 
   test(): void {
-    console.log(this.listaPerguntas);
+    console.log(this.listaPerguntas$);
     console.log(this.alternativasByPergunta$);
     console.log(this.perguntaAtual);
   }
 
   getAllPerguntas(userId: number, quizId: number, categoriaId: number, skip: number, take: number): void {
-    this.listaPerguntas = [];
-    this.perguntasService.getAllPerguntasQuizByCategoria(userId, quizId, categoriaId, skip, take).subscribe(p => this.listaPerguntas = p);
+    this.listaPerguntas$ = this.perguntasService.getAllPerguntasQuizByCategoria(userId, quizId, categoriaId, skip, take);
   }
 
   getAllAlternativas(perguntaId: number): void {
-    // this.alternativasByPergunta = [];
     this.alternativasByPergunta$ = this.alternativasService.getAllAlternativasByPerguntaId(perguntaId);
   }
 
   proximaPergunta(): void {
 
     this.perguntaAtual = null;
-    this.perguntaAtual = this.listaPerguntas[this.contadorPergunta + 1];
-    this.getAllAlternativas(this.perguntaAtual.id!);
-    this.contadorPergunta = this.contadorPergunta + 1;
-    this.test();
+    if(this.contadorPergunta  == 2) {
+      this.skip += 3;
+      this.getAllPerguntas(this.userId, this.quizId, this.categoriaId, this.skip, this.take);
+      this.contadorPergunta = 0;
+      this.carregarPerguntaDaVez();
+    }else{
+      this.contadorPergunta += 1;
+      this.carregarPerguntaDaVez();
+    }
   }
 
+  carregarPerguntaDaVez(): void {
+    this.listaPerguntas$.subscribe(p => {
+      if(!p[this.contadorPergunta]){
+        this.trocarLayout();
+        return;
+      }
+      this.perguntaAtual = p[this.contadorPergunta];
+      this.getAllAlternativas(this.perguntaAtual.id!);
+    });
+  }
+
+  trocarLayout(){
+    this.layout = !this.layout;
+  }
 }
 
