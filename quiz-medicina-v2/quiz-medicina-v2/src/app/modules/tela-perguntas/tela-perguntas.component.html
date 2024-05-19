@@ -1,23 +1,34 @@
+
+
 <div class="container">
-  <div class="question-container" *ngIf="question && !showResult">
-    <div class="temporizador">
+
+  <div class="question-container" *ngIf="perguntaAtual != null ">
+    <div *ngIf="alternativasByPergunta$ | async as alternativas">
+
+      <!-- <div class="temporizador">
       <div class="barra-progresso" [style.width.%]="timer / tempoLimite * 100"></div>
-    </div>
-    <h2>{{ question.conteudo }}</h2> <!-- Adicione a verificação de nulidade com "?" -->
-    <ul>
-      <li *ngFor="let alternativa of question.alternativas">
+    </div> -->
+    <h2>{{ perguntaAtual.conteudo }}</h2>
+    <img src="/src/assets/anatomia.png" alt="" *ngIf="perguntaAtual.pathimage != null">
+    <!-- <ul>
+      <li *ngFor="let alternativa of alternativasByPergunta">
         <label class="alternativa-label">
-          <input type="radio" name="alternativa" [value]="alternativa.id" (click)="selectAnswer(alternativa.id)">
-          <div class="alternativa-box" [class.selected]="alternativa.id === selectedAnswer"
-            [class.resposta-errada]="alternativa.respostaIncorreta"
-            [class.shake]="alternativa.shaking">
+          <input type="radio" name="alternativa" [value]="alternativa.id">
+          <div>
             {{ alternativa.resposta }}
           </div>
         </label>
       </li>
-    </ul>
+    </ul> -->
+
     <div class="button-container">
-      <button class="confirm-button" (click)="confirmAnswer()">Confirmar</button>
+      <button class="confirm-button" (click)="proximaPergunta()">Confirmar</button>
     </div>
+
+    <p *ngFor="let alternativa of alternativas">{{alternativa.resposta}}</p>
+
+    </div>
+
   </div>
+
 </div>

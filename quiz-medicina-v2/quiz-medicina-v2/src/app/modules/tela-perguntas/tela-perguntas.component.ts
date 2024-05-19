@@ -1,22 +1,12 @@
 import { Component, OnInit } from '@angular/core';
 import { HttpClient } from '@angular/common/http';
-
-interface Pergunta {
-  id: number;
-  tipo: 'texto' | 'imagem';
-  conteudo: string;
-  alternativas: Alternativa[];
-  respostaCorretaId: number;
-  nivelDificuldade: 'fácil' | 'médio' | 'difícil'; 
-}
-
-interface Alternativa {
-  id: number;
-  resposta: string;
-  correta: boolean;
-  respostaIncorreta?: boolean; // Propriedade para aplicar estilo de resposta errada
-  shaking?: boolean; // Propriedade para aplicar animação de "tremor"
-}
+import { PerguntaService } from 'src/app/services/perguntas/perguntas.service';
+import { ProgressoPerguntasService } from 'src/app/services/progressoPerguntas/progresso-perguntas.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { Pergunta } from 'src/app/models/pergunta';
+import { Alternativa } from 'src/app/models/alternativa';
+import { AlternativasService } from 'src/app/services/alternativas/alternativas.service';
+import { Observable, combineLatest, combineLatestAll, map } from 'rxjs';
 
 @Component({
   selector: 'app-tela-perguntas',
@@ -24,146 +14,57 @@ interface Alternativa {
   styleUrls: ['./tela-perguntas.component.css']
 })
 export class TelaPerguntasComponent implements OnInit {
-  perguntas: Pergunta[] = [];
-  question: Pergunta | undefined;
-  questionIndex: number = 0;
-  selectedAnswer: number | undefined;
-  showResult: boolean = false;
-  score: number = 0;
-  timer: number = 0;
-  tempoLimite: number = 0;
-  larguraBarraProgresso: number = 100; 
-  interval: any;
-  tempoExpiradoSemResposta: boolean = true;
 
-  constructor(private http: HttpClient) { }
+  // listaPerguntas$!: Observable<Pergunta[]>;
+  listaPerguntas!: Pergunta[];
+  alternativasByPergunta$!: Observable<Alternativa[]>;
+  perguntaAtual!: Pergunta | null;
+  contadorPergunta: number = 0;
+
+  constructor(private http: HttpClient,
+    private perguntasService: PerguntaService,
+    private progressoService: ProgressoPerguntasService,
+    private usuarioService: UsuarioService,
+    private alternativasService: AlternativasService
+  ) { }
+
+
 
   ngOnInit(): void {
-    this.loadQuestions();
+
+    this.perguntaAtual = null;
+    this.perguntasService.getAllPerguntasQuizByCategoria(2, 1, 1, 0, 3).subscribe(perguntas => {
+      this.listaPerguntas = perguntas;
+      this.perguntaAtual = perguntas[0];
+
+      this.alternativasByPergunta$ = this.alternativasService.getAllAlternativasByPerguntaId(perguntas[0].id!);});
+
   }
 
-  loadQuestions() {
-    this.http.get<Pergunta[]>('assets/perguntas.json').subscribe(data => {
-      this.perguntas = data;
-      this.loadQuestion();
-    });
+  test(): void {
+    console.log(this.listaPerguntas);
+    console.log(this.alternativasByPergunta$);
+    console.log(this.perguntaAtual);
   }
 
-  loadQuestion() {
-    if (this.perguntas.length > 0 && this.questionIndex < this.perguntas.length) {
-      this.question = this.perguntas[this.questionIndex];
-      this.selectedAnswer = undefined;
-      this.setTempoLimite(); 
-      this.startTimer(); 
-    } else {
-      this.questionIndex = 0;
-    }
+  getAllPerguntas(userId: number, quizId: number, categoriaId: number, skip: number, take: number): void {
+    this.listaPerguntas = [];
+    this.perguntasService.getAllPerguntasQuizByCategoria(userId, quizId, categoriaId, skip, take).subscribe(p => this.listaPerguntas = p);
   }
 
-  setTempoLimite() {
-    switch (this.question?.nivelDificuldade) {
-      case 'fácil':
-        this.tempoLimite = 25; 
-        break;
-      case 'médio':
-        this.tempoLimite = 20;
-        break;
-      case 'difícil':
-        this.tempoLimite = 15; 
-        break;
-      default:
-        this.tempoLimite = 5; 
-    }
+  getAllAlternativas(perguntaId: number): void {
+    // this.alternativasByPergunta = [];
+    this.alternativasByPergunta$ = this.alternativasService.getAllAlternativasByPerguntaId(perguntaId);
   }
 
-  startTimer() {
-    this.timer = this.tempoLimite;
-    const incremento = 100 / this.tempoLimite;
-    
-    this.interval = setInterval(() => {
-      if (this.timer > 0) {
-        this.timer--;
-        this.larguraBarraProgresso = this.timer * incremento;
-      } else {
-        clearInterval(this.interval);
-        this.loadNextQuestion();
-      }
-    }, 1000);
+  proximaPergunta(): void {
+
+    this.perguntaAtual = null;
+    this.perguntaAtual = this.listaPerguntas[this.contadorPergunta + 1];
+    this.getAllAlternativas(this.perguntaAtual.id!);
+    this.contadorPergunta = this.contadorPergunta + 1;
+    this.test();
   }
 
-  selectAnswer(alternativaId: number) {
-    this.selectedAnswer = alternativaId;
-  }
-
-  confirmAnswer() {
-    this.tempoExpiradoSemResposta = false; 
-    if (this.selectedAnswer !== undefined) {
-      const respostaSelecionada = this.question?.alternativas.find(a => a.id === this.selectedAnswer);
-      if (respostaSelecionada) {
-        if (respostaSelecionada.correta) {
-          respostaSelecionada.correta = true; 
-          this.loadNextQuestion(); 
-        } else {
-          respostaSelecionada.correta = false; 
-          this.applyWrongAnswer(); 
-          this.shakeWrongAnswer();
-        }
-      }
-    }
-  }
-  applyWrongAnswer() {
-    if (this.selectedAnswer !== undefined) {
-      const alternativaIncorreta = this.question?.alternativas.find(alternativa => alternativa.id === this.selectedAnswer);
-      if (alternativaIncorreta) {
-        alternativaIncorreta.respostaIncorreta = true;
-        setTimeout(() => {
-          this.removeWrongAnimation(alternativaIncorreta); 
-        }, 500); 
-      }
-    }
-  }
-  
-  
-  
-  shakeWrongAnswer() {
-    if (this.selectedAnswer !== undefined) {
-      const alternativaIncorreta = this.question?.alternativas.find(alternativa => alternativa.id === this.selectedAnswer);
-      if (alternativaIncorreta) {
-        alternativaIncorreta.shaking = true;
-        setTimeout(() => {
-          alternativaIncorreta.shaking = false;
-        }, 500);
-      }
-    }
-  }
-  
-
-  removeWrongAnimation(alternativa: Alternativa) {
-    alternativa.respostaIncorreta = false;
-  }
-
-  isWrongAnswer(alternativaId: number): boolean {
-    if (!this.selectedAnswer || !this.tempoExpiradoSemResposta) {
-      return false;
-    }
-    
-    const respostaSelecionada = this.question?.alternativas.find(a => a.id === this.selectedAnswer);
-    return respostaSelecionada !== undefined && respostaSelecionada.id === alternativaId && !respostaSelecionada.correta;
-  }
-
-  loadNextQuestion() {
-    this.questionIndex++;
-    this.loadQuestion();
-  }
-
-  calculateScore() {
-    this.score = this.perguntas.reduce((acc, pergunta) => {
-      const respostaSelecionada = pergunta.alternativas.find(a => a.id === this.selectedAnswer);
-      if (respostaSelecionada && respostaSelecionada.correta) {
-        return acc + 1;
-      } else {
-        return acc;
-      }
-    }, 0);
-  }
 }
+
