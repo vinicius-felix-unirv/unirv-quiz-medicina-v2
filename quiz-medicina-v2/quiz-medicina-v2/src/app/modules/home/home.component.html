@@ -6,7 +6,7 @@
         </div>
 
         <div class="nav">
-            
+
         </div>
 
     </div>
@@ -27,7 +27,13 @@
             </div>
         </div>
         <div class="content">
-
+          <ul>
+            <li *ngFor="let item of menu">
+              <a class="link"
+                 (click)="redirect(item)"
+                 routerLinkActive="ativo">{{ item.menuName }}</a>
+            </li>
+          </ul>
         </div>
     </div>
 </div>
