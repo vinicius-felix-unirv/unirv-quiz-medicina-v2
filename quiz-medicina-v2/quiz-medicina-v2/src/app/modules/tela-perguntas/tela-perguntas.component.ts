@@ -7,7 +7,7 @@ import { Pergunta } from 'src/app/models/pergunta';
 import { Alternativa } from 'src/app/models/alternativa';
 import { AlternativasService } from 'src/app/services/alternativas/alternativas.service';
 import { Observable } from 'rxjs';
-import { ProgressoPerguntas } from 'src/app/models/progressoPerguntas';
+
 
 @Component({
   selector: 'app-tela-perguntas',
@@ -49,20 +49,13 @@ export class TelaPerguntasComponent implements OnInit {
     });
   }
 
-  getAllPerguntas(userId: number, quizId: number, categoriaId: number, skip: number, take: number): void {
-
-    // this.listaPerguntas$.subscribe(perguntas => {
-    //   perguntas.forEach(console.log);
-    // });
-  }
-
   getAllAlternativas(perguntaId: number): void {
     this.alternativasByPergunta$ = this.alternativasService.getAllAlternativasByPerguntaId(perguntaId);
   }
 
-  proximaPergunta(): void {
+  async proximaPergunta(): Promise<void> {
 
-    this.addNewProgresso();
+    await this.addNewProgresso();
 
     this.perguntaAtual = null;
     if(this.contadorPergunta  == this.take - 1) {
@@ -80,13 +73,12 @@ export class TelaPerguntasComponent implements OnInit {
 
   carregarPerguntaDaVez(): void {
 
-      if(!this.listaPerguntas[this.contadorPergunta]){
-        this.trocarLayout();
-        return;
-      }
-      // console.log(p[this.contadorPergunta]);
-      this.perguntaAtual = this.listaPerguntas[this.contadorPergunta];
-      this.getAllAlternativas(this.perguntaAtual.id!);
+    if(!this.listaPerguntas[this.contadorPergunta]){
+      this.trocarLayout();
+      return;
+    }
+    this.perguntaAtual = this.listaPerguntas[this.contadorPergunta];
+    this.getAllAlternativas(this.perguntaAtual.id!);
 
   }
 
@@ -94,8 +86,8 @@ export class TelaPerguntasComponent implements OnInit {
     this.layout = !this.layout;
   }
 
-  addNewProgresso(): void{
-    // let result: ProgressoPerguntas;
+  async addNewProgresso(): Promise<void>{
+
     this.progressoService.create({usuariosid: this.userId, perguntasid: this.perguntaAtual?.id!}).subscribe();
   }
 }
