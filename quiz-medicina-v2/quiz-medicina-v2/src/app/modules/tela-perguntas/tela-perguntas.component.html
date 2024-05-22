@@ -11,10 +11,10 @@
       <h2>{{ perguntaAtual.conteudo }}</h2>
       <img src="/src/assets/anatomia.png" alt="" *ngIf="perguntaAtual.pathimage != null">
       <ul>
-        <li *ngFor="let alternativa of alternativas">
+        <li *ngFor="let alternativa of alternativas" >
           <label class="alternativa-label">
-            <input type="radio" name="alternativa" [value]="alternativa.id">
-            <div>
+            <!-- <input type="radio" name="alternativa" [value]="alternativa.id"> -->
+            <div (click)="onSelect(alternativa.id!)">
               {{ alternativa.resposta }}
             </div>
           </label>
@@ -22,7 +22,7 @@
       </ul>
 
       <div class="button-container">
-        <button class="confirm-button" (click)="proximaPergunta()">Confirmar</button>
+        <button class="confirm-button" (click)="checkAcerto()">Confirmar</button>
       </div>
     </div>
 
