@@ -23,7 +23,7 @@ export class UsuarioService extends ServiceBase<Usuario> {
   }
 
   addPontuacao(pontuacao: number, usuarioId: number): Observable<Usuario>{
-    return this.httpClient.put<Usuario>(`${API_CONFIG.baseUrl}/${this.url}/${usuarioId}/pontuacao`, pontuacao);
+    return this.httpClient.put<Usuario>(`${API_CONFIG.baseUrl}/${this.url}/${usuarioId}/pontuacao`, {pontuacao: pontuacao});
   }
 
   putSenha(usuarioId: number, senha: string): Observable<Usuario>{

@@ -6,6 +6,7 @@ import { Pergunta } from 'src/app/models/pergunta';
 import { Alternativa } from 'src/app/models/alternativa';
 import { AlternativasService } from 'src/app/services/alternativas/alternativas.service';
 import { Observable } from 'rxjs';
+import { PerguntanivelService } from 'src/app/services/perguntanivel/perguntanivel.service';
 
 
 @Component({
@@ -22,6 +23,8 @@ export class TelaPerguntasComponent implements OnInit {
   layout: boolean = false;
   alternativaCorreta: number = 0;
   alternativaEscolhida: number = 0;
+  qtdTentativas: number = 0;
+  pontuacao: number = 0;
 
   userId: number = 2;
   quizId: number = 1;
@@ -33,7 +36,8 @@ export class TelaPerguntasComponent implements OnInit {
     private perguntasService: PerguntaService,
     private progressoService: ProgressoPerguntasService,
     private usuarioService: UsuarioService,
-    private alternativasService: AlternativasService
+    private alternativasService: AlternativasService,
+    private perguntasNivel: PerguntanivelService
   ) { }
 
 
@@ -53,6 +57,9 @@ export class TelaPerguntasComponent implements OnInit {
           return;
         }
       }));
+      this.perguntasNivel.findById(this.perguntaAtual?.perguntasnivelid).subscribe(p => {
+        this.pontuacao = p.pontuacao;
+      });
     });
   }
 
@@ -66,11 +73,11 @@ export class TelaPerguntasComponent implements OnInit {
     }));
   }
 
-  async proximaPergunta(): Promise<void> {
+  proximaPergunta(): void {
 
-    await this.addNewProgresso();
     this.alternativaEscolhida = 0;
     this.alternativaCorreta = 0;
+    this.qtdTentativas = 0;
     this.perguntaAtual = null;
     if(this.contadorPergunta  == this.take - 1) {
       this.perguntasService.getAllPerguntasQuizByCategoria(this.userId, this.quizId, this.categoriaId, this.skip, this.take).subscribe(perguntas => {
@@ -92,6 +99,9 @@ export class TelaPerguntasComponent implements OnInit {
       return;
     }
     this.perguntaAtual = this.listaPerguntas[this.contadorPergunta];
+    this.perguntasNivel.findById(this.perguntaAtual?.perguntasnivelid).subscribe(p => {
+      this.pontuacao = p.pontuacao;
+    });
     this.getAllAlternativas(this.perguntaAtual.id!);
 
   }
@@ -109,13 +119,54 @@ export class TelaPerguntasComponent implements OnInit {
     });
   }
 
+  addPontuacao(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.usuarioService.addPontuacao(this.calcPontuacao(this.qtdTentativas), this.userId).subscribe({
+        next: () => resolve(),
+        error: (err) => reject(err)
+      });
+    });
+  }
+
   onSelect(id: number): void{
     this.alternativaEscolhida = id;
+    this.qtdTentativas++;
+  }
+
+  calcPontuacao(qtdTentativas: number): number {
+    let valorPorcentagem = 0;
+    switch (qtdTentativas) {
+      case 1:
+        return this.pontuacao;
+      case 2:
+        valorPorcentagem = 20;
+        break;
+      case 3:
+        valorPorcentagem = 40;
+        break;
+      case 4:
+        valorPorcentagem = 60;
+        break;
+      case 5:
+        valorPorcentagem = 80;
+        break;
+      default:
+        valorPorcentagem = 80;
+    }
+
+    return this.pontuacao - ((this.pontuacao * valorPorcentagem)/ 100);
   }
 
   async checkAcerto(): Promise<void> {
     if(this.alternativaEscolhida === this.alternativaCorreta){
-      await this.proximaPergunta();
+
+      await Promise.all([
+        this.addNewProgresso(),
+        this.addPontuacao()
+      ]);
+      // console.log(this.pontuacao);
+      this.pontuacao = 0;
+      this.proximaPergunta();
     }
   }
 }
