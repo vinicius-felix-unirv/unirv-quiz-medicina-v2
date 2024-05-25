@@ -7,7 +7,6 @@ import { MatDialogModule } from '@angular/material/dialog';
 import { MatButtonModule } from '@angular/material/button';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
 
-
 @NgModule({
   declarations: [],
   imports: [
@@ -17,7 +16,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     MatIconModule,
     MatDialogModule,
     MatButtonModule,
-    MatSnackBarModule
+    MatSnackBarModule,
+
   ],
   exports:[
     MatFormFieldModule,

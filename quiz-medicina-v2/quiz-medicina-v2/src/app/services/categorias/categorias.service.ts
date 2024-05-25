@@ -18,6 +18,14 @@ export class CategoriasService extends ServiceBase<Categoria> {
     return this.httpClient.get<Categoria[]>(`${API_CONFIG.baseUrl}/cursos/${cursoId}/${this.url}`);
   }
 
+  getAllCategoriasInQuiz(quizid: number): Observable<Categoria[]>{
+    return this.httpClient.get<Categoria[]>(`${API_CONFIG.baseUrl}/quiz/${quizid}/${this.url}`);
+  }
+
+  getAllCategoriasInQuizAvaliativo(quizAvaliativoId: number): Observable<Categoria[]>{
+    return this.httpClient.get<Categoria[]>(`${API_CONFIG.baseUrl}/quiz-avaliativos/${quizAvaliativoId}/${this.url}`);
+  }
+
   putStatusCategoria(id: number): Observable<Categoria>{
     return this.httpClient.put<Categoria>(`${API_CONFIG.baseUrl}/${this.url}/${id}/status`, '');
   }

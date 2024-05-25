@@ -8,26 +8,27 @@ import { ReactiveFormsModule } from "@angular/forms";
 import { MatIconModule } from "@angular/material/icon";
 import { MaterialModule } from "src/app/shared/materialmodule/material.module";
 
+
 const routes: Routes = [
     {
       path: '',
       component: CategoryScreenComponent,
     }
 ]
-  
+
   @NgModule({
         declarations: [
           CategoryScreenComponent
-        
+
         ],
         imports: [
             CommonModule,
             RouterModule.forChild(routes),
             ReactiveFormsModule,
-            MaterialModule
+            MaterialModule,
         ],
         exports: []
-    
+
     })
 
-export class CategoryScreenComponentModule {} 
+export class CategoryScreenComponentModule {}
