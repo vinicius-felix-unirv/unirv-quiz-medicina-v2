@@ -164,7 +164,7 @@ export class TelaPerguntasComponent implements OnInit {
         this.addNewProgresso(),
         this.addPontuacao()
       ]);
-      // console.log(this.pontuacao);
+
       this.pontuacao = 0;
       this.proximaPergunta();
     }
