@@ -41,6 +41,10 @@ export class CategoryScreenComponent implements OnInit {
     });
   }
 
+  redirect(): void {
+    this.router.navigate(['tela-perguntas'])
+  }
+
   getProgressWidth(progresso: Progresso): string {
     if (!progresso || progresso.progressoTotal === 0) {
       return '0%';

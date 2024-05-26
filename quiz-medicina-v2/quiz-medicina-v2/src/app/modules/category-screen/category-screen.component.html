@@ -3,7 +3,7 @@
   <div class="category-grid" *ngIf="progressoAndCategorias">
     <div class="category-box" *ngFor="let data of progressoAndCategorias" >
       <div class="category">
-        <div class="category-content">
+        <div class="category-content" (click)="redirect()">
           <div class="image-container">
             <img [src]="data.categoria.imagem" alt="{{data.categoria.descricao}}">
           </div>
