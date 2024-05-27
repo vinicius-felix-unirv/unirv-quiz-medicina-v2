@@ -1,11 +1,14 @@
-import { Component } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
+import { Categoria } from 'src/app/models/categoria';
+import { Progresso } from 'src/app/models/progressoPerguntas';
+import { CategoriasService } from 'src/app/services/categorias/categorias.service';
+import { ProgressoPerguntasService } from 'src/app/services/progressoPerguntas/progresso-perguntas.service';
 
-interface Category {
-  name: string;
-  icon: string;
-  progress: number;
-  id: number;
+interface categoriaAndProgresso{
+  categoria: Categoria,
+  progresso: Observable<Progresso>
 }
 
 @Component({
@@ -13,82 +16,42 @@ interface Category {
   templateUrl: './category-screen.component.html',
   styleUrls: ['./category-screen.component.css']
 })
-export class CategoryScreenComponent {
-  categories: Category[] = [
-    {
-      name: 'Anatomia',
-      icon: './assets/anatomia.png',
-      progress: 5,
-      id: 1
-    },
-    {
-      name: 'Fisiologia',
-      icon: './assets/Fisiologia.png',
-      progress: 50,
-      id: 2
-    },
-    {
-      name: 'Patologia',
-      icon: './assets/Patologia.jpeg',
-      progress: 50,
-      id: 3
-    },
-    {
-      name: 'Neurociência',
-      icon: './assets/Neurociencia.png',
-      progress: 0,
-      id: 4
-    },
-    {
-      name: 'Farmacologia',
-      icon: './assets/farmacologia.png',
-      progress: 0,
-      id: 5
-    },
-    {
-      name: 'Microbiologia',
-      icon: './assets/microbiologia.png',
-      progress: 0,
-      id: 6
-    },
-    {
-      name: 'Epidemiologia',
-      icon: './assets/epidemologia.png',
-      progress: 0,
-      id: 7
-    },
-    {
-      name: 'Cirurgia',
-      icon: './assets/cirurgia.png',
-      progress: 0,
-      id: 8
-    },
-  ];
+export class CategoryScreenComponent implements OnInit {
 
-  answers: { categoryID: number, isCorrect: boolean }[] = [];
+  // categorias!: Categoria[];
+  progressoAndCategorias!: categoriaAndProgresso[];
 
-  totalQuestions: number = 10; // Defina o número total de questões em uma categoria
 
-  constructor(private router: Router) {}
+  quizId: number = 1;
+  usuarioId: number =2;
 
-  startCategory(category: Category) {
-    this.router.navigate(['quiz', category.id]);
+
+  constructor(
+    private router: Router,
+    private categoriaService: CategoriasService,
+    private progressoService: ProgressoPerguntasService
+  ) {}
+
+  ngOnInit(): void {
+    this.categoriaService.getAllCategoriasInQuiz(this.quizId).subscribe( categorias => {
+      this.progressoAndCategorias = categorias.map(categoria => ({
+        categoria: categoria,
+        progresso: this.progressoService.getProgressoByCategoria(this.usuarioId, this.quizId, categoria.id!)
+      }));
+    });
   }
 
-  submitAnswer(category: Category, isCorrect: boolean) {
-    this.answers.push({ categoryID: category.id, isCorrect: isCorrect });
+  redirect(): void {
+    this.router.navigate(['tela-perguntas'])
+  }
 
-    const categoryAnswers = this.answers.filter(answer => answer.categoryID === category.id);
-    const correctAnswers = categoryAnswers.filter(answer => answer.isCorrect);
-
-    if (categoryAnswers.length === this.totalQuestions) {
-      category.progress = 100;
-    } else {
-      category.progress = (correctAnswers.length / categoryAnswers.length) * 100;
+  getProgressWidth(progresso: Progresso): string {
+    if (!progresso || progresso.progressoTotal === 0) {
+      return '0%';
     }
+
+    const percent = (progresso.progressoAtual / progresso.progressoTotal) * 100;
+    return percent + '%';
   }
 
-  getCategoryProgress(category: Category) {
-    return category.progress;
-  }
 }
