@@ -6,7 +6,14 @@
         </div>
 
         <div class="nav">
-
+            <ul>
+                <li *ngFor="let item of menu">
+                    <i [ngClass]="item.menuIcon"></i>
+                    <a class="link"
+                        (click)="redirect(item)"
+                        routerLinkActive="ativo">{{ item.menuName }}</a>
+                </li>
+              </ul>
         </div>
 
     </div>
@@ -27,13 +34,7 @@
             </div>
         </div>
         <div class="content">
-          <ul>
-            <li *ngFor="let item of menu">
-              <a class="link"
-                 (click)="redirect(item)"
-                 routerLinkActive="ativo">{{ item.menuName }}</a>
-            </li>
-          </ul>
+          
         </div>
     </div>
 </div>
