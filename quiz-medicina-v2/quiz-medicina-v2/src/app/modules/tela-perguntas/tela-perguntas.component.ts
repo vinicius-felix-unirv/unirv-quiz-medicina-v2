@@ -7,6 +7,7 @@ import { Alternativa } from 'src/app/models/alternativa';
 import { AlternativasService } from 'src/app/services/alternativas/alternativas.service';
 import { Observable } from 'rxjs';
 import { PerguntanivelService } from 'src/app/services/perguntanivel/perguntanivel.service';
+import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
 
 
 @Component({
@@ -26,9 +27,9 @@ export class TelaPerguntasComponent implements OnInit {
   qtdTentativas: number = 0;
   pontuacao: number = 0;
 
-  userId: number = 2;
-  quizId: number = 1;
-  categoriaId: number = 1;
+  userId!: number;
+  quizId!: number;
+  categoriaId!: number;
   skip: number = 0;
   take: number = 3;
 
@@ -37,11 +38,20 @@ export class TelaPerguntasComponent implements OnInit {
     private progressoService: ProgressoPerguntasService,
     private usuarioService: UsuarioService,
     private alternativasService: AlternativasService,
-    private perguntasNivel: PerguntanivelService
-  ) { }
+    private perguntasNivel: PerguntanivelService,
+    private dataUtilsService: DataUtilsService
+  ) {
 
+  }
 
   ngOnInit(): void {
+
+    this.dataUtilsService.getData().subscribe(x => {
+      console.log(x);
+      this.userId = x?.usuarioId!;
+      this.categoriaId = x?.categoriaId!;
+      this.quizId = x?.quizId!;
+    });
     this.perguntaAtual = null;
     this.perguntasService.getAllPerguntasQuizByCategoria(this.userId, this.quizId, this.categoriaId, this.skip, this.take).subscribe(perguntas => {
       if(!perguntas.length) {

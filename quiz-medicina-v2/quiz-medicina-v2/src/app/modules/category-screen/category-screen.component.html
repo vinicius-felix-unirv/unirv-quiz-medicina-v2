@@ -1,9 +1,10 @@
 <div class="category-screen">
   <h1>Início</h1>
+  <!-- <button (click)="redirect()"> aperta ai</button> -->
   <div class="category-grid" *ngIf="progressoAndCategorias">
     <div class="category-box" *ngFor="let data of progressoAndCategorias" >
       <div class="category">
-        <div class="category-content" (click)="redirect()">
+        <div class="category-content" (click)="redirect(data.categoria.id!)">
           <div class="image-container">
             <img [src]="data.categoria.imagem" alt="{{data.categoria.descricao}}">
           </div>
