@@ -30,7 +30,7 @@ export class CategoryScreenComponent implements OnInit  {
     private router: Router,
     private categoriaService: CategoriasService,
     private progressoService: ProgressoPerguntasService,
-    private dataUtilsService: DataUtilsService
+    private dataUtilsService: DataUtilsService<CategoriaForPerguntas>
   ) {
 
   }

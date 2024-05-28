@@ -8,6 +8,7 @@ import { AlternativasService } from 'src/app/services/alternativas/alternativas.
 import { Observable } from 'rxjs';
 import { PerguntanivelService } from 'src/app/services/perguntanivel/perguntanivel.service';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
+import { CategoriaForPerguntas } from 'src/app/models/dataUtils';
 
 
 @Component({
@@ -39,7 +40,7 @@ export class TelaPerguntasComponent implements OnInit {
     private usuarioService: UsuarioService,
     private alternativasService: AlternativasService,
     private perguntasNivel: PerguntanivelService,
-    private dataUtilsService: DataUtilsService
+    private dataUtilsService: DataUtilsService<CategoriaForPerguntas>
   ) {
 
   }

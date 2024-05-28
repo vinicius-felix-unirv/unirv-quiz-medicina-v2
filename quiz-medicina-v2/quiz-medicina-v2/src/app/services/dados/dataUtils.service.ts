@@ -1,25 +1,22 @@
 import { Injectable } from '@angular/core';
-import { BehaviorSubject, Observable, Subject } from 'rxjs';
-import { CategoriaForPerguntas } from 'src/app/models/dataUtils';
+import { BehaviorSubject, Observable } from 'rxjs';
+
 
 @Injectable({
   providedIn: 'root'
 })
-export class DataUtilsService {
+export class DataUtilsService<T> {
 
-  dataForPerguntas = new BehaviorSubject<CategoriaForPerguntas | null>(null);
+  data = new BehaviorSubject<T | null>(null);
 
-  getData(): Observable<CategoriaForPerguntas | null> {
-    return this.dataForPerguntas.asObservable();
+  getData(): Observable<T | null> {
+    return this.data.asObservable();
   }
 
-  sendData(data: CategoriaForPerguntas): void {
-    this.dataForPerguntas.next(data);
+  sendData(data: T): void {
+    this.data.next(data);
   }
 
   constructor() { }
 
-  categoriaId: number = 0;
-  quizId: number = 0;
-  usuarioId: number = 0;
 }
