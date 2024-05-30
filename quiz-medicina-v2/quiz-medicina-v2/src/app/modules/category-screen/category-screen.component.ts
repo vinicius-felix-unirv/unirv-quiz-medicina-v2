@@ -22,11 +22,10 @@ interface IDataToView{
 export class CategoryScreenComponent extends CategoriaQuizBaseComponent implements OnInit  {
 
   titulo = 'tela-categorias'
-  override quizId: number = 1;
-  override usuarioId: number =2;
-  override rota: string = 'tela-perguntas';
+  override quizId!: number;
+  override userId!: number;
 
-  override progressoAndCategorias!: IDataToView[];
+  progressoAndCategorias!: IDataToView[];
 
   constructor(
     protected override router: Router,
@@ -37,21 +36,29 @@ export class CategoryScreenComponent extends CategoriaQuizBaseComponent implemen
     super(router, dataUtilsService);
   }
 
-  override ngOnInit(): void {
-    this.categoriaService.getAllCategoriasInQuiz(this.quizId).subscribe( categorias => {
-      this.progressoAndCategorias = categorias.map(categoria => ({
-        categoriaOrQuiz: categoria,
-        progresso: this.progressoService.getProgressoByCategoria(this.usuarioId, this.quizId, categoria.id!)
-      }));
+  ngOnInit(): void {
+    this.dataUtilsService.getData().subscribe(x => {
+      console.log(x);
+      this.userId = x?.usuarioId!;
+      this.quizId = x?.quizId!;
+
+      this.categoriaService.getAllCategoriasInQuiz(this.quizId).subscribe( categorias => {
+        this.progressoAndCategorias = categorias.map(categoria => ({
+          categoriaOrQuiz: categoria,
+          progresso: this.progressoService.getProgressoByCategoria(this.userId, this.quizId, categoria.id!)
+        }));
+      });
     });
+
   }
 
-  override redirect(categoriaId: number): void {
-    let data = new DataUtilsIds()
-    data.categoriaId = categoriaId;
+  redirectForPerguntas(id: number): void {
+    let data =  new DataUtilsIds;
+    data.categoriaId = id;
     data.quizId = this.quizId;
-    data.usuarioId = this.usuarioId;
+    data.usuarioId = this.userId;
     this.dataUtilsService.sendData(data);
+
     this.router.navigate(['tela-perguntas']);
   }
 

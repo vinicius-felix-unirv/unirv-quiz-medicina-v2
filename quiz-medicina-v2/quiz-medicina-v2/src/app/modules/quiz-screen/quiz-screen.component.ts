@@ -22,7 +22,13 @@ interface IDataToView{
 export class QuizScreenComponent extends CategoriaQuizBaseComponent implements OnInit {
 
   titulo: string = 'tela-Quiz';
-  override rota: string = 'category-screen';
+  progressoAndQuiz!: IDataToView[];
+  // quizIdSelected!: number;
+  override userId: number = 2;
+
+  cursoId: number = 1;
+  skip: number = 0;
+  take: number = 10;
 
   constructor(
     protected  override  router: Router,
@@ -33,8 +39,22 @@ export class QuizScreenComponent extends CategoriaQuizBaseComponent implements O
     super(router, dataUtilsService );
   }
 
-  override ngOnInit(): void {
+  ngOnInit(): void {
+    this.quizService.getAllQuizByCursoId(this.cursoId, this.skip, this.take).subscribe(quizes =>{
+      this.progressoAndQuiz = quizes.map( quiz => ({
+        categoriaOrQuiz: quiz,
+        progresso: this.progressoService.getProgressoByQuizId(this.userId, quiz.id!)
+      }));
+    });
+  }
 
+  redirectForCategoria(id: number): void {
+    let data =  new DataUtilsIds;
+    data.quizId = id;
+    data.usuarioId = this.userId;
+    this.dataUtilsService.sendData(data);
+
+    this.router.navigate(['category-screen']);
   }
 
 }

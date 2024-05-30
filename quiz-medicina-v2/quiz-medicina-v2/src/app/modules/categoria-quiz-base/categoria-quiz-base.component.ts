@@ -15,33 +15,23 @@ interface IDataToView{
   templateUrl: './categoria-quiz-base.component.html',
   styleUrls: ['./categoria-quiz-base.component.scss']
 })
-export class CategoriaQuizBaseComponent implements OnInit {
+export class CategoriaQuizBaseComponent {
 
   @Input() Titulo!: string;
   @Input() typeClass!: any;
-  @Input() progressoAndCategorias!: IDataToView[];
+  @Input() dataToView!: IDataToView[];
 
   @Input() quizId!: number;
-  @Input() usuarioId!: number;
-  @Input() rota!: string;
+  @Input() userId!: number;
+  @Input() redirect!: (id: number) => void;
+
+
   constructor(
     protected router: Router,
     protected dataUtilsService: DataUtilsService<DataUtilsIds>
   ) {
 
   }
-  ngOnInit(): void {
-    console.log(this.dataUtilsService.getData());
-  }
 
-  redirect(categoriaId: number): void {
-    let data: any = {};
-    data.categoriaId = categoriaId;
-    data.quizId = this.quizId;
-    data.usuarioId = this.usuarioId;
-    this.dataUtilsService.sendData(data);
-
-    this.router.navigate([this.rota]);
-  }
 
 }
