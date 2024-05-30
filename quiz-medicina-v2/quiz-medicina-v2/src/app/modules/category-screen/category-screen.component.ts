@@ -1,16 +1,16 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Categoria } from 'src/app/models/categoria';
-import { CategoriaForPerguntas } from 'src/app/models/dataUtils';
+import { DataUtilsIds } from 'src/app/models/dataUtils';
 import { Progresso } from 'src/app/models/progressoPerguntas';
 import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
 import { ProgressoPerguntasService } from 'src/app/services/progressoPerguntas/progresso-perguntas.service';
+import { CategoriaQuizBaseComponent } from '../categoria-quiz-base/categoria-quiz-base.component';
 
-
-interface categoriaAndProgresso{
-  categoria: Categoria,
+interface IDataToView{
+  categoriaOrQuiz: Categoria,
   progresso: Observable<Progresso>
 }
 
@@ -19,40 +19,40 @@ interface categoriaAndProgresso{
   templateUrl: './category-screen.component.html',
   styleUrls: ['./category-screen.component.css']
 })
-export class CategoryScreenComponent implements OnInit  {
+export class CategoryScreenComponent extends CategoriaQuizBaseComponent implements OnInit  {
 
-  progressoAndCategorias!: categoriaAndProgresso[];
+  titulo = 'tela-categorias'
+  override quizId: number = 1;
+  override usuarioId: number =2;
+  override rota: string = 'tela-perguntas';
 
-  quizId: number = 1;
-  usuarioId: number =2;
+  override progressoAndCategorias!: IDataToView[];
 
   constructor(
-    private router: Router,
+    protected override router: Router,
     private categoriaService: CategoriasService,
     private progressoService: ProgressoPerguntasService,
-    private dataUtilsService: DataUtilsService<CategoriaForPerguntas>
+    protected override dataUtilsService: DataUtilsService<DataUtilsIds>
   ) {
-
+    super(router, dataUtilsService);
   }
 
-  ngOnInit(): void {
+  override ngOnInit(): void {
     this.categoriaService.getAllCategoriasInQuiz(this.quizId).subscribe( categorias => {
       this.progressoAndCategorias = categorias.map(categoria => ({
-        categoria: categoria,
+        categoriaOrQuiz: categoria,
         progresso: this.progressoService.getProgressoByCategoria(this.usuarioId, this.quizId, categoria.id!)
       }));
     });
   }
 
-  redirect(categoriaId: number): void {
-    let data = new CategoriaForPerguntas()
+  override redirect(categoriaId: number): void {
+    let data = new DataUtilsIds()
     data.categoriaId = categoriaId;
     data.quizId = this.quizId;
     data.usuarioId = this.usuarioId;
     this.dataUtilsService.sendData(data);
-
     this.router.navigate(['tela-perguntas']);
-
   }
 
   // isso ainda não funciona;

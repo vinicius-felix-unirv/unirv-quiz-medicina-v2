@@ -1,0 +1,19 @@
+<div class="category-screen">
+  <h1>{{Titulo}}</h1>
+  <!-- <button (click)="redirect()"> aperta ai</button> -->
+  <div class="category-grid" *ngIf="progressoAndCategorias">
+    <div class="category-box" *ngFor="let data of progressoAndCategorias" >
+      <div class="category">
+        <div class="category-content" (click)="redirect(data.categoriaOrQuiz.id!)">
+          <div class="image-container">
+            <img [src]="data.categoriaOrQuiz.imagem" alt="{{data.categoriaOrQuiz.descricao}}">
+          </div>
+          <p>{{data.categoriaOrQuiz.descricao}}</p>
+        </div>
+      </div>
+      <div class="progress-bar">
+        <!-- <div class="bar" [style.width]="getProgressWidth((data.progresso | async)!)"></div> -->
+      </div>
+    </div>
+  </div>
+</div>

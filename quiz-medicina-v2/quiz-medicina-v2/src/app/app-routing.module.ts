@@ -22,6 +22,11 @@ const routes: Routes = [
 
   },
   {
+    path: 'quiz-screen',
+    loadChildren: () => import('./modules/quiz-screen/quiz-screen.module').then(m => m.QuizScreenModule)
+
+  },
+  {
     path: 'tela-perguntas',
       loadChildren:  () => import('./modules/tela-perguntas/tela-perguntas.module').then(m => m.TelaPerguntasComponentModule)
   },

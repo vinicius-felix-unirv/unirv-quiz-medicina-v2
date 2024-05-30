@@ -4,25 +4,27 @@ import { BrowserModule } from '@angular/platform-browser';
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { ResetPasswordDialogComponent } from './modules/login/reset-password-dialog/reset-password-dialog.component';
 
 import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
 
 import { HttpClientModule } from '@angular/common/http';
-// import { NewPasswordComponent } from './modules/new-password/new-password.component';
+import { QuizScreenModule } from './modules/quiz-screen/quiz-screen.module';
+import { CategoryScreenComponentModule } from './modules/category-screen/category-screen.module';
+
 
 
 @NgModule({
   declarations: [
-    AppComponent
-
+    AppComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    HttpClientModule
-    
+    HttpClientModule,
+    QuizScreenModule,
+    CategoryScreenComponentModule
+
   ],
   providers: [
     AuthInterceptorProvider

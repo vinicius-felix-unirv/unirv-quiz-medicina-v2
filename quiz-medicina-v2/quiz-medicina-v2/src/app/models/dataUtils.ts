@@ -1,5 +1,5 @@
 
-export class CategoriaForPerguntas{
+export class DataUtilsIds{
 
   categoriaId: number = 0;
   quizId: number = 0;
