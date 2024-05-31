@@ -10,12 +10,14 @@ import { AuthInterceptorProvider } from './interceptors/auth.interceptor';
 import { HttpClientModule } from '@angular/common/http';
 import { QuizScreenModule } from './modules/quiz-screen/quiz-screen.module';
 import { CategoryScreenComponentModule } from './modules/category-screen/category-screen.module';
+import { HomeComponent } from './modules/home/home.component';
 
 
 
 @NgModule({
   declarations: [
     AppComponent,
+
   ],
   imports: [
     BrowserModule,

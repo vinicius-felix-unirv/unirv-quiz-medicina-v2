@@ -1,0 +1,40 @@
+
+<div class="container">
+  <div class="sidebar">
+      <div class="logo">
+          <img src="../../../assets/unirv-logo02.png" alt="">
+      </div>
+
+      <div class="nav">
+          <ul>
+              <li *ngFor="let item of menu">
+                  <i [ngClass]="item.menuIcon"></i>
+                  <a class="link"
+                      (click)="redirect(item)"
+                      routerLinkActive="ativo">{{ item.menuName }}</a>
+              </li>
+            </ul>
+      </div>
+
+  </div>
+
+  <div class="main">
+      <div class="header">
+          <div class="container">
+              <div class="search">
+                <i class="fa-solid fa-magnifying-glass"></i>
+                <input type="text" placeholder="Buscar desafio" name="" id="">
+              </div>
+              <!-- <i class="fa-solid fa-x"></i> -->
+              <i class="fa-solid fa-xmark"></i>
+          </div>
+
+          <div class="perfil-img">
+              <img src="../../../assets/perfil-img.png" alt="perfil">
+          </div>
+      </div>
+      <div class="content">
+
+      </div>
+  </div>
+</div>
