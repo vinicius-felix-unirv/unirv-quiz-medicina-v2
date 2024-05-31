@@ -54,7 +54,7 @@ export class QuizScreenComponent extends CategoriaQuizBaseComponent implements O
     data.usuarioId = this.userId;
     this.dataUtilsService.sendData(data);
 
-    this.router.navigate(['category-screen']);
+    this.router.navigate(['home/category-screen']);
   }
 
 }

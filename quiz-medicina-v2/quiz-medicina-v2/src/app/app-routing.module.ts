@@ -21,17 +21,17 @@ const routes: Routes = [
 
   },
   {
-    path: 'category-screen',
+    path: 'home/category-screen',
     loadChildren: () => import('./modules/category-screen/category-screen.module').then(m => m.CategoryScreenComponentModule)
 
   },
   {
-    path: 'quiz-screen',
+    path: 'home/quiz-screen',
     loadChildren: () => import('./modules/quiz-screen/quiz-screen.module').then(m => m.QuizScreenModule)
 
   },
   {
-    path: 'tela-perguntas',
+    path: 'home/tela-perguntas',
       loadChildren:  () => import('./modules/tela-perguntas/tela-perguntas.module').then(m => m.TelaPerguntasComponentModule)
   },
   {

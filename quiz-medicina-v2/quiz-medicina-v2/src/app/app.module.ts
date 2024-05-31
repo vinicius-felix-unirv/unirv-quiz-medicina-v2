@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { QuizScreenModule } from './modules/quiz-screen/quiz-screen.module';
 import { CategoryScreenComponentModule } from './modules/category-screen/category-screen.module';
 import { HomeComponent } from './modules/home/home.component';
+import { HomeModule } from './modules/home/home.module';
 
 
 
@@ -25,7 +26,8 @@ import { HomeComponent } from './modules/home/home.component';
     BrowserAnimationsModule,
     HttpClientModule,
     QuizScreenModule,
-    CategoryScreenComponentModule
+    CategoryScreenComponentModule,
+    HomeModule
 
   ],
   providers: [

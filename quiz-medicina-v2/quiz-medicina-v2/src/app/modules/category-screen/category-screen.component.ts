@@ -59,7 +59,7 @@ export class CategoryScreenComponent extends CategoriaQuizBaseComponent implemen
     data.usuarioId = this.userId;
     this.dataUtilsService.sendData(data);
 
-    this.router.navigate(['tela-perguntas']);
+    this.router.navigate(['home/tela-perguntas']);
   }
 
   // isso ainda não funciona;

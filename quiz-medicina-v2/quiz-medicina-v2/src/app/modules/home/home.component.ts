@@ -20,9 +20,9 @@ export class HomeComponent {
   value = 'Insirir pergunta'
 
   menu: MenuItem[] = [
-    { menuIcon: "fa-solid fa-bars", menuName: "Perguntas", menuUrl: "tela-perguntas", roleUser: [1] },
     { menuIcon: "fa-solid fa-house", menuName: "Home", menuUrl: "home", roleUser: [1] },
-    { menuIcon: "fa-solid fa-user", menuName: "Cadastro", menuUrl: "inscricao", roleUser: [1] },
+    { menuIcon: "fa-solid fa-bars", menuName: "Quiz", menuUrl: "quiz-screen", roleUser: [1] },
+    { menuIcon: "fa-solid fa-user", menuName: "Ranking", menuUrl: "ranking", roleUser: [1] },
   ];
 
   public redirect(item: MenuItem): void {

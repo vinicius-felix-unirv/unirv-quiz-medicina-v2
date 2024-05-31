@@ -21,6 +21,9 @@ const routes: Routes = [
     RouterModule.forChild(routes),
     ReactiveFormsModule,
     MaterialModule
+  ],
+  exports: [
+    HomeComponent,
   ]
 })
 export class HomeModule { }
