@@ -18,7 +18,7 @@ export class UsuarioService extends ServiceBase<Usuario> {
     return this.httpClient.get<Usuario[]>(`${API_CONFIG.baseUrl}/cursos/${cursoId}/${this.url}/${skip}/${take}`);
   }
 
-  getARanking(cursoId: number): Observable<Usuario[]>{
+  getRanking(cursoId: number): Observable<Usuario[]>{
     return this.httpClient.get<Usuario[]>(`${API_CONFIG.baseUrl}/cursos/${cursoId}/${this.url}/ranking`);
   }
 
