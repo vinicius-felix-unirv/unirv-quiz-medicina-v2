@@ -1,0 +1,190 @@
+app-ranking {
+  /* Estilos padrão para telas maiores */
+  .ranking-container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  .podium {
+    display: flex;
+    justify-content: space-around;
+    align-items: flex-end;
+    gap: 1rem;
+  }
+
+  .podium-item {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+    text-align: center;
+    font-weight: bold;
+    background-color: #fff;
+    border-radius: 2rem;
+    padding: 10px;
+    box-shadow: 0 7px 4px rgba(0, 0, 0, 0.1);
+    width: 150px;
+
+    &-first {
+      height: 250px;
+    }
+
+    &-second {
+      height: 200px;
+    }
+
+    &-third {
+      height: 180px;
+    }
+  }
+
+  .podium-img {
+    border: 2px solid #e74c3c;
+    border-radius: 50%;
+    padding: 2px;
+
+    &-first {
+      width: 100px;
+      height: 100px;
+    }
+
+    &-second {
+      width: 80px;
+      height: 80px;
+    }
+
+    &-third {
+      width: 70px;
+      height: 70px;
+    }
+  }
+
+  .crown-disable {
+    display: none;
+  }
+
+  .crown {
+    position: relative;
+    top: 0px;
+    animation: elevation 1s infinite;
+  }
+
+  @keyframes elevation {
+    0% {
+      transform: scale(1);
+    }
+
+    50% {
+      transform: scale(1.2);
+    }
+
+    100% {
+      transform: scale(1);
+    }
+  }
+
+  // .podium-item.podium-center img {
+  //   width: 50px;
+  //   height: 50px;
+  // }
+
+  .podium-item.left {
+    order: -1;
+  }
+
+  .podium-item p {
+    font-size: 12px;
+    margin-top: 5px;
+  }
+
+  .podium-item.podium-center p {
+    font-weight: bold;
+    font-size: 14px;
+  }
+
+  .rank-list {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+  }
+
+  .rank-item {
+    display: flex;
+    align-items: center;
+    border-radius: 8px;
+    padding: 10px;
+    margin-bottom: 20px;
+    box-shadow: 0 7px 4px rgba(0, 0, 0, 0.1);
+    border-color: rgba(60, 184, 91, 0.1);
+    background-color: #fff;
+  }
+
+  .ranking-image {
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    margin-right: 10px;
+  }
+
+  .ranking-image-center {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #e74c3c;
+    border-radius: 50%;
+  }
+
+  .rank-info {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .rank-name {
+    font-weight: bold;
+    font-size: 12px;
+  }
+
+  .rank-score {
+    color: #555;
+    font-size: 12px;
+  }
+
+  .position {
+    font-weight: bold;
+    font-size: 12px;
+    color: #e74c3c;
+    margin-bottom: 3px;
+  }
+
+  .podium-item.podium-center p.position {
+    font-size: 14px;
+  }
+
+  .rank-item p.position {
+    font-weight: bold;
+    font-size: 12px;
+    color: #3498db;
+    margin-right: 8px;
+  }
+
+  /* Estilos para telas menores (dispositivos móveis) */
+  @media only screen and (max-width: 600px) {
+    .podium {
+      flex-direction: column;
+      align-items: center;
+    }
+
+    .podium-item img {
+      width: 40px;
+      height: 40px;
+    }
+
+    .podium-item.podium-center img {
+      width: 60px;
+      height: 60px;
+    }
+
+    /* Ajuste outros estilos para telas menores conforme necessário */
+  }
+}
