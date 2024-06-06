@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnDestroy, OnInit } from '@angular/core';
 import { CategoriaQuizBaseComponent } from '../categoria-quiz-base/categoria-quiz-base.component';
 import { QuizService } from 'src/app/services/quiz/quiz.service';
 import { ProgressoPerguntasService } from 'src/app/services/progressoPerguntas/progresso-perguntas.service';
@@ -23,10 +23,9 @@ export class QuizScreenComponent extends CategoriaQuizBaseComponent implements O
 
   titulo: string = 'tela-Quiz';
   progressoAndQuiz!: IDataToView[];
-  // quizIdSelected!: number;
-  override userId: number = 2;
 
-  cursoId: number = 1;
+  override userId!: number;
+
   skip: number = 0;
   take: number = 10;
 
@@ -39,12 +38,20 @@ export class QuizScreenComponent extends CategoriaQuizBaseComponent implements O
     super(router, dataUtilsService );
   }
 
+
   ngOnInit(): void {
-    this.quizService.getAllQuizByCursoId(this.cursoId, this.skip, this.take).subscribe(quizes =>{
-      this.progressoAndQuiz = quizes.map( quiz => ({
-        categoriaOrQuiz: quiz,
-        progresso: this.progressoService.getProgressoByQuizId(this.userId, quiz.id!)
-      }));
+
+    console.log('quiz');
+    this.dataUtilsService.getData().subscribe(data => {
+      console.log(data?.cursoId, data?.usuarioId);
+      this.userId = data?.usuarioId!;
+
+      this.quizService.getAllQuizByCursoId(data?.cursoId!, this.skip, this.take).subscribe(quizes =>{
+        this.progressoAndQuiz = quizes.map( quiz => ({
+          categoriaOrQuiz: quiz,
+          progresso: this.progressoService.getProgressoByQuizId(this.userId, quiz.id!)
+        }));
+      });
     });
   }
 
