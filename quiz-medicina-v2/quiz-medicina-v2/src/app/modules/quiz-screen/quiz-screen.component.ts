@@ -23,10 +23,10 @@ export class QuizScreenComponent extends CategoriaQuizBaseComponent implements O
 
   titulo: string = 'tela-Quiz';
   progressoAndQuiz!: IDataToView[];
-  // quizIdSelected!: number;
-  override userId: number = 2;
 
-  cursoId: number = 1;
+  override userId!: number;
+  cursoId!: number;
+
   skip: number = 0;
   take: number = 10;
 
@@ -39,7 +39,14 @@ export class QuizScreenComponent extends CategoriaQuizBaseComponent implements O
     super(router, dataUtilsService );
   }
 
+
   ngOnInit(): void {
+
+    this.dataUtilsService.getData().subscribe(data => {
+      this.userId = data?.usuarioId!;
+      this.cursoId = data?.cursoId!;
+    });
+
     this.quizService.getAllQuizByCursoId(this.cursoId, this.skip, this.take).subscribe(quizes =>{
       this.progressoAndQuiz = quizes.map( quiz => ({
         categoriaOrQuiz: quiz,

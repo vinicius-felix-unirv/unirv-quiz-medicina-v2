@@ -29,9 +29,5 @@ export class CategoriaQuizBaseComponent {
   constructor(
     protected router: Router,
     protected dataUtilsService: DataUtilsService<DataUtilsIds>
-  ) {
-
-  }
-
-
+  ) { }
 }

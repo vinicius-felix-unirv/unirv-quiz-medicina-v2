@@ -37,17 +37,17 @@ export class CategoryScreenComponent extends CategoriaQuizBaseComponent implemen
   }
 
   ngOnInit(): void {
+
     this.dataUtilsService.getData().subscribe(x => {
-      console.log(x);
       this.userId = x?.usuarioId!;
       this.quizId = x?.quizId!;
+    });
 
-      this.categoriaService.getAllCategoriasInQuiz(this.quizId).subscribe( categorias => {
-        this.progressoAndCategorias = categorias.map(categoria => ({
-          categoriaOrQuiz: categoria,
-          progresso: this.progressoService.getProgressoByCategoria(this.userId, this.quizId, categoria.id!)
-        }));
-      });
+    this.categoriaService.getAllCategoriasInQuiz(this.quizId).subscribe( categorias => {
+      this.progressoAndCategorias = categorias.map(categoria => ({
+        categoriaOrQuiz: categoria,
+        progresso: this.progressoService.getProgressoByCategoria(this.userId, this.quizId, categoria.id!)
+      }));
     });
 
   }

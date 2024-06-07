@@ -7,6 +7,9 @@ import { AuthService } from 'src/app/security/auth.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
 import { LoginResponse } from 'src/app/models/loginResponse';
+import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
+import { DataUtilsIds } from 'src/app/models/dataUtils';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 
 @Component({
@@ -19,7 +22,15 @@ import { LoginResponse } from 'src/app/models/loginResponse';
 export class LoginComponent implements OnInit, AfterViewInit {
 
   // O que falta: fazer o submiti, mensagem de erro caso o email ou a senha não sejam validos
-  constructor(private _formBuilder: FormBuilder, private router: Router, public _dialog: MatDialog, private _snackBar: MatSnackBar, private serviceAuth: AuthService) { }
+  constructor(
+    private _formBuilder: FormBuilder,
+    private router: Router,
+    public _dialog: MatDialog,
+    private _snackBar: MatSnackBar,
+    private serviceAuth: AuthService,
+    private dataUtilsService: DataUtilsService<DataUtilsIds>,
+    private usuariosService: UsuarioService
+  ) { }
 
   hide = true;
   formData!: FormGroup;
@@ -59,6 +70,12 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.serviceAuth.authenticate(this.formData.value).subscribe(async resposta => {
       if (this.serviceAuth.isAuthenticated()) {
         this.openDialogSnackBar('Auth');
+        let data =  new DataUtilsIds;
+        data.usuarioId = parseInt(this.serviceAuth.returnUserId()!);
+        this.usuariosService.findById(data.usuarioId).subscribe( user => {
+          data.cursoId = user.cursoid;
+          this.dataUtilsService.sendData(data);
+        });
         this.router.navigate(['home']);
       }
     }, (err: HttpErrorResponse) => {
