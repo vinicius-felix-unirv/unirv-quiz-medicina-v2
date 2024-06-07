@@ -3,7 +3,7 @@ import { CategoriaQuizBaseComponent } from '../categoria-quiz-base/categoria-qui
 import { QuizService } from 'src/app/services/quiz/quiz.service';
 import { ProgressoPerguntasService } from 'src/app/services/progressoPerguntas/progresso-perguntas.service';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
-import { Router } from '@angular/router';
+import { Data, Router } from '@angular/router';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
 import { Quiz } from 'src/app/models/quiz';
 import { Observable } from 'rxjs';
@@ -24,8 +24,9 @@ export class QuizScreenComponent extends CategoriaQuizBaseComponent implements O
   titulo: string = 'tela-Quiz';
   progressoAndQuiz!: IDataToView[];
 
-  override userId!: number;
+  userId!: number;
   cursoId!: number;
+  override dataUtils: DataUtilsIds = {} as DataUtilsIds;
 
   skip: number = 0;
   take: number = 10;
@@ -43,6 +44,7 @@ export class QuizScreenComponent extends CategoriaQuizBaseComponent implements O
   ngOnInit(): void {
 
     this.dataUtilsService.getData().subscribe(data => {
+      this.dataUtils = data! || {} as DataUtilsIds;
       this.userId = data?.usuarioId!;
       this.cursoId = data?.cursoId!;
     });
@@ -56,10 +58,9 @@ export class QuizScreenComponent extends CategoriaQuizBaseComponent implements O
   }
 
   redirectForCategoria(id: number): void {
-    let data =  new DataUtilsIds;
-    data.quizId = id;
-    data.usuarioId = this.userId;
-    this.dataUtilsService.sendData(data);
+    let data = this.dataUtils;
+    data!.quizId = id;
+    this.dataUtilsService.sendData(data!);
 
     this.router.navigate(['home/category-screen']);
   }
