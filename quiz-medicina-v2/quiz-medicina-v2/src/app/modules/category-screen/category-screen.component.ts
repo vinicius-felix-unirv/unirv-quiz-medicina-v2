@@ -1,4 +1,4 @@
-import { Component, Input, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Observable } from 'rxjs';
 import { Categoria } from 'src/app/models/categoria';
@@ -22,8 +22,9 @@ interface IDataToView{
 export class CategoryScreenComponent extends CategoriaQuizBaseComponent implements OnInit  {
 
   titulo = 'tela-categorias'
-  override quizId!: number;
-  override userId!: number;
+  quizId!: number;
+  userId!: number;
+  override dataUtils: DataUtilsIds = {} as DataUtilsIds;
 
   progressoAndCategorias!: IDataToView[];
 
@@ -38,9 +39,10 @@ export class CategoryScreenComponent extends CategoriaQuizBaseComponent implemen
 
   ngOnInit(): void {
 
-    this.dataUtilsService.getData().subscribe(x => {
-      this.userId = x?.usuarioId!;
-      this.quizId = x?.quizId!;
+    this.dataUtilsService.getData().subscribe(data => {
+      this.dataUtils = data! || {} as DataUtilsIds;
+      this.userId = data?.usuarioId!;
+      this.quizId = data?.quizId!;
     });
 
     this.categoriaService.getAllCategoriasInQuiz(this.quizId).subscribe( categorias => {
@@ -53,11 +55,9 @@ export class CategoryScreenComponent extends CategoriaQuizBaseComponent implemen
   }
 
   redirectForPerguntas(id: number): void {
-    let data =  new DataUtilsIds;
-    data.categoriaId = id;
-    data.quizId = this.quizId;
-    data.usuarioId = this.userId;
-    this.dataUtilsService.sendData(data);
+    let data = this.dataUtils;
+    data!.categoriaId = id;
+    this.dataUtilsService.sendData(data!);
 
     this.router.navigate(['home/tela-perguntas']);
   }

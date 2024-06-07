@@ -21,10 +21,8 @@ export class CategoriaQuizBaseComponent {
   @Input() typeClass!: any;
   @Input() dataToView!: IDataToView[];
 
-  @Input() quizId!: number;
-  @Input() userId!: number;
   @Input() redirect!: (id: number) => void;
-
+  @Input() dataUtils!: DataUtilsIds;
 
   constructor(
     protected router: Router,

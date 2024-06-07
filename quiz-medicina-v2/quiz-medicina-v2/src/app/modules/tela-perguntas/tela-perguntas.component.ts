@@ -47,12 +47,10 @@ export class TelaPerguntasComponent implements OnInit {
 
   ngOnInit(): void {
 
-    console.log('perguntas');
-    this.dataUtilsService.getData().subscribe(x => {
-      // console.log(x);
-      this.userId = x?.usuarioId!;
-      this.categoriaId = x?.categoriaId!;
-      this.quizId = x?.quizId!;
+    this.dataUtilsService.getData().subscribe(data => {
+      this.userId = data?.usuarioId!;
+      this.categoriaId = data?.categoriaId!;
+      this.quizId = data?.quizId!;
     });
     this.perguntaAtual = null;
     this.perguntasService.getAllPerguntasQuizByCategoria(this.userId, this.quizId, this.categoriaId, this.skip, this.take).subscribe(perguntas => {
