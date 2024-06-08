@@ -12,7 +12,7 @@ import { QuizScreenModule } from './modules/quiz-screen/quiz-screen.module';
 import { CategoryScreenComponentModule } from './modules/category-screen/category-screen.module';
 import { HomeComponent } from './modules/home/home.component';
 import { HomeModule } from './modules/home/home.module';
-// import { RankingComponent } from './modules/ranking/ranking.component';
+import { RankingComponent } from './modules/ranking/ranking.component';
 
 
 

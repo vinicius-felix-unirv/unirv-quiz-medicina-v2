@@ -40,10 +40,10 @@ const routes: Routes = [
         path: 'tela-perguntas',
           loadChildren:  () => import('./modules/tela-perguntas/tela-perguntas.module').then(m => m.TelaPerguntasComponentModule)
       },
-      // {
-      //   path: 'ranking',
-      //   loadChildren: () => import('./modules/ranking/ranking.module').then(m =>m.RankingModule)
-      // }
+      {
+        path: 'ranking',
+        loadChildren: () => import('./modules/ranking/ranking.module').then(m =>m.RankingModule)
+      }
     ]
   }
 ];
