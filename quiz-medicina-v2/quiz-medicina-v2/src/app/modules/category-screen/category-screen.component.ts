@@ -37,6 +37,7 @@ export class CategoryScreenComponent extends CategoriaQuizBaseComponent implemen
   }
 
   ngOnInit(): void {
+    console.log("categoria")
     this.dataUtilsService.getData().subscribe(x => {
       console.log(x);
       this.userId = x?.usuarioId!;

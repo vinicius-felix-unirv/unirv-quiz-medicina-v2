@@ -46,7 +46,7 @@ export class TelaPerguntasComponent implements OnInit {
   }
 
   ngOnInit(): void {
-
+    console.log("pergunta")
     this.dataUtilsService.getData().subscribe(x => {
       console.log(x);
       this.userId = x?.usuarioId!;

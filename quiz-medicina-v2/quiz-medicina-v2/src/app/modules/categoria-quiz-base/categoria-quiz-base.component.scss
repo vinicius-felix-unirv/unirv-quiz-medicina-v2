@@ -4,9 +4,9 @@ body {
 }
 
 .category-screen {
-  background-color: #EDEDED;
-  width: 100vw;
-  height: 100vh;
+  // background-color: #EDEDED;
+  width: 100%;
+  height: 100%;
 
   padding: 1rem;
 
@@ -14,15 +14,15 @@ body {
     font-size: 32px;
     font-weight: 700;
   }
+  
 }
 
 .category-grid {
   display: flex;
   flex-wrap: wrap;
   justify-content: flex-start;
-
+  
   gap: 1rem;
-
   // border: 1px solid red;
 }
 
@@ -33,6 +33,8 @@ body {
   background-color: #fff;
   position: relative; /* adicionado */
   border-radius: 8px;
+  margin-bottom: 1.5rem;
+
 }
 .category-content {
   display: flex;
@@ -88,7 +90,7 @@ body {
 
 .image-container {
   background-color: #EDEDED;
-  width: 250px; /* Largura ajustada */
+  width: 224px; /* Largura ajustada */
   height: 160px; /* Altura ajustada */
   overflow: hidden;
   display: flex; /* Usando flexbox */

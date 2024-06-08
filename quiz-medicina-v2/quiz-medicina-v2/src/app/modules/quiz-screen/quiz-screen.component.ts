@@ -40,6 +40,7 @@ export class QuizScreenComponent extends CategoriaQuizBaseComponent implements O
   }
 
   ngOnInit(): void {
+    console.log("quiz")
     this.quizService.getAllQuizByCursoId(this.cursoId, this.skip, this.take).subscribe(quizes =>{
       this.progressoAndQuiz = quizes.map( quiz => ({
         categoriaOrQuiz: quiz,
