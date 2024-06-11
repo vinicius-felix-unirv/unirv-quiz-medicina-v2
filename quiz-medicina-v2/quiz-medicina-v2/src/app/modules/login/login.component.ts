@@ -114,6 +114,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
   }
 
 
+  redirect(): void{
+    this.router.navigate(['inscricao']);
+  }
 }
 
 
