@@ -1,4 +1,3 @@
-
 <div class="container">
   <div class="sidebar">
       <div class="logo">
@@ -6,7 +5,7 @@
       </div>
 
       <div class="nav">
-          <ul>
+            <ul>
               <li *ngFor="let item of menu">
                   <i [ngClass]="item.menuIcon"></i>
                   <a class="link"
@@ -14,7 +13,16 @@
                       routerLinkActive="ativo">{{ item.menuName }}</a>
               </li>
             </ul>
+
+            <footer>
+                <div class="containerBTN">
+                    <!-- <i class="fa-solid fa-right-from-bracket"></i> -->
+                    <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                    <a >Sair</a>
+                </div>
+            </footer>
       </div>
+
 
   </div>
 
@@ -25,7 +33,6 @@
                 <i class="fa-solid fa-magnifying-glass"></i>
                 <input type="text" placeholder="Buscar desafio" name="" id="">
               </div>
-              <!-- <i class="fa-solid fa-x"></i> -->
               <i class="fa-solid fa-xmark"></i>
           </div>
 

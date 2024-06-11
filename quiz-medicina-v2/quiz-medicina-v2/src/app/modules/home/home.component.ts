@@ -31,8 +31,4 @@ export class HomeComponent {
 
   }
 
-
-  focusBTG(){
-
-  }
 }
