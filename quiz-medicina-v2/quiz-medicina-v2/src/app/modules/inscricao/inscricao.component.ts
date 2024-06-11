@@ -5,6 +5,9 @@ import { Curso } from 'src/app/models/curso';
 import { CursosService } from 'src/app/services/cursos/cursos.service';
 import { Campus } from 'src/app/models/campus';
 import { CampusService } from 'src/app/services/campus/campus.service';
+import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { Router } from '@angular/router';
+import { Usuario } from 'src/app/models/usuario';
 
 @Component({
   selector: 'app-inscricao',
@@ -42,24 +45,27 @@ export class InscricaoComponent implements OnInit {
     private formBuilder: FormBuilder,
     @Inject(IbgeService) private ibgeService: IbgeService,
     private cursoService: CursosService,
-    private campusService: CampusService
+    private campusService: CampusService,
+    private usuarioService: UsuarioService,
+    private router: Router
   ) { }
 
   private createFormData(): FormGroup {
     return this.formulario = this.formBuilder.group({
-      nomeCompleto: ['', Validators.required],
+      nome: ['', Validators.required],
       telefone: ['', [Validators.required, Validators.pattern(/^\d{10,}$/)]],
       sexo: ['', Validators.required],
       uf: ['', Validators.required],
       cidade: ['', Validators.required],
-      dataNascimento: ['', Validators.required],
-      campus: ['', Validators.required],
-      curso: ['', Validators.required],
+      datanascimento: ['', Validators.required],
+      campusid: ['', Validators.required],
+      cursoid: ['', Validators.required],
       turma: ['', Validators.required],
       periodo: ['', Validators.required],
       email: ['', Validators.required],
       senha: ['', Validators.required],
       confirmarSenha: ['', Validators.required],
+      foto: ["/foto-default.png"]
     });
   }
 
@@ -83,11 +89,23 @@ export class InscricaoComponent implements OnInit {
     this.ibgeService.getEstados().subscribe(estados => this.estados = estados);
 
   }
+
   onSubmit() {
-    // Implemente o que deseja fazer quando o formulário for submetido
+    // falta implementar uma forma de aviso que o cadastro foi bem sucedido.
     console.log(this.formulario)
-    this.trocarTemplate();
+    if(this.formulario.valid){
+      const user = new Usuario(this.formulario.value);
+      this.usuarioService.create(user).subscribe(
+        response => {
+          if(response.id){
+            this.router.navigate(['login']);
+          }
+        }
+      );
+    }
+
   }
+
   onEstadoChange() {
     // Verificar se this.formulario e this.formulario.get('uf') não são nulos
     if (this.formulario && this.formulario.get('uf')) {

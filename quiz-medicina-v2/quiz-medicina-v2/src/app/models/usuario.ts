@@ -9,7 +9,7 @@ export class Usuario {
   datanascimento: Date = new Date();
   role: number = 0;
   uf: string = '';
-  nomecampus: number = 0;
+  campusid: number = 0;
   foto: string = '';
   pontuacao: number = 0;
   status: boolean =  true;
@@ -17,4 +17,8 @@ export class Usuario {
   cursoid: number = 0;
   periodo: number = 0;
   cidade: string = '';
+
+  constructor(init?: Partial<Usuario>) {
+    Object.assign(this, init);
+  }
 }

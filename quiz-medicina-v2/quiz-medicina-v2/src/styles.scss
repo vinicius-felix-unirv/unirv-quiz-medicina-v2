@@ -1,7 +1,7 @@
 /* You can add global styles to this file, and also import other style files */
-:root{
+:root {
   --red: #e81c1cf3;
-  --green: #11AF11;
+  --green: #11af11;
   --gray-lite: rgba(0, 0, 0, 0.6);
 }
 
@@ -12,17 +12,12 @@
   font-family: "Roboto", sans-serif;
 }
 
-html,
 body {
-  height: 100%;
-}
-body {
-  margin: 0;
-  font-family: Roboto, "Helvetica Neue", sans-serif;
-}
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-body{
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  font-family: Roboto, "Helvetica Neue", sans-serif;
+
+  height: 100%;
 }
