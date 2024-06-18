@@ -43,6 +43,10 @@ const routes: Routes = [
       {
         path: 'ranking',
         loadChildren: () => import('./modules/ranking/ranking.module').then(m =>m.RankingModule)
+      },
+      {
+        path: 'tela-criacao-quiz',
+        loadChildren: () => import('./modules/tela-criacao-quiz/tela-criacao-quiz.module').then(m =>m.TelaCriacaoQuizModule)
       }
     ]
   }

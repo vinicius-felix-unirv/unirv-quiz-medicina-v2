@@ -13,8 +13,6 @@ import { CategoryScreenComponentModule } from './modules/category-screen/categor
 import { HomeModule } from './modules/home/home.module';
 
 
-
-
 @NgModule({
   declarations: [
     AppComponent,
