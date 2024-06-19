@@ -15,12 +15,8 @@ export class PerguntaService extends ServiceBase<Pergunta> {
     super(http, "perguntas");
   }
 
-  getAllPerguntasQuizByCategoria(usuariosid: number, quizId: number, categoriaId: number, skip: number, take: number): Observable<Pergunta[]>{
-    return this.httpClient.get<Pergunta[]>(`${API_CONFIG.baseUrl}/usuarios/${usuariosid}/quiz/${quizId}/categorias/${categoriaId}/perguntas/${skip}/${take}`);
-  }
-
-  getAllPerguntasQuizAvaliativoByCategoria(usuariosid: number, quizAvaliativoId: number, categoriaId: number, skip: number, take: number): Observable<Pergunta[]>{
-    return this.httpClient.get<Pergunta[]>(`${API_CONFIG.baseUrl}/usuarios/${usuariosid}/quiz-avaliativos/${quizAvaliativoId}/categorias/${categoriaId}/perguntas/${skip}/${take}`);
+  getAllPerguntasQuizByCategoria(usuariosid: number, quizId: number, categoriaId: number, take: number): Observable<Pergunta[]>{
+    return this.httpClient.get<Pergunta[]>(`${API_CONFIG.baseUrl}/usuarios/${usuariosid}/quiz/${quizId}/categorias/${categoriaId}/perguntas/${take}`);
   }
 
   putStatusPergunta(id: number): Observable<Pergunta>{
