@@ -7,7 +7,5 @@ export class Pergunta {
   pathimage: string | null = '';
   status: boolean = true;
   categoriasid: number = 0;
-  quizid: number | null = 0;
-  quizavaliativoid: number | null = 0;
-
+  quizid: number = 0;
 }
