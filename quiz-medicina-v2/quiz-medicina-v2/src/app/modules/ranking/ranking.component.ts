@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
+import { DataUtilsIds } from 'src/app/models/dataUtils';
 import { Usuario } from 'src/app/models/usuario';
+import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 
 @Component({
@@ -10,13 +12,18 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 export class RankingComponent {
 
   ranking: Usuario[] = [];
-  cursoId: number = 1;
+  cursoId!: number ;
 
   constructor(
-    private usuarioService: UsuarioService
+    private usuarioService: UsuarioService,
+    protected dataUtilsService: DataUtilsService<DataUtilsIds>
   ){}
 
   ngOnInit(): void {
+
+    this.dataUtilsService.getData().subscribe(data =>
+      this.cursoId = data?.cursoId!
+    );
     this.usuarioService.getRanking(this.cursoId).subscribe(
       users => this.ranking = users
     );
