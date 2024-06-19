@@ -1,6 +1,6 @@
 <div class="category-screen">
   <h1>{{Titulo}}</h1>
-  <!-- <button (click)="redirect()"> aperta ai</button> -->
+
   <div class="category-grid" *ngIf="dataToView">
     <div class="category-box" *ngFor="let data of dataToView" >
       <div class="category">
@@ -13,7 +13,7 @@
       </div>
       <div class="progress-bar-container">
         <div class="progress-bar">
-          
+
         </div>
         <!-- <div class="bar" [style.width]="getProgressWidth((data.progresso | async)!)"></div> -->
       </div>

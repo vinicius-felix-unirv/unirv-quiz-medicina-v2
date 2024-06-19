@@ -17,4 +17,12 @@ export class QuizService extends ServiceBase<Quiz> {
   getAllQuizByCursoId(cursoId: number, skip: number, take: number): Observable<Quiz[]>{
     return this.httpClient.get<Quiz[]>(`${API_CONFIG.baseUrl}/cursos/${cursoId}/quiz/${skip}/${take}`);
   }
+
+  getAllQuizByUsuarioAndCursoId(skip: number, take: number, cursoId: number, usuarioId: number): Observable<Quiz[]>{
+    return this.httpClient.get<Quiz[]>(`${API_CONFIG.baseUrl}/cursos/${cursoId}/usuarios/${usuarioId}/quiz/${skip}/${take}`);
+  }
+
+  getAllQuizAvaliativoByUsuarioAndCursoId(skip: number, take: number, cursoId: number, usuarioId: number): Observable<Quiz[]>{
+    return this.httpClient.get<Quiz[]>(`${API_CONFIG.baseUrl}/cursos/${cursoId}/usuarios/${usuarioId}/quiz-avaliativos/${skip}/${take}`);
+  }
 }
