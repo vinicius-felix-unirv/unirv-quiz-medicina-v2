@@ -21,8 +21,9 @@ export class HomeComponent {
 
   menu: MenuItem[] = [
     { menuIcon: "fa-solid fa-house", menuName: "Home", menuUrl: "home", roleUser: [1] },
-    { menuIcon: "fa-solid fa-bars", menuName: "Quiz", menuUrl: "home/quiz-screen", roleUser: [1] },
+    { menuIcon: "fa-solid fa-play", menuName: "Play", menuUrl: "home/quiz-screen", roleUser: [1] },
     { menuIcon: "fa-solid fa-user", menuName: "Ranking", menuUrl: "home/ranking", roleUser: [1] },
+    { menuIcon: "fa-solid fa-bars", menuName: "Quiz", menuUrl: "home/tela-criacao-quiz", roleUser: [1] },
   ];
 
   public redirect(item: MenuItem): void {
