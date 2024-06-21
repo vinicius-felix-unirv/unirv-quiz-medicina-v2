@@ -5,6 +5,10 @@ import { DataUtilsIds } from 'src/app/models/dataUtils';
 import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
 
+interface IDataForEdit{
+  categoriaOrPergunta: Categoria
+}
+
 @Component({
   selector: 'app-edit-categorias',
   templateUrl: './edit-categorias.component.html',
@@ -12,8 +16,8 @@ import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
 })
 export class EditCategoriasComponent implements OnInit {
 
-  categoriaId!: number;
-  categorias: Categoria[] = [];
+  titulo: string = 'Categorias criadas';
+  dataForEdit: IDataForEdit[] = [];
   dataUtils: DataUtilsIds = {} as DataUtilsIds;
 
   constructor(
@@ -23,8 +27,24 @@ export class EditCategoriasComponent implements OnInit {
   ){}
 
   ngOnInit(): void {
+    this.dataUtilsService.getData().subscribe(
+      data => this.dataUtils = data!
+    );
     this.categoriasService.getAllCategoriasInQuiz(this.dataUtils.quizId).subscribe(
-      categorias => this.categorias = categorias);
+      categorias => {
+        this.dataForEdit = categorias.map( data => ({
+          categoriaOrPergunta: data
+        }))
+      }
+    );
+  }
+
+  redirectForPerguntas(id: number): void {
+    let data = this.dataUtils;
+    data.categoriaId = id;
+    this.dataUtilsService.sendData(data);
+
+    this.router.navigate(['home/tela-edit-quiz/edit-perguntas']);
   }
 
 }

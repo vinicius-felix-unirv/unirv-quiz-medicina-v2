@@ -1,4 +1,7 @@
 import { Component, Input } from '@angular/core';
+import { Router } from '@angular/router';
+import { DataUtilsIds } from 'src/app/models/dataUtils';
+import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
 
 @Component({
   selector: 'app-edit-template',
@@ -10,7 +13,11 @@ export class EditTemplateComponent {
   @Input() dataForEdit: any;
   @Input() titulo!: string;
   @Input() redirect!: (id: number) => void;
+  @Input() dataUtils!: DataUtilsIds;
 
-
+  constructor(
+    protected router: Router,
+    protected dataUtilsService: DataUtilsService<DataUtilsIds>
+  ) { }
 
 }

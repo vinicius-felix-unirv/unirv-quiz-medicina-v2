@@ -7,7 +7,7 @@
   </div>
 
   <ul *ngFor="let data of dataForEdit">
-    <li (click)="redirect(data.id!)">
+    <li (click)="redirect(data.categoriaOrPergunta.id!)">
       {{data.categoriaOrPergunta.descricao ? data.categoriaOrPergunta.descricao : data.categoriaOrPergunta.conteudo}}
     </li>
   </ul>
