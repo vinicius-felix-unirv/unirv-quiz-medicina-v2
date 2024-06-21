@@ -21,9 +21,8 @@ export class TelaCriacaoQuizComponent extends CategoriaQuizBaseComponent impleme
 
   titulo: string = 'tela-criacao-Quiz';
   quiz!: IDataToView[];
+  override dataUtils: DataUtilsIds = {} as DataUtilsIds;
 
-  usuarioId!: number;
-  cursoId!: number;
   skip: number = 0;
   take: number = 10;
 
@@ -37,10 +36,9 @@ export class TelaCriacaoQuizComponent extends CategoriaQuizBaseComponent impleme
 
   ngOnInit(): void {
     this.dataUtilsService.getData().subscribe(data => {
-      this.usuarioId = data?.usuarioId!;
-      this.cursoId = data?.cursoId!;
+      this.dataUtils = data!;
     });
-    this.quizService.getAllQuizByUsuarioAndCursoId(this.skip, this.take, this.cursoId, this.usuarioId).subscribe(quizes => {
+    this.quizService.getAllQuizByUsuarioAndCursoId(this.skip, this.take, this.dataUtils.cursoId, this.dataUtils.usuarioId).subscribe(quizes => {
       this.quiz = quizes.map( quiz => ({
         categoriaOrQuiz: quiz
       }));
@@ -48,10 +46,10 @@ export class TelaCriacaoQuizComponent extends CategoriaQuizBaseComponent impleme
   }
 
   redirectForQuiz(id: number): void {
-    // let data = this.dataUtils;
-    // data!.quizId = id;
-    // this.dataUtilsService.sendData(data!);
+    let data = this.dataUtils;
+    data!.quizId = id;
+    this.dataUtilsService.sendData(data!);
 
-    // this.router.navigate(['home/category-screen']);
+    this.router.navigate(['home/tela-edit-quiz']);
   }
 }

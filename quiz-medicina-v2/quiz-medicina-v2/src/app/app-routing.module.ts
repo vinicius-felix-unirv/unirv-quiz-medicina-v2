@@ -47,6 +47,10 @@ const routes: Routes = [
       {
         path: 'tela-criacao-quiz',
         loadChildren: () => import('./modules/tela-criacao-quiz/tela-criacao-quiz.module').then(m =>m.TelaCriacaoQuizModule)
+      },
+      {
+        path: 'tela-edit-quiz',
+        loadChildren: () => import('./modules/tela-edit-quiz/tela-edit-quiz.module').then(m =>m.TelaEditQuizModule)
       }
     ]
   }

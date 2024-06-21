@@ -31,6 +31,7 @@ export class TelaPerguntasComponent implements OnInit {
   userId!: number;
   quizId!: number;
   categoriaId!: number;
+  skip: number = 0;
   take: number = 3;
 
   constructor(
@@ -52,7 +53,7 @@ export class TelaPerguntasComponent implements OnInit {
       this.quizId = data?.quizId!;
     });
     this.perguntaAtual = null;
-    this.perguntasService.getAllPerguntasQuizByCategoria(this.userId, this.quizId, this.categoriaId, this.take).subscribe(perguntas => {
+    this.perguntasService.getAllPerguntasQuizByCategoria(this.userId, this.quizId, this.categoriaId, this.skip, this.take).subscribe(perguntas => {
       if(!perguntas.length) {
         this.trocarLayout();
         return;
@@ -89,7 +90,7 @@ export class TelaPerguntasComponent implements OnInit {
     this.qtdTentativas = 0;
     this.perguntaAtual = null;
     if(this.contadorPergunta  == this.take - 1) {
-      this.perguntasService.getAllPerguntasQuizByCategoria(this.userId, this.quizId, this.categoriaId, this.take).subscribe(perguntas => {
+      this.perguntasService.getAllPerguntasQuizByCategoria(this.userId, this.quizId, this.categoriaId, this.skip, this.take).subscribe(perguntas => {
         this.listaPerguntas = perguntas;
         this.contadorPergunta = 0;
         this.carregarPerguntaDaVez();
