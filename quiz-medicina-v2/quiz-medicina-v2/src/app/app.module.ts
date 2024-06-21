@@ -11,6 +11,7 @@ import { HttpClientModule } from '@angular/common/http';
 import { QuizScreenModule } from './modules/quiz-screen/quiz-screen.module';
 import { CategoryScreenComponentModule } from './modules/category-screen/category-screen.module';
 import { HomeModule } from './modules/home/home.module';
+import { TelaEditQuizModule } from './modules/tela-edit-quiz/tela-edit-quiz.module';
 
 
 @NgModule({
@@ -25,7 +26,8 @@ import { HomeModule } from './modules/home/home.module';
     HttpClientModule,
     QuizScreenModule,
     CategoryScreenComponentModule,
-    HomeModule
+    HomeModule,
+    TelaEditQuizModule
 
   ],
   providers: [

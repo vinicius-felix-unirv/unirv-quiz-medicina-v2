@@ -1,0 +1,19 @@
+<div class="container">
+
+  <div>
+    <p>{{titulo}}</p>
+    <div>{{dataForEdit.length}}</div>
+    <button>Criar</button>
+  </div>
+
+  <ul *ngFor="let data of dataForEdit">
+    <li (click)="redirect(data.id!)">
+      {{data.categoriaOrPergunta.descricao ? data.categoriaOrPergunta.descricao : data.categoriaOrPergunta.conteudo}}
+    </li>
+  </ul>
+
+  <div class="image-default">
+
+  </div>
+
+</div>

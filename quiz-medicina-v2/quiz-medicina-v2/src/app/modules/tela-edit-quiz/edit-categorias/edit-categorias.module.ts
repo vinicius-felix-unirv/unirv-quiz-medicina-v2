@@ -1,25 +1,24 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { TelaEditQuizComponent } from './tela-edit-quiz.component';
+import { EditCategoriasComponent } from './edit-categorias.component';
 import { RouterModule, Routes } from '@angular/router';
+import { EditTemplateModule } from '../edit-template/edit-template.module';
 
 const routes: Routes = [
   {
     path: '',
-    component: TelaEditQuizComponent,
+    component: EditCategoriasComponent,
   }
 ]
 
 @NgModule({
   declarations: [
-    TelaEditQuizComponent,
+    EditCategoriasComponent
   ],
   imports: [
     CommonModule,
     RouterModule.forChild(routes),
-  ],
-  exports: [
-    TelaEditQuizComponent
+    EditTemplateModule
   ]
 })
-export class TelaEditQuizModule { }
+export class EditCategoriasModule { }

@@ -50,6 +50,6 @@ export class TelaCriacaoQuizComponent extends CategoriaQuizBaseComponent impleme
     data!.quizId = id;
     this.dataUtilsService.sendData(data!);
 
-    this.router.navigate(['home/tela-edit-quiz']);
+    this.router.navigate(['home/tela-edit-quiz/edit-categorias']);
   }
 }

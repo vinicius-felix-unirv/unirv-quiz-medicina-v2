@@ -18,8 +18,6 @@ export class TelaEditQuizComponent implements OnInit {
 
   dataUtils!: DataUtilsIds;
   quiz$!: Observable<Quiz>;
-  categoriaId!: number;
-  categorias: Categoria[] = [];
   perguntas: Pergunta[] = [];
   template: boolean = true;
 
@@ -38,8 +36,6 @@ export class TelaEditQuizComponent implements OnInit {
       this.dataUtils = data!;
     });
     this.quiz$ = this.quizService.findById(this.dataUtils.quizId);
-    this.categoriasService.getAllCategoriasInQuiz(this.dataUtils.quizId).subscribe(
-      categorias => this.categorias = categorias);
   }
 
   redirectForPerguntas(id: number): void {

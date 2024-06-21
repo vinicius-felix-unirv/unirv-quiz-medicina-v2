@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { HomeComponent } from './modules/home/home.component';
+import { TelaEditQuizComponent } from './modules/tela-edit-quiz/tela-edit-quiz.component';
 
 const routes: Routes = [
   {
@@ -50,7 +51,18 @@ const routes: Routes = [
       },
       {
         path: 'tela-edit-quiz',
-        loadChildren: () => import('./modules/tela-edit-quiz/tela-edit-quiz.module').then(m =>m.TelaEditQuizModule)
+        component: TelaEditQuizComponent,
+
+        children: [
+          {
+            path: 'edit-categorias',
+            loadChildren: () => import('./modules/tela-edit-quiz/edit-categorias/edit-categorias.module').then(m =>m.EditCategoriasModule)
+          },
+          {
+            path: 'edit-perguntas',
+            loadChildren: () => import('./modules/tela-edit-quiz/edit-perguntas/edit-perguntas.module').then(m =>m.EditPerguntasModule)
+          },
+        ]
       }
     ]
   }
