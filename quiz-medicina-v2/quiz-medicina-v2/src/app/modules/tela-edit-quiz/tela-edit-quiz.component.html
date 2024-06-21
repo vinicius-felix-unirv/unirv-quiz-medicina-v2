@@ -1,0 +1,32 @@
+<div class="container">
+
+  <div class="imagem">
+
+  </div>
+
+  <div *ngIf="quiz$ | async as quiz" class="quiz">
+
+    <h1>{{quiz.titulo}}</h1>
+
+    <div class="categorias">
+      <ul *ngFor="let categoria of categorias">
+        <li (click)="redirectForPerguntas(categoria.id!)">
+          {{categoria.descricao}}
+        </li>
+      </ul>
+    </div>
+    <!-- <div>
+      <p>Perguntas criadas</p>
+      <div>{{numeroPerguntas}}</div>
+      <button>Criar</button>
+    </div> -->
+    <div>
+
+    </div>
+    <div class="image-default">
+
+    </div>
+
+  </div>
+
+</div>
