@@ -1,19 +1,38 @@
 <div class="container">
 
   <div>
+    <div class="example-button-container" style="background-color: green;">
+      <button (click)="goBack()">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      </button>
+    </div>
     <p>{{titulo}}</p>
     <div>{{dataForEdit.length}}</div>
     <button>Criar</button>
   </div>
 
-  <ul *ngFor="let data of dataForEdit">
-    <li (click)="redirect(data.dataOfRequest.id!)">
-      {{data.dataOfRequest.descricao ? data.dataOfRequest.descricao : data.dataOfRequest.conteudo}}
-    </li>
-  </ul>
+  <div *ngIf="dataForEdit.length > 0">
+    <ul *ngFor="let data of dataForEdit">
+      <li (click)="redirect(data.dataOfRequest.id!)">
+        {{data.dataOfRequest.descricao ? data.dataOfRequest.descricao : data.dataOfRequest.conteudo}}
+      </li>
+    </ul>
+  </div>
 
-  <div class="image-default">
+  <div *ngIf="dataForEdit.length > 0" class="image-default">
 
+  </div>
+
+  <div class="example-button-container" style="background-color: blueviolet;">
+    <button (click)="advancePage()">
+      <i class="fa-solid fa-arrow-right-from-bracket"></i>
+    </button>
+  </div>
+
+  <div class="example-button-container">
+    <button (click)="returnPage()" style="background-color: yellowgreen;">
+      <i class="fa-solid fa-arrow-right-from-bracket"></i>
+    </button>
   </div>
 
 </div>

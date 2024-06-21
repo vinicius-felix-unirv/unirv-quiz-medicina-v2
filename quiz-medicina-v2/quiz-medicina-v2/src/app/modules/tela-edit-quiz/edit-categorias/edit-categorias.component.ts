@@ -47,4 +47,16 @@ export class EditCategoriasComponent implements OnInit {
     this.router.navigate(['home/tela-edit-quiz/edit-perguntas']);
   }
 
+  advancePage(): void{
+
+  }
+
+  returnPage(): void{
+
+  }
+
+  goBack(): void {
+    this.router.navigate(['home/tela-criacao-quiz']);
+  }
+
 }

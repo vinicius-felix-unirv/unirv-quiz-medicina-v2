@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
 import { EditTemplateComponent } from './edit-template.component';
+import { MaterialModule } from 'src/app/shared/materialmodule/material.module';
 
 
 
@@ -9,7 +10,8 @@ import { EditTemplateComponent } from './edit-template.component';
     EditTemplateComponent,
   ],
   imports: [
-    CommonModule
+    CommonModule,
+    MaterialModule
   ],
   exports: [
     EditTemplateComponent

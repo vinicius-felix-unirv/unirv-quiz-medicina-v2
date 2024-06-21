@@ -21,7 +21,7 @@ export class EditPerguntasComponent {
   dataUtils: DataUtilsIds = {} as DataUtilsIds;
 
   skip: number = 0;
-  take: number = 5;
+  take: number = 3;
 
   constructor(
     private router: Router,
@@ -48,6 +48,27 @@ export class EditPerguntasComponent {
     this.dataUtilsService.sendData(data);
 
     this.router.navigate(['home/tela-edit-quiz/edit-alternativas']);
+  }
+
+  advancePage(): void{
+    console.log('to aqui inicio');
+    this.perguntasService.getAllPerguntasQuizByCategoriaForProf(this.dataUtils.quizId, this.dataUtils.categoriaId, this.skip + this.take, this.take).subscribe(
+      perguntas => {
+        console.log('to aqui fim');
+        this.dataForEdit = perguntas.map( data => ({
+          dataOfRequest: data
+        }))
+      }
+    );
+
+  }
+
+  returnPage(): void{
+
+  }
+
+  goBack(): void {
+    this.router.navigate(['home/tela-edit-quiz/edit-categorias']);
   }
 
 }

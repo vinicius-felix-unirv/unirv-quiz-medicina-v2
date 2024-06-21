@@ -39,12 +39,8 @@ export class EditAlternativasComponent {
     );
   }
 
-  redirectForPerguntas(id: number): void {
-    let data = this.dataUtils;
-    data.categoriaId = id;
-    this.dataUtilsService.sendData(data);
-
-    this.router.navigate(['home/tela-edit-quiz/edit-perguntas']);
+  goBack(): void {
+    this.router.navigate(['/home/tela-edit-quiz/edit-perguntas']);
   }
 
 }
