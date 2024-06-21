@@ -1,28 +1,28 @@
-import { Component, OnInit } from '@angular/core';
+import { Component } from '@angular/core';
 import { Router } from '@angular/router';
-import { Categoria } from 'src/app/models/categoria';
+import { Alternativa } from 'src/app/models/alternativa';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
-import { CategoriasService } from 'src/app/services/categorias/categorias.service';
+import { AlternativasService } from 'src/app/services/alternativas/alternativas.service';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
 
 interface IDataForEdit{
-  dataOfRequest: Categoria
+  dataOfRequest: Alternativa
 }
 
 @Component({
-  selector: 'app-edit-categorias',
-  templateUrl: './edit-categorias.component.html',
-  styleUrls: ['./edit-categorias.component.scss']
+  selector: 'app-edit-alternativas',
+  templateUrl: './edit-alternativas.component.html',
+  styleUrls: ['./edit-alternativas.component.scss']
 })
-export class EditCategoriasComponent implements OnInit {
+export class EditAlternativasComponent {
 
-  titulo: string = 'Categorias criadas';
+  titulo: string = 'Alternativas criadas';
   dataForEdit: IDataForEdit[] = [];
   dataUtils: DataUtilsIds = {} as DataUtilsIds;
 
   constructor(
     private router: Router,
-    private categoriasService: CategoriasService,
+    private alternativasService: AlternativasService,
     private dataUtilsService: DataUtilsService<DataUtilsIds>
   ){}
 
@@ -30,9 +30,9 @@ export class EditCategoriasComponent implements OnInit {
     this.dataUtilsService.getData().subscribe(
       data => this.dataUtils = data!
     );
-    this.categoriasService.getAllCategoriasInQuiz(this.dataUtils.quizId).subscribe(
-      categorias => {
-        this.dataForEdit = categorias.map( data => ({
+    this.alternativasService.getAllAlternativasByPerguntaId(this.dataUtils.perguntaId).subscribe(
+      Alternativas => {
+        this.dataForEdit = Alternativas.map( data => ({
           dataOfRequest: data
         }))
       }

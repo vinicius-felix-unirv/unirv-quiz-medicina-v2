@@ -62,6 +62,10 @@ const routes: Routes = [
             path: 'edit-perguntas',
             loadChildren: () => import('./modules/tela-edit-quiz/edit-perguntas/edit-perguntas.module').then(m =>m.EditPerguntasModule)
           },
+          {
+            path: 'edit-alternativas',
+            loadChildren: () => import('./modules/tela-edit-quiz/edit-alternativas/edit-alternativas.module').then(m =>m.EditAlternativasModule)
+          },
         ]
       }
     ]

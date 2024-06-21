@@ -6,7 +6,7 @@ import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
 import { PerguntaService } from 'src/app/services/perguntas/perguntas.service';
 
 interface IDataForEdit{
-  categoriaOrPergunta: Pergunta
+  dataOfRequest: Pergunta
 }
 
 @Component({
@@ -36,7 +36,7 @@ export class EditPerguntasComponent {
     this.perguntasService.getAllPerguntasQuizByCategoriaForProf(this.dataUtils.quizId, this.dataUtils.categoriaId, this.skip, this.take).subscribe(
       perguntas => {
         this.dataForEdit = perguntas.map( data => ({
-          categoriaOrPergunta: data
+          dataOfRequest: data
         }))
       }
     );
