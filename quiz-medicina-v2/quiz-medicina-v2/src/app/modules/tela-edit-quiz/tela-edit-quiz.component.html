@@ -8,23 +8,38 @@
 
     <h1>{{quiz.titulo}}</h1>
 
-    <div class="categorias">
+    <div *ngIf="template" class="categorias-container">
+
+      <div>
+        <p>Categorias criadas</p>
+        <div>{{categorias.length}}</div>
+        <button>Criar</button>
+      </div>
+
       <ul *ngFor="let categoria of categorias">
         <li (click)="redirectForPerguntas(categoria.id!)">
           {{categoria.descricao}}
         </li>
       </ul>
-    </div>
-    <!-- <div>
-      <p>Perguntas criadas</p>
-      <div>{{numeroPerguntas}}</div>
-      <button>Criar</button>
-    </div> -->
-    <div>
 
     </div>
-    <div class="image-default">
 
+    <div *ngIf="!template"  class="perguntas-container">
+      <div>
+        <p>Perguntas criadas</p>
+        <div>{{perguntas.length}}</div>
+        <button>Criar</button>
+      </div>
+
+      <ul *ngFor="let pergunta of perguntas">
+        <li (click)="redirectForPerguntas(pergunta.id!)">
+          {{pergunta.conteudo}}
+        </li>
+      </ul>
+
+      <div class="image-default">
+
+      </div>
     </div>
 
   </div>

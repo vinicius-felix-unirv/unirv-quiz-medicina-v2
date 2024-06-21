@@ -19,6 +19,10 @@ export class PerguntaService extends ServiceBase<Pergunta> {
     return this.httpClient.get<Pergunta[]>(`${API_CONFIG.baseUrl}/usuarios/${usuariosid}/quiz/${quizId}/categorias/${categoriaId}/perguntas/${skip}/${take}`);
   }
 
+  getAllPerguntasQuizByCategoriaForProf(quizId: number, categoriaId: number, skip: number, take: number): Observable<Pergunta[]>{
+    return this.httpClient.get<Pergunta[]>(`${API_CONFIG.baseUrl}/quiz/${quizId}/categorias/${categoriaId}/perguntas/${skip}/${take}`);
+  }
+
   putStatusPergunta(id: number): Observable<Pergunta>{
     return this.httpClient.put<Pergunta>(`${API_CONFIG.baseUrl}/${this.url}/${id}/status`, '');
   }

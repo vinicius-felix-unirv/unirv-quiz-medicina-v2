@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Observable } from 'rxjs';
 import { Categoria } from 'src/app/models/categoria';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
+import { Pergunta } from 'src/app/models/pergunta';
 import { Quiz } from 'src/app/models/quiz';
 import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
@@ -19,6 +20,7 @@ export class TelaEditQuizComponent implements OnInit {
   quiz$!: Observable<Quiz>;
   categoriaId!: number;
   categorias: Categoria[] = [];
+  perguntas: Pergunta[] = [];
   template: boolean = true;
 
   skip: number = 0;
@@ -41,7 +43,7 @@ export class TelaEditQuizComponent implements OnInit {
   }
 
   redirectForPerguntas(id: number): void {
-    this.perguntaService.getAllPerguntasQuizByCategoria(this.dataUtils.usuarioId, this.dataUtils.quizId, id, this.skip, this.take).subscribe();
+    this.perguntaService.getAllPerguntasQuizByCategoriaForProf(this.dataUtils.quizId, id, this.skip, this.take).subscribe( perguntas => this.perguntas = perguntas);
     this.template = !this.template;
   }
 
