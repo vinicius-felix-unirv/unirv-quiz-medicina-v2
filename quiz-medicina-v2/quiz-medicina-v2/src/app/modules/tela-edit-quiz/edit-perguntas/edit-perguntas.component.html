@@ -1,10 +1,22 @@
-<app-edit-template
-[titulo]="titulo"
-[dataForEdit]="dataForEdit"
-[redirect]="redirectForPerguntas"
-[dataUtils]="dataUtils"
-[advancePage]="advancePage"
-[returnPage]="returnPage"
-[goBack]="goBack"
-[take]="take"
-></app-edit-template>
+<div>
+  <app-edit-template
+  [titulo]="titulo"
+  [dataForEdit]="dataForEdit"
+  [redirect]="redirectForPerguntas"
+  [dataUtils]="dataUtils"
+  [goBack]="goBack"
+  [take]="take"
+  ></app-edit-template>
+
+  <div class="example-button-container" style="background-color: blueviolet;">
+    <button (click)="advancePage()">
+      <i class="fa-solid fa-arrow-right-from-bracket"></i>
+    </button>
+  </div>
+
+  <div class="example-button-container">
+    <button (click)="returnPage()" style="background-color: yellowgreen;">
+      <i class="fa-solid fa-arrow-right-from-bracket"></i>
+    </button>
+  </div>
+</div>
