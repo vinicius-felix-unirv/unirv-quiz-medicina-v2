@@ -22,7 +22,7 @@ export class EditTemplateComponent {
   @Input() dataUtils!: DataUtilsIds;
 
   skip: number = 0;
-  take: number = 3;
+  @Input() take!: number;
 
   constructor(
     protected router: Router,

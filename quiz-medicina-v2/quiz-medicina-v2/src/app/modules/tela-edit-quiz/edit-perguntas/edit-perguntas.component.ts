@@ -21,7 +21,7 @@ export class EditPerguntasComponent {
   dataUtils: DataUtilsIds = {} as DataUtilsIds;
 
   skip: number = 0;
-  take: number = 3;
+  take: number = 5;
 
   constructor(
     private router: Router,
@@ -51,10 +51,9 @@ export class EditPerguntasComponent {
   }
 
   advancePage(): void{
-    console.log('to aqui inicio');
-    this.perguntasService.getAllPerguntasQuizByCategoriaForProf(this.dataUtils.quizId, this.dataUtils.categoriaId, this.skip + this.take, this.take).subscribe(
+    this.skip += this.take;
+    this.perguntasService.getAllPerguntasQuizByCategoriaForProf(this.dataUtils.quizId, this.dataUtils.categoriaId, this.skip, this.take).subscribe(
       perguntas => {
-        console.log('to aqui fim');
         this.dataForEdit = perguntas.map( data => ({
           dataOfRequest: data
         }))
@@ -64,7 +63,14 @@ export class EditPerguntasComponent {
   }
 
   returnPage(): void{
-
+    this.skip -= this.take;
+    this.perguntasService.getAllPerguntasQuizByCategoriaForProf(this.dataUtils.quizId, this.dataUtils.categoriaId, this.skip, this.take).subscribe(
+      perguntas => {
+        this.dataForEdit = perguntas.map( data => ({
+          dataOfRequest: data
+        }))
+      }
+    );
   }
 
   goBack(): void {
