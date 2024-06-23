@@ -1,10 +1,10 @@
-<div class="container">
+<div *ngIf="quiz$ | async as quiz" class="container">
 
   <div class="imagem">
-    <p>imagem do quiz</p>
+    <img [src]="quiz.imagem" alt="Imagem do Quiz">
   </div>
 
-  <div *ngIf="quiz$ | async as quiz" class="quiz">
+  <div class="quiz">
 
     <h1>{{quiz.titulo}}</h1>
 

@@ -63,7 +63,10 @@ export class EditPerguntasComponent {
   }
 
   returnPage(): void{
-    this.skip -= this.take;
+
+    if(this.skip > 0){
+      this.skip -= this.take;
+    }
     this.perguntasService.getAllPerguntasQuizByCategoriaForProf(this.dataUtils.quizId, this.dataUtils.categoriaId, this.skip, this.take).subscribe(
       perguntas => {
         this.dataForEdit = perguntas.map( data => ({
@@ -71,6 +74,7 @@ export class EditPerguntasComponent {
         }))
       }
     );
+
   }
 
   goBack(): void {

@@ -32,4 +32,8 @@ export class HomeComponent {
 
   }
 
+  logout(): void {
+    this.router.navigate(['login']);
+  }
+
 }
