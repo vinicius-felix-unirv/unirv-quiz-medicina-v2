@@ -5,6 +5,9 @@ import { DataUtilsIds } from 'src/app/models/dataUtils';
 import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
 import { QuizDialogComponent } from '../../quiz-dialog/quiz-dialog.component';
+import { EditTemplateComponent } from '../edit-template/edit-template.component';
+import { DialogUtilsService } from 'src/app/services/dialog-utils/dialog-utils.service';
+import { ComponentType } from '@angular/cdk/portal';
 
 
 interface IDataForEdit{
@@ -16,18 +19,21 @@ interface IDataForEdit{
   templateUrl: './edit-categorias.component.html',
   styleUrls: ['./edit-categorias.component.scss']
 })
-export class EditCategoriasComponent implements OnInit {
+export class EditCategoriasComponent extends EditTemplateComponent implements OnInit {
 
-  titulo: string = 'Categorias criadas';
-  dataForEdit: IDataForEdit[] = [];
-  dataUtils: DataUtilsIds = {} as DataUtilsIds;
-  componentDialog: Type<QuizDialogComponent> = QuizDialogComponent;
+  override titulo: string = 'Categorias criadas';
+  override dataForEdit: IDataForEdit[] = [];
+  override dataUtils: DataUtilsIds = {} as DataUtilsIds;
+  override component: ComponentType<QuizDialogComponent> = QuizDialogComponent;
 
   constructor(
-    private router: Router,
-    private categoriasService: CategoriasService,
-    private dataUtilsService: DataUtilsService<DataUtilsIds>
-  ){}
+    public override router: Router,
+    public categoriasService: CategoriasService,
+    public override dataUtilsService: DataUtilsService<DataUtilsIds>,
+    public override dialogUtils: DialogUtilsService<QuizDialogComponent>
+  ){
+    super(router, dataUtilsService, dialogUtils );
+  }
 
   ngOnInit(): void {
     this.dataUtilsService.getData().subscribe(
@@ -50,7 +56,7 @@ export class EditCategoriasComponent implements OnInit {
     this.router.navigate(['home/tela-edit-quiz/edit-perguntas']);
   }
 
-  goBack(): void {
+  goBackCriacao(): void {
     this.router.navigate(['home/tela-criacao-quiz']);
   }
 

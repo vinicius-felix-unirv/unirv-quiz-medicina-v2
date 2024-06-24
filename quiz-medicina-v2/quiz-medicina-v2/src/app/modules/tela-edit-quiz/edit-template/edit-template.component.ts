@@ -1,5 +1,4 @@
 import { Component, Input } from '@angular/core';
-import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
@@ -26,7 +25,7 @@ export class EditTemplateComponent {
   constructor(
     protected router: Router,
     protected dataUtilsService: DataUtilsService<DataUtilsIds>,
-    private dialogUtils: DialogUtilsService<any>
+    protected dialogUtils: DialogUtilsService<any>
   ) {}
 
   openDialog() {
