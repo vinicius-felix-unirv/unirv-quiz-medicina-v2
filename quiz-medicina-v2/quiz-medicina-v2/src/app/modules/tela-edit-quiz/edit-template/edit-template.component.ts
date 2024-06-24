@@ -32,15 +32,14 @@ export class EditTemplateComponent {
 
     const dialogConfig = new MatDialogConfig();
 
-    dialogConfig.disableClose = true;
-    dialogConfig.autoFocus = true;
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = false;
 
-    dialogConfig.data = {
-      id: 1,
-      title: 'Angular For Beginners'
-    };
+    const dialogRef = this.dialog.open(this.component, dialogConfig);
 
-    this.dialog.open(this.component, dialogConfig);
+    dialogRef.afterClosed().subscribe(
+      data => console.log("Dialog output:", data)
+    );
   }
 
 }

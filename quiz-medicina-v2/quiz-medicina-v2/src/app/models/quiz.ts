@@ -7,4 +7,8 @@ export class Quiz {
   status: boolean = true;
   avaliativo: boolean = false;
   usuarioid: number = 0;
+
+  constructor(init?: Partial<Quiz>) {
+    Object.assign(this, init);
+  }
 }

@@ -1,17 +1,47 @@
-<h2 mat-dialog-title>{{description}}</h2>
+<div class="container">
+  <div class="content">
+      <!-- <h1>Novo quiz </h1> -->
 
-<mat-dialog-content [formGroup]="form">
+    <form  [formGroup]="formData" (submit)="onSubmit()">
 
-    <mat-form-field>
-        <input matInput
-                placeholder="Course Description"
-               formControlName="description">
-    </mat-form-field>
-      ....
+      <h1>Novo Quiz</h1>
 
-</mat-dialog-content>
+      <div class="inputImage">
+        <label for="arquivo">
+            <img src="../../../../assets/addImage.png" alt="add image">
+            adicionar imagem
+        </label>
+        <input type="file" id="arquivo">
+      </div>
 
-<mat-dialog-actions>
-    <button class="mat-raised-button"(click)="close()">Close</button>
-    <button class="mat-raised-button mat-primary"(click)="save()">Save</button>
-</mat-dialog-actions>
+      <div>
+          <h2>Titulo</h2>
+          <mat-form-field appearance="outline" #myFormField>
+              <input matInput placeholder="Insira um título" formControlName="titulo" required>
+              <mat-error *ngIf="formData.get('titulo')!.invalid">{{"O titulo é um campo obrigatorio"}}</mat-error>
+          </mat-form-field>
+      </div>
+
+      <div class="inputType">
+        <h2>Tipo do Quiz</h2>
+        <ul>
+          <li>
+            <input type="radio" id="opcao1" formControlName="avaliativo" value="false">
+            <label for="opcao1">Normal</label>
+          </li>
+          <li>
+            <input type="radio" id="opcao2" formControlName="avaliativo" value="true">
+            <label for="opcao2">Avaliativo</label>
+          </li>
+        </ul>
+      </div>
+
+      <div id="submit-btn">
+        <button mat-flat-button [disabled]="this.formData.invalid" (click)="onSubmit()">Criar</button>
+
+      </div>
+
+    </form>
+
+  </div>
+</div>
