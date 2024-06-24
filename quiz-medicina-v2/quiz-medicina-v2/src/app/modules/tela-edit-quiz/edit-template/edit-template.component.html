@@ -8,7 +8,7 @@
     </div>
     <p>{{titulo}}</p>
     <div>{{dataForEdit.length}}</div>
-    <button>Criar</button>
+    <button (click)="openDialog()">Criar</button>
   </div>
 
   <div *ngIf="dataForEdit.length > 0">

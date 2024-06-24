@@ -1,9 +1,11 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, Type } from '@angular/core';
 import { Router } from '@angular/router';
 import { Categoria } from 'src/app/models/categoria';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
 import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
+import { QuizDialogComponent } from '../../quiz-dialog/quiz-dialog.component';
+
 
 interface IDataForEdit{
   dataOfRequest: Categoria
@@ -19,6 +21,7 @@ export class EditCategoriasComponent implements OnInit {
   titulo: string = 'Categorias criadas';
   dataForEdit: IDataForEdit[] = [];
   dataUtils: DataUtilsIds = {} as DataUtilsIds;
+  componentDialog: Type<QuizDialogComponent> = QuizDialogComponent;
 
   constructor(
     private router: Router,
@@ -45,14 +48,6 @@ export class EditCategoriasComponent implements OnInit {
     this.dataUtilsService.sendData(data);
 
     this.router.navigate(['home/tela-edit-quiz/edit-perguntas']);
-  }
-
-  advancePage(): void{
-
-  }
-
-  returnPage(): void{
-
   }
 
   goBack(): void {

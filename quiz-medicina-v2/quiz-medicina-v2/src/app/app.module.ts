@@ -12,6 +12,9 @@ import { QuizScreenModule } from './modules/quiz-screen/quiz-screen.module';
 import { CategoryScreenComponentModule } from './modules/category-screen/category-screen.module';
 import { HomeModule } from './modules/home/home.module';
 import { TelaEditQuizModule } from './modules/tela-edit-quiz/tela-edit-quiz.module';
+import { QuizDialogModule } from './modules/quiz-dialog/quiz-dialog.module';
+
+
 
 
 @NgModule({
@@ -27,8 +30,8 @@ import { TelaEditQuizModule } from './modules/tela-edit-quiz/tela-edit-quiz.modu
     QuizScreenModule,
     CategoryScreenComponentModule,
     HomeModule,
-    TelaEditQuizModule
-
+    TelaEditQuizModule,
+    QuizDialogModule
   ],
   providers: [
     AuthInterceptorProvider
