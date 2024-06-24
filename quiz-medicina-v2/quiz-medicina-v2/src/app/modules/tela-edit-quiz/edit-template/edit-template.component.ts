@@ -3,6 +3,7 @@ import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
 import { Router } from '@angular/router';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
+import { DialogUtilsService } from 'src/app/services/dialog-utils/dialog-utils.service';
 
 
 @Component({
@@ -25,21 +26,11 @@ export class EditTemplateComponent {
   constructor(
     protected router: Router,
     protected dataUtilsService: DataUtilsService<DataUtilsIds>,
-    private dialog: MatDialog
+    private dialogUtils: DialogUtilsService<any>
   ) {}
 
   openDialog() {
-
-    const dialogConfig = new MatDialogConfig();
-
-    dialogConfig.disableClose = false;
-    dialogConfig.autoFocus = false;
-
-    const dialogRef = this.dialog.open(this.component, dialogConfig);
-
-    dialogRef.afterClosed().subscribe(
-      data => console.log("Dialog output:", data)
-    );
+    this.dialogUtils.openDialog(this.component);
   }
 
 }

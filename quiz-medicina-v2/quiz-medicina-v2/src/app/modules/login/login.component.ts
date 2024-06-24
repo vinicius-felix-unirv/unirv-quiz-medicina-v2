@@ -1,12 +1,11 @@
 import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
-import { FormBuilder, FormGroup, Validators, NgForm } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ResetPasswordDialogComponent } from './reset-password-dialog/reset-password-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar, MatSnackBarVerticalPosition } from '@angular/material/snack-bar';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/security/auth.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
-import { LoginResponse } from 'src/app/models/loginResponse';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
@@ -59,12 +58,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
     return this.formData.get('email')!.hasError('email') ? 'Não é um e-mail válido' : '';
   }
 
-  public getIncorrectData() {
-    // if(){
-
-    // }
-  }
-
   public onSubmit(): void {
 
     this.serviceAuth.authenticate(this.formData.value).subscribe(async resposta => {
@@ -96,15 +89,6 @@ export class LoginComponent implements OnInit, AfterViewInit {
 
     dialogRef.afterClosed().subscribe(() => {
       console.log("fechou")
-    });
-  }
-
-  verticalPosition: MatSnackBarVerticalPosition = 'top'
-
-  openSnackBar(message: string, action: string) {
-    this._snackBar.open(message, action, {
-      verticalPosition: this.verticalPosition,
-      duration: 2000,
     });
   }
 

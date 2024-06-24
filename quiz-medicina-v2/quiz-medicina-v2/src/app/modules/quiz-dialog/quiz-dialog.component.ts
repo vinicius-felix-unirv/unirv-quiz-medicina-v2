@@ -1,10 +1,10 @@
 import { Component } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
-import { MatDialogRef } from '@angular/material/dialog';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
 import { Quiz } from 'src/app/models/quiz';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
+import { DialogUtilsService } from 'src/app/services/dialog-utils/dialog-utils.service';
 import { QuizService } from 'src/app/services/quiz/quiz.service';
 
 @Component({
@@ -20,10 +20,10 @@ export class QuizDialogComponent {
 
   constructor(
     private fb: FormBuilder,
-    private dialogRef: MatDialogRef<QuizDialogComponent>,
     private quizService: QuizService,
-    private dataUtilsService: DataUtilsService<DataUtilsIds>
-  ) {}
+    private dataUtilsService: DataUtilsService<DataUtilsIds>,
+    private dialogUtils: DialogUtilsService<QuizDialogComponent>
+  ) { }
 
   private createFormData(): FormGroup {
     return this.formData = this.fb.group({
@@ -40,10 +40,6 @@ export class QuizDialogComponent {
     this.createFormData();
   }
 
-  closeDialog(): void {
-    this.dialogRef.close();
-  }
-
   onSubmit(): void{
 
     const formValues = {
@@ -56,11 +52,12 @@ export class QuizDialogComponent {
     this.quizService.create(quiz).subscribe({
         next: data => {
         if (data.id) {
-          this.closeDialog();
+          this.dialogUtils.closeDialog();
         }
       },
       error: error => {
         console.error('There was an error!', error.error.message);
+        this.dialogUtils.openDialogSnackBar('Quiz já cadastrado');
       }}
     );
 
