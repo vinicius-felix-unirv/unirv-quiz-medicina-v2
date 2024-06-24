@@ -18,17 +18,10 @@ export class TelaEditQuizComponent implements OnInit {
 
   dataUtils!: DataUtilsIds;
   quiz$!: Observable<Quiz>;
-  perguntas: Pergunta[] = [];
-  template: boolean = true;
-
-  skip: number = 0;
-  take: number = 5;
 
   constructor(
-    private perguntaService: PerguntaService,
     private quizService: QuizService,
     private dataUtilsService: DataUtilsService<DataUtilsIds>,
-    private categoriasService: CategoriasService,
   ){}
 
   ngOnInit(): void {
@@ -37,11 +30,5 @@ export class TelaEditQuizComponent implements OnInit {
     });
     this.quiz$ = this.quizService.findById(this.dataUtils.quizId);
   }
-
-  redirectForPerguntas(id: number): void {
-    this.perguntaService.getAllPerguntasQuizByCategoriaForProf(this.dataUtils.quizId, id, this.skip, this.take).subscribe( perguntas => this.perguntas = perguntas);
-    this.template = !this.template;
-  }
-
 
 }

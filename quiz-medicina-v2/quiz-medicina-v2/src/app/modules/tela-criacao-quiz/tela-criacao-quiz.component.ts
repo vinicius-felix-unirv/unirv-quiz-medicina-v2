@@ -5,6 +5,8 @@ import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
 import { QuizService } from 'src/app/services/quiz/quiz.service';
 import { Quiz } from 'src/app/models/quiz';
+import { MatDialog, MatDialogConfig } from '@angular/material/dialog';
+import { QuizDialogComponent } from '../quiz-dialog/quiz-dialog.component';
 
 
 interface IDataToView{
@@ -29,7 +31,8 @@ export class TelaCriacaoQuizComponent extends CategoriaQuizBaseComponent impleme
   constructor(
     protected  override  router: Router,
     private quizService: QuizService,
-    protected override  dataUtilsService: DataUtilsService<DataUtilsIds>
+    protected override  dataUtilsService: DataUtilsService<DataUtilsIds>,
+    private dialog: MatDialog
   ){
     super(router, dataUtilsService );
   }
@@ -51,5 +54,19 @@ export class TelaCriacaoQuizComponent extends CategoriaQuizBaseComponent impleme
     this.dataUtilsService.sendData(data!);
 
     this.router.navigate(['home/tela-edit-quiz/edit-categorias']);
+  }
+
+  openDialog() {
+
+    const dialogConfig = new MatDialogConfig();
+
+    dialogConfig.disableClose = false;
+    dialogConfig.autoFocus = false;
+
+    const dialogRef = this.dialog.open(QuizDialogComponent, dialogConfig);
+
+    // dialogRef.afterClosed().subscribe(
+    //   data => console.log("Dialog output:", data)
+    // );
   }
 }

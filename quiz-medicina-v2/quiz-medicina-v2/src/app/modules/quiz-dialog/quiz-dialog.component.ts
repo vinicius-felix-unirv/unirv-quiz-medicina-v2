@@ -45,10 +45,25 @@ export class QuizDialogComponent {
   }
 
   onSubmit(): void{
-    let quiz = new Quiz(this.formData.value);
-    console.log(quiz);
-    // this.quizService.create(quiz);
-    this.dialogRef.close(this.formData.value);
+
+    const formValues = {
+      ...this.formData.value,
+      avaliativo: this.formData.value.avaliativo === 'true'
+    };
+
+    let quiz = new Quiz(formValues);
+
+    this.quizService.create(quiz).subscribe({
+        next: data => {
+        if (data.id) {
+          this.closeDialog();
+        }
+      },
+      error: error => {
+        console.error('There was an error!', error.error.message);
+      }}
+    );
+
   }
 }
 
