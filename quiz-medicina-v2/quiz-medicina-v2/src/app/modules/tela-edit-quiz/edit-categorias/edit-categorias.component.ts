@@ -1,13 +1,13 @@
-import { Component, OnInit, Type } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { Categoria } from 'src/app/models/categoria';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
 import { CategoriasService } from 'src/app/services/categorias/categorias.service';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
-import { QuizDialogComponent } from '../../quiz-dialog/quiz-dialog.component';
 import { EditTemplateComponent } from '../edit-template/edit-template.component';
 import { DialogUtilsService } from 'src/app/services/dialog-utils/dialog-utils.service';
 import { ComponentType } from '@angular/cdk/portal';
+import { CategoriasDialogComponent } from '../../categorias-dialog/categorias-dialog.component';
 
 
 interface IDataForEdit{
@@ -24,13 +24,13 @@ export class EditCategoriasComponent extends EditTemplateComponent implements On
   override titulo: string = 'Categorias criadas';
   override dataForEdit: IDataForEdit[] = [];
   override dataUtils: DataUtilsIds = {} as DataUtilsIds;
-  override component: ComponentType<QuizDialogComponent> = QuizDialogComponent;
+  override component: ComponentType<CategoriasDialogComponent> = CategoriasDialogComponent;
 
   constructor(
     public override router: Router,
     public categoriasService: CategoriasService,
     public override dataUtilsService: DataUtilsService<DataUtilsIds>,
-    public override dialogUtils: DialogUtilsService<QuizDialogComponent>
+    public override dialogUtils: DialogUtilsService<CategoriasDialogComponent>
   ){
     super(router, dataUtilsService, dialogUtils );
   }

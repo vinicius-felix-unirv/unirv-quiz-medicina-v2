@@ -14,9 +14,6 @@ import { HomeModule } from './modules/home/home.module';
 import { TelaEditQuizModule } from './modules/tela-edit-quiz/tela-edit-quiz.module';
 import { QuizDialogModule } from './modules/quiz-dialog/quiz-dialog.module';
 
-
-
-
 @NgModule({
   declarations: [
     AppComponent,
