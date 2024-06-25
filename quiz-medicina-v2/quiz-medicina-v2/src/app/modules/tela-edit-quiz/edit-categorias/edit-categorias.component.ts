@@ -39,7 +39,7 @@ export class EditCategoriasComponent extends EditTemplateComponent implements On
     this.dataUtilsService.getData().subscribe(
       data => this.dataUtils = data!
     );
-    this.categoriasService.getAllCategoriasInQuiz(this.dataUtils.quizId).subscribe(
+    this.categoriasService.getAllCategoriasByCusro(this.dataUtils.cursoId).subscribe(
       categorias => {
         this.dataForEdit = categorias.map( data => ({
           dataOfRequest: data

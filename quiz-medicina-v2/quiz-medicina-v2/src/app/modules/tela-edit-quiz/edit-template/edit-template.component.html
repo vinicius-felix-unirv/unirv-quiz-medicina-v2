@@ -14,7 +14,7 @@
   <div *ngIf="dataForEdit.length > 0">
     <ul *ngFor="let data of dataForEdit">
       <li (click)="redirect(data.dataOfRequest.id!)">
-        <img *ngIf="data.dataOfRequest.imagem" src="../../../../assets/anatomia.png" alt="">
+        <img class="imagem" *ngIf="data.dataOfRequest.imagem" src="../../../../assets/anatomia.png" alt="">
         <div >
           {{data.dataOfRequest.descricao ? data.dataOfRequest.descricao : data.dataOfRequest.conteudo}}
         </div>
