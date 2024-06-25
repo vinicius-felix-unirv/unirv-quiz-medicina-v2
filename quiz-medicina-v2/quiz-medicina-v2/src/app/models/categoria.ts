@@ -6,4 +6,7 @@ export class Categoria {
   imagem: string = '';
   cursoId: number = 0;
 
+  constructor(init?: Partial<Categoria>) {
+    Object.assign(this, init);
+  }
 }

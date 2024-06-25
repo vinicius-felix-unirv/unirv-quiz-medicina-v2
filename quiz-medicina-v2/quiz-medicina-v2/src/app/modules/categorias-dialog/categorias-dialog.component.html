@@ -1,1 +1,32 @@
-<p>categorias-dialog works!</p>
+<div class="container">
+  <div class="content">
+
+    <h1>Nova Categoria</h1>
+
+    <form  [formGroup]="formData" (ngSubmit)="onSubmit()">
+
+      <div class="inputImage">
+        <label for="arquivo">
+            <img src="../../../../assets/addImage.png" alt="add image">
+            adicionar imagem
+        </label>
+        <input type="file" id="arquivo">
+      </div>
+
+      <div>
+          <h2>Descricao</h2>
+          <mat-form-field appearance="outline" #myFormField>
+              <input matInput placeholder="Insira um título" formControlName="descricao" required>
+              <mat-error *ngIf="formData.get('descricao')!.invalid">{{"O titulo é um campo obrigatorio"}}</mat-error>
+          </mat-form-field>
+      </div>
+
+      <div id="submit-btn">
+        <button mat-flat-button [disabled]="this.formData.invalid" type="submit">Criar</button>
+
+      </div>
+
+    </form>
+
+  </div>
+</div>

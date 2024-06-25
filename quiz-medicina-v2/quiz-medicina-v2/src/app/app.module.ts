@@ -13,6 +13,7 @@ import { CategoryScreenComponentModule } from './modules/category-screen/categor
 import { HomeModule } from './modules/home/home.module';
 import { TelaEditQuizModule } from './modules/tela-edit-quiz/tela-edit-quiz.module';
 import { QuizDialogModule } from './modules/quiz-dialog/quiz-dialog.module';
+import { CategoriasDialogModule } from './modules/categorias-dialog/categorias-dialog.module';
 
 @NgModule({
   declarations: [
@@ -28,7 +29,8 @@ import { QuizDialogModule } from './modules/quiz-dialog/quiz-dialog.module';
     CategoryScreenComponentModule,
     HomeModule,
     TelaEditQuizModule,
-    QuizDialogModule
+    QuizDialogModule,
+    CategoriasDialogModule
   ],
   providers: [
     AuthInterceptorProvider
