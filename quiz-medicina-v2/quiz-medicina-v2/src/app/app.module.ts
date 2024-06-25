@@ -14,6 +14,8 @@ import { HomeModule } from './modules/home/home.module';
 import { TelaEditQuizModule } from './modules/tela-edit-quiz/tela-edit-quiz.module';
 import { QuizDialogModule } from './modules/quiz-dialog/quiz-dialog.module';
 import { CategoriasDialogModule } from './modules/categorias-dialog/categorias-dialog.module';
+import { PerguntasDialogModule } from './modules/perguntas-dialog/perguntas-dialog.module';
+import { MaterialModule } from './shared/materialmodule/material.module';
 
 @NgModule({
   declarations: [
@@ -30,7 +32,9 @@ import { CategoriasDialogModule } from './modules/categorias-dialog/categorias-d
     HomeModule,
     TelaEditQuizModule,
     QuizDialogModule,
-    CategoriasDialogModule
+    CategoriasDialogModule,
+    PerguntasDialogModule,
+    MaterialModule
   ],
   providers: [
     AuthInterceptorProvider

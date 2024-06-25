@@ -1,0 +1,49 @@
+<div class="container">
+  <div class="content">
+      <div class="header">
+          <button (click)="changeColor()" [ngStyle]="{'color': buttonColor}">Pergunta</button>
+      </div>
+
+      <form [formGroup]="formData" (submit)="onSubmit()">
+          <div>
+              <mat-form-field appearance="outline" #myFormField>
+                  <textarea matInput placeholder="Insira a pergunta.." formControlName="titulo" required></textarea>
+                  <mat-error *ngIf="formData.get('titulo')!.invalid">{{"O titulo é um campo obrigatorio"}}</mat-error>
+              </mat-form-field>
+          </div>
+
+          <div class="inputImage">
+              <label for="arquivo">
+                  <img src="../../../../assets/addImage.png" alt="add image">
+                  adicionar imagem
+              </label>
+              <input type="file" id="arquivo">
+          </div>
+
+          <div class="inputs-config">
+
+            <div class="container-nivel-time">
+              <mat-form-field appearance="outline">
+                <mat-label>Nivel</mat-label>
+                <mat-select>
+                  <mat-option *ngFor="let food of foods" [value]="food.value">
+                  {{food.viewValue}}
+                  </mat-option>
+                </mat-select>
+              </mat-form-field>
+
+              <div class="time">
+                <label for="time">Tempo:</label>
+                <input type="time" id="time">
+              </div>
+            </div>
+          </div>
+
+          <div id="submit-btn">
+              <button mat-flat-button [disabled]="this.formData.invalid" (click)="onSubmit()">Continuar</button>
+          </div>
+
+      </form>
+
+  </div>
+</div>

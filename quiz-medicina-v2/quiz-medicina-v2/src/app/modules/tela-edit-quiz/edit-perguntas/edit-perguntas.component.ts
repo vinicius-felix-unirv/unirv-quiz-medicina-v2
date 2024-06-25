@@ -4,6 +4,8 @@ import { DataUtilsIds } from 'src/app/models/dataUtils';
 import { Pergunta } from 'src/app/models/pergunta';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
 import { PerguntaService } from 'src/app/services/perguntas/perguntas.service';
+import { PerguntasDialogComponent } from '../../perguntas-dialog/perguntas-dialog.component';
+import { ComponentType } from '@angular/cdk/portal';
 
 interface IDataForEdit{
   dataOfRequest: Pergunta
@@ -19,6 +21,7 @@ export class EditPerguntasComponent {
   titulo: string = 'Perguntas criadas';
   dataForEdit: IDataForEdit[] = [];
   dataUtils: DataUtilsIds = {} as DataUtilsIds;
+  component: ComponentType<PerguntasDialogComponent> = PerguntasDialogComponent;
 
   skip: number = 0;
   take: number = 5;
