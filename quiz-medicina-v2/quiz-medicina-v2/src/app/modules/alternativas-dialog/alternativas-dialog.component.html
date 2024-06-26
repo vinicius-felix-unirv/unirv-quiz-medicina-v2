@@ -1,0 +1,40 @@
+<div class="container">
+  <div class="content">
+
+    <h1>Nova Alternativa</h1>
+
+    <form  [formGroup]="formData" (ngSubmit)="onSubmit()">
+
+      <div class="inputImage">
+        <label for="arquivo">
+            <img src="../../../../assets/addImage.png" alt="add image">
+            adicionar imagem
+        </label>
+        <input type="file" id="arquivo">
+      </div>
+
+      <p>Ou</p>
+
+      <div>
+          <h2>Descricao</h2>
+          <mat-form-field appearance="outline" #myFormField>
+              <input matInput placeholder="Insira um título" formControlName="conteudo" required>
+              <mat-error *ngIf="formData.get('conteudo')!.invalid">{{"O titulo é um campo obrigatorio"}}</mat-error>
+          </mat-form-field>
+      </div>
+
+      <div>
+        <h3>Alternativa correta?</h3>
+        <mat-checkbox formControlName="correta" ></mat-checkbox>
+      </div>
+
+      <div id="submit-btn">
+        <button mat-flat-button [disabled]="this.formData.invalid" type="submit">Criar</button>
+
+      </div>
+
+    </form>
+
+  </div>
+</div>
+
