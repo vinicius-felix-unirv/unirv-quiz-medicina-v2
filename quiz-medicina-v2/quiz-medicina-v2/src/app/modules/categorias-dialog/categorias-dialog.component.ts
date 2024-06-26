@@ -50,8 +50,7 @@ export class CategoriasDialogComponent implements OnInit {
         }
       },
       error: error => {
-        console.error('There was an error!', error.error.message);
-        this.dialogUtils.openDialogSnackBar('Categoria já cadastrado');
+        this.dialogUtils.openDialogSnackBar(error.error.message);
       }}
     );
 

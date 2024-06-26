@@ -7,8 +7,8 @@
       <form [formGroup]="formData" (submit)="onSubmit()">
           <div>
               <mat-form-field appearance="outline" #myFormField>
-                  <textarea matInput placeholder="Insira a pergunta.." formControlName="titulo" required></textarea>
-                  <mat-error *ngIf="formData.get('titulo')!.invalid">{{"O titulo é um campo obrigatorio"}}</mat-error>
+                  <textarea matInput placeholder="Insira a pergunta.." formControlName="conteudo" required></textarea>
+                  <mat-error *ngIf="formData.get('conteudo')!.invalid">{{"Este campo é obrigatorio"}}</mat-error>
               </mat-form-field>
           </div>
 
@@ -25,22 +25,22 @@
             <div class="container-nivel-time">
               <mat-form-field appearance="outline">
                 <mat-label>Nivel</mat-label>
-                <mat-select>
-                  <mat-option *ngFor="let food of foods" [value]="food.value">
-                  {{food.viewValue}}
+                <mat-select matNativeControl formControlName="perguntasnivelid" (selectionChange)="onNivelChange()">
+                  <mat-option *ngFor="let nivel of niveis" [value]="nivel.id">
+                  {{nivel.nivel}}
                   </mat-option>
                 </mat-select>
               </mat-form-field>
 
               <div class="time">
                 <label for="time">Tempo:</label>
-                <input type="time" id="time">
+                <input type="text" class="time" formControlName="tempo">
               </div>
             </div>
           </div>
 
           <div id="submit-btn">
-              <button mat-flat-button [disabled]="this.formData.invalid" (click)="onSubmit()">Continuar</button>
+              <button mat-flat-button [disabled]="this.formData.invalid">Continuar</button>
           </div>
 
       </form>

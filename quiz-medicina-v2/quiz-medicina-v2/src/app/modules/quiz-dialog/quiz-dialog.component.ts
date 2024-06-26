@@ -56,8 +56,7 @@ export class QuizDialogComponent {
         }
       },
       error: error => {
-        console.error('There was an error!', error.error.message);
-        this.dialogUtils.openDialogSnackBar('Quiz já cadastrado');
+        this.dialogUtils.openDialogSnackBar(error.error.message);
       }}
     );
 

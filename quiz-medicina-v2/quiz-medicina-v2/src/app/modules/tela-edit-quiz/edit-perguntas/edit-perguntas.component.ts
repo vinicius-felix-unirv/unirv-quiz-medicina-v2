@@ -36,13 +36,7 @@ export class EditPerguntasComponent {
     this.dataUtilsService.getData().subscribe(
       data => this.dataUtils = data!
     );
-    this.perguntasService.getAllPerguntasQuizByCategoriaForProf(this.dataUtils.quizId, this.dataUtils.categoriaId, this.skip, this.take).subscribe(
-      perguntas => {
-        this.dataForEdit = perguntas.map( data => ({
-          dataOfRequest: data
-        }))
-      }
-    );
+    this.loadPerguntas();
   }
 
   redirectForPerguntas(id: number): void {
@@ -53,8 +47,7 @@ export class EditPerguntasComponent {
     this.router.navigate(['home/tela-edit-quiz/edit-alternativas']);
   }
 
-  advancePage(): void{
-    this.skip += this.take;
+  loadPerguntas(): void {
     this.perguntasService.getAllPerguntasQuizByCategoriaForProf(this.dataUtils.quizId, this.dataUtils.categoriaId, this.skip, this.take).subscribe(
       perguntas => {
         this.dataForEdit = perguntas.map( data => ({
@@ -62,7 +55,11 @@ export class EditPerguntasComponent {
         }))
       }
     );
+  }
 
+  advancePage(): void{
+    this.skip += this.take;
+    this.loadPerguntas();
   }
 
   returnPage(): void{
@@ -70,13 +67,7 @@ export class EditPerguntasComponent {
     if(this.skip > 0){
       this.skip -= this.take;
     }
-    this.perguntasService.getAllPerguntasQuizByCategoriaForProf(this.dataUtils.quizId, this.dataUtils.categoriaId, this.skip, this.take).subscribe(
-      perguntas => {
-        this.dataForEdit = perguntas.map( data => ({
-          dataOfRequest: data
-        }))
-      }
-    );
+    this.loadPerguntas();
 
   }
 
