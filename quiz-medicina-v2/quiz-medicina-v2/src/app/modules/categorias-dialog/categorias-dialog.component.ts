@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { Categoria } from 'src/app/models/categoria';
@@ -13,6 +13,8 @@ import { DialogUtilsService } from 'src/app/services/dialog-utils/dialog-utils.s
   styleUrls: ['./categorias-dialog.component.scss']
 })
 export class CategoriasDialogComponent implements OnInit {
+
+  @Output() dialogClosed = new EventEmitter<void>();
 
   color: ThemePalette = "accent";
   formData!: FormGroup;
@@ -47,6 +49,7 @@ export class CategoriasDialogComponent implements OnInit {
         next: data => {
         if (data.id) {
           this.dialogUtils.closeDialog();
+          this.dialogClosed.emit();
         }
       },
       error: error => {

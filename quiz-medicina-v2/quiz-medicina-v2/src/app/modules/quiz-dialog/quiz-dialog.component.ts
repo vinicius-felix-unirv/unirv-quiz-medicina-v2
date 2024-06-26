@@ -1,4 +1,4 @@
-import { Component } from '@angular/core';
+import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
@@ -13,6 +13,8 @@ import { QuizService } from 'src/app/services/quiz/quiz.service';
   styleUrls: ['./quiz-dialog.component.scss']
 })
 export class QuizDialogComponent {
+
+  @Output() dialogClosed = new EventEmitter<void>();
 
   color: ThemePalette = "accent";
   formData!: FormGroup;
@@ -53,6 +55,7 @@ export class QuizDialogComponent {
         next: data => {
         if (data.id) {
           this.dialogUtils.closeDialog();
+          this.dialogClosed.emit();
         }
       },
       error: error => {

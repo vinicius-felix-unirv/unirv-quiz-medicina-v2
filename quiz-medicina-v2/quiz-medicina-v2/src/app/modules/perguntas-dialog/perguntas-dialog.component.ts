@@ -1,7 +1,6 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
-import { Categoria } from 'src/app/models/categoria';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
 import { Pergunta } from 'src/app/models/pergunta';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
@@ -17,7 +16,7 @@ import { PerguntaService } from 'src/app/services/perguntas/perguntas.service';
 })
 export class PerguntasDialogComponent {
 
-  @Output() dialogClosed = new EventEmitter<void>(); // Adicione isso
+  @Output() dialogClosed = new EventEmitter<void>();
 
   color: ThemePalette = "accent";
   formData!: FormGroup;
@@ -73,7 +72,6 @@ export class PerguntasDialogComponent {
         }
       },
       error: error => {
-        // console.error('There was an error!', error.error.message);
         this.dialogUtils.openDialogSnackBar(error.error.message);
       }}
     );
