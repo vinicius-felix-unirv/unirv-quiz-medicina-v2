@@ -18,6 +18,7 @@ export class EditTemplateComponent {
   @Input() goBack!: () => void;
   @Input() dataUtils!: DataUtilsIds;
   @Input() component!: any;
+  @Input() onDialogClosed!: () => void;
 
   skip: number = 0;
   @Input() take!: number;
@@ -29,7 +30,11 @@ export class EditTemplateComponent {
   ) {}
 
   openDialog() {
-    this.dialogUtils.openDialog(this.component);
+    const dialogRef = this.dialogUtils.openDialog(this.component);
+
+    dialogRef.componentInstance.dialogClosed.subscribe(() => {
+      this.onDialogClosed();
+    });
   }
 
 }

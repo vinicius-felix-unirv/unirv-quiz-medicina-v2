@@ -24,7 +24,7 @@ export class DialogUtilsService<T> {
       { duration: 5000, verticalPosition: 'top', horizontalPosition: 'right' });
   }
 
-  openDialog(component: ComponentType<T>) {
+  openDialog(component: ComponentType<T>): MatDialogRef<T> {
 
     const dialogConfig = new MatDialogConfig();
 
@@ -32,6 +32,8 @@ export class DialogUtilsService<T> {
     dialogConfig.autoFocus = false;
 
     this.dialogRef = this.dialog.open(component, dialogConfig);
+
+    return this.dialogRef;
 
   }
 }

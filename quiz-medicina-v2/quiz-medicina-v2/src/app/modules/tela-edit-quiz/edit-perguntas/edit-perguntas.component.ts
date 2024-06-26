@@ -4,6 +4,8 @@ import { DataUtilsIds } from 'src/app/models/dataUtils';
 import { Pergunta } from 'src/app/models/pergunta';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
 import { PerguntaService } from 'src/app/services/perguntas/perguntas.service';
+import { PerguntasDialogComponent } from '../../perguntas-dialog/perguntas-dialog.component';
+import { ComponentType } from '@angular/cdk/portal';
 
 interface IDataForEdit{
   dataOfRequest: Pergunta
@@ -19,6 +21,7 @@ export class EditPerguntasComponent {
   titulo: string = 'Perguntas criadas';
   dataForEdit: IDataForEdit[] = [];
   dataUtils: DataUtilsIds = {} as DataUtilsIds;
+  component: ComponentType<PerguntasDialogComponent> = PerguntasDialogComponent;
 
   skip: number = 0;
   take: number = 5;
@@ -33,13 +36,7 @@ export class EditPerguntasComponent {
     this.dataUtilsService.getData().subscribe(
       data => this.dataUtils = data!
     );
-    this.perguntasService.getAllPerguntasQuizByCategoriaForProf(this.dataUtils.quizId, this.dataUtils.categoriaId, this.skip, this.take).subscribe(
-      perguntas => {
-        this.dataForEdit = perguntas.map( data => ({
-          dataOfRequest: data
-        }))
-      }
-    );
+    this.loadPerguntas();
   }
 
   redirectForPerguntas(id: number): void {
@@ -50,8 +47,7 @@ export class EditPerguntasComponent {
     this.router.navigate(['home/tela-edit-quiz/edit-alternativas']);
   }
 
-  advancePage(): void{
-    this.skip += this.take;
+  loadPerguntas(): void {
     this.perguntasService.getAllPerguntasQuizByCategoriaForProf(this.dataUtils.quizId, this.dataUtils.categoriaId, this.skip, this.take).subscribe(
       perguntas => {
         this.dataForEdit = perguntas.map( data => ({
@@ -59,7 +55,11 @@ export class EditPerguntasComponent {
         }))
       }
     );
+  }
 
+  advancePage(): void{
+    this.skip += this.take;
+    this.loadPerguntas();
   }
 
   returnPage(): void{
@@ -67,13 +67,7 @@ export class EditPerguntasComponent {
     if(this.skip > 0){
       this.skip -= this.take;
     }
-    this.perguntasService.getAllPerguntasQuizByCategoriaForProf(this.dataUtils.quizId, this.dataUtils.categoriaId, this.skip, this.take).subscribe(
-      perguntas => {
-        this.dataForEdit = perguntas.map( data => ({
-          dataOfRequest: data
-        }))
-      }
-    );
+    this.loadPerguntas();
 
   }
 
