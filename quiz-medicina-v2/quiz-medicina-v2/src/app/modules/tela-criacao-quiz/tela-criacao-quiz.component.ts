@@ -42,6 +42,10 @@ export class TelaCriacaoQuizComponent extends CategoriaQuizBaseComponent impleme
     this.dataUtilsService.getData().subscribe(data => {
       this.dataUtils = data!;
     });
+    this.loadQuiz();
+  }
+
+  loadQuiz(): void {
     this.quizService.getAllQuizByUsuarioAndCursoId(this.skip, this.take, this.dataUtils.cursoId, this.dataUtils.usuarioId).subscribe(quizes => {
       this.quiz = quizes.map( quiz => ({
         categoriaOrQuiz: quiz
@@ -58,6 +62,10 @@ export class TelaCriacaoQuizComponent extends CategoriaQuizBaseComponent impleme
   }
 
   openDialog() {
-    this.dialogUtils.openDialog(QuizDialogComponent);
+    const dialogRef = this.dialogUtils.openDialog(QuizDialogComponent);
+
+    dialogRef.componentInstance.dialogClosed.subscribe(() => {
+      this.loadQuiz();
+    });
   }
 }

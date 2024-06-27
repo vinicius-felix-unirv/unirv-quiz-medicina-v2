@@ -6,4 +6,7 @@ export class Alternativa {
   imagem: string | null = "";
   correta: boolean = false;
 
+  constructor(init?: Partial<Alternativa>) {
+    Object.assign(this, init);
+  }
 }

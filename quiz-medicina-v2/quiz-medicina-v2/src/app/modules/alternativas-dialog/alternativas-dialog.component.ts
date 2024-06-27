@@ -1,18 +1,18 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
+import { Alternativa } from 'src/app/models/alternativa';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
-import { Quiz } from 'src/app/models/quiz';
+import { AlternativasService } from 'src/app/services/alternativas/alternativas.service';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
 import { DialogUtilsService } from 'src/app/services/dialog-utils/dialog-utils.service';
-import { QuizService } from 'src/app/services/quiz/quiz.service';
 
 @Component({
-  selector: 'app-quiz-dialog',
-  templateUrl: './quiz-dialog.component.html',
-  styleUrls: ['./quiz-dialog.component.scss']
+  selector: 'app-alternativas-dialog',
+  templateUrl: './alternativas-dialog.component.html',
+  styleUrls: ['./alternativas-dialog.component.scss']
 })
-export class QuizDialogComponent {
+export class AlternativasDialogComponent {
 
   @Output() dialogClosed = new EventEmitter<void>();
 
@@ -22,18 +22,17 @@ export class QuizDialogComponent {
 
   constructor(
     private fb: FormBuilder,
-    private quizService: QuizService,
     private dataUtilsService: DataUtilsService<DataUtilsIds>,
-    private dialogUtils: DialogUtilsService<QuizDialogComponent>
-  ) { }
+    private alternativasService: AlternativasService,
+    private dialogUtils: DialogUtilsService<AlternativasDialogComponent>
+  ) {}
 
   private createFormData(): FormGroup {
     return this.formData = this.fb.group({
-      imagem: ['/teste', []],
-      titulo: ['', [Validators.required]],
-      avaliativo: ['', [Validators.required]],
-      usuarioid: [ this.dataUtils.usuarioId],
-      cursoid: [ this.dataUtils.cursoId]
+      imagem: ['/teste'],
+      conteudo: ['', [Validators.required]],
+      correta: [false, [Validators.required]],
+      perguntasid: [ this.dataUtils.perguntaId]
     });
   }
 
@@ -42,16 +41,12 @@ export class QuizDialogComponent {
     this.createFormData();
   }
 
-  onSubmit(): void{
+  onSubmit(): void {
 
-    const formValues = {
-      ...this.formData.value,
-      avaliativo: this.formData.value.avaliativo === 'true'
-    };
+    let alternativa = new Alternativa(this.formData.value);
+    console.log(alternativa);
 
-    let quiz = new Quiz(formValues);
-
-    this.quizService.create(quiz).subscribe({
+    this.alternativasService.create(alternativa).subscribe({
         next: data => {
         if (data.id) {
           this.dialogUtils.closeDialog();
@@ -65,4 +60,3 @@ export class QuizDialogComponent {
 
   }
 }
-
