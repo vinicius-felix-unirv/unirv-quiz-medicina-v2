@@ -18,7 +18,7 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
   encapsulation: ViewEncapsulation.None
 })
 
-export class LoginComponent implements OnInit, AfterViewInit {
+export class LoginComponent implements OnInit {
 
   // O que falta: fazer o submiti, mensagem de erro caso o email ou a senha não sejam validos
   constructor(
@@ -46,9 +46,9 @@ export class LoginComponent implements OnInit, AfterViewInit {
     this.createFormData();
   }
 
-  ngAfterViewInit(): void {
-    throw new Error('Method not implemented.');
-  }
+  // ngAfterViewInit(): void {
+  //   throw new Error('Method not implemented.');
+  // }
 
   public getErrorMessage() {
     if (this.formData.get('email')!.hasError('required')) {

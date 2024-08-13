@@ -7,15 +7,18 @@ import {
   HTTP_INTERCEPTORS
 } from '@angular/common/http';
 import { Observable } from 'rxjs';
+import { AuthService } from 'src/app/security/auth.service';
 
 @Injectable()
 export class AuthInterceptor implements HttpInterceptor {
 
-  constructor() { }
+  constructor(
+    private authService: AuthService
+  ) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    let token = localStorage.getItem('token');
+    const token = this.authService.getReturnToken();
 
     if (token) {
       const cloneReq =

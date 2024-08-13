@@ -43,7 +43,7 @@ export class AuthService {
     return loginInfo;
   }
 
-  public get returnToken(): string | undefined {
+  public getReturnToken(): string | undefined {
     return this.returnLoginInfo?.token;
   }
 
