@@ -1,0 +1,35 @@
+<div class="container">
+  <div class="question-container" *ngIf="perguntaAtual != null">
+    <div *ngIf="alternativasByPergunta$ | async as alternativas">
+      <div class="temporizador" *ngIf="tempoRestante !== undefined && perguntaAtual?.tempo">
+        <div class="barra-progresso" [style.width.%]="(tempoRestante / (perguntaAtual?.tempo ?? 1)) * 100"></div>
+      </div>
+      <h2>{{ perguntaAtual.conteudo }}</h2>
+      <img src="/src/assets/anatomia.png" alt="" *ngIf="perguntaAtual.pathimage != null">
+      <ul>
+        <li *ngFor="let alternativa of alternativas">
+          <label class="alternativa-label">
+            <div 
+              (click)="onSelect(alternativa.id!)"
+              [ngClass]="{
+                'alternativa-box': true,
+                'selected': alternativa.id === alternativaEscolhida,
+                'incorrect': alternativasErradas.has(alternativa.id!),
+                'shake': alternativa.id === shakeAlternativaId
+              }"
+            >
+              {{ alternativa.conteudo }}
+            </div>
+          </label>
+        </li>
+      </ul>
+      <div class="button-container">
+        <button class="confirm-button" (click)="checkAcerto()">Confirmar</button>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="layout">
+    <img src="/src/assets/farmacologia.png" alt="">
+    <h1>As perguntas acabaram</h1>
+  </div>
+</div>
