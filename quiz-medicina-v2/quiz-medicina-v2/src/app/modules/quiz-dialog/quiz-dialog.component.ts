@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
+import { Router } from '@angular/router';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
 import { Quiz } from 'src/app/models/quiz';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
@@ -24,7 +25,8 @@ export class QuizDialogComponent {
     private fb: FormBuilder,
     private quizService: QuizService,
     private dataUtilsService: DataUtilsService<DataUtilsIds>,
-    private dialogUtils: DialogUtilsService<QuizDialogComponent>
+    private dialogUtils: DialogUtilsService<QuizDialogComponent>,
+    private router: Router
   ) { }
 
   private createFormData(): FormGroup {
@@ -55,7 +57,10 @@ export class QuizDialogComponent {
         next: data => {
         if (data.id) {
           this.dialogUtils.closeDialog();
+          this.dataUtils.quizId = data.id;
+          this.dataUtilsService.sendData(this.dataUtils)
           this.dialogClosed.emit();
+          this.router.navigate(['/home/tela-edit-quiz/edit-categorias']);
         }
       },
       error: error => {

@@ -44,7 +44,6 @@ export class AlternativasDialogComponent {
   onSubmit(): void {
 
     let alternativa = new Alternativa(this.formData.value);
-    console.log(alternativa);
 
     this.alternativasService.create(alternativa).subscribe({
         next: data => {

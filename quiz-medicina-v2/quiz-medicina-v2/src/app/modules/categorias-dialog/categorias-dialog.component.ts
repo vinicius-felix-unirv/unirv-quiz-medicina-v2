@@ -1,6 +1,7 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
+import { Router } from '@angular/router';
 import { Categoria } from 'src/app/models/categoria';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
 import { CategoriasService } from 'src/app/services/categorias/categorias.service';
@@ -24,7 +25,8 @@ export class CategoriasDialogComponent implements OnInit {
     private fb: FormBuilder,
     private dataUtilsService: DataUtilsService<DataUtilsIds>,
     private categoriasService: CategoriasService,
-    private dialogUtils: DialogUtilsService<CategoriasDialogComponent>
+    private dialogUtils: DialogUtilsService<CategoriasDialogComponent>,
+    private router: Router
   ) {}
 
   private createFormData(): FormGroup {
@@ -43,12 +45,14 @@ export class CategoriasDialogComponent implements OnInit {
   onSubmit(): void {
 
     let categoria = new Categoria(this.formData.value);
-    console.log(categoria);
 
     this.categoriasService.create(categoria).subscribe({
         next: data => {
         if (data.id) {
           this.dialogUtils.closeDialog();
+          this.dataUtils.categoriaId = data.id;
+          this.dataUtilsService.sendData(this.dataUtils);
+          this.router.navigate(['/home/tela-edit-quiz/edit-perguntas']);
           this.dialogClosed.emit();
         }
       },

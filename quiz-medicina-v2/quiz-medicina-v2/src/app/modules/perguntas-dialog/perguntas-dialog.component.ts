@@ -1,6 +1,7 @@
 import { Component, EventEmitter, Output } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ThemePalette } from '@angular/material/core';
+import { Router } from '@angular/router';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
 import { Pergunta } from 'src/app/models/pergunta';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
@@ -34,7 +35,8 @@ export class PerguntasDialogComponent {
     private perguntasService: PerguntaService,
     private perguntasNivelService: PerguntanivelService,
     private dataUtilsService: DataUtilsService<DataUtilsIds>,
-    private dialogUtils: DialogUtilsService<PerguntasDialogComponent>
+    private dialogUtils: DialogUtilsService<PerguntasDialogComponent>,
+    private router: Router
   ) {}
 
   private createFormData(): FormGroup {
@@ -61,14 +63,14 @@ export class PerguntasDialogComponent {
 
     let pergunta = new Pergunta(formValue);
 
-    console.log('pergunta:', pergunta);
     this.perguntasService.create(pergunta).subscribe({
         next: data => {
         if (data.id) {
-
           this.dialogUtils.closeDialog();
           this.dialogClosed.emit();
-          console.log('data:', data);
+          this.dataUtils.perguntaId = data.id;
+          this.dataUtilsService.sendData(this.dataUtils);
+          this.router.navigate(['/home/tela-edit-quiz/edit-alternativas']);
         }
       },
       error: error => {
