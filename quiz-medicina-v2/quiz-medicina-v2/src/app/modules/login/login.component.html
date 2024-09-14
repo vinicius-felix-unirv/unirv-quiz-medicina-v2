@@ -20,7 +20,7 @@
           <mat-label>Senha</mat-label>
           <input matInput [type]="hide ? 'password' : 'text'" formControlName="senha">
           <mat-error *ngIf="formData.get('senha')!.invalid">{{"senha é um campo obrigatorio"}}</mat-error>
-          <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          <button mat-icon-button matSuffix (click)="togglePasswordVisibility($event)" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
           </button>

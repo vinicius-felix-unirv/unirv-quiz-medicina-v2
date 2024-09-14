@@ -9,6 +9,7 @@ import { HttpErrorResponse } from '@angular/common/http';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
 import { UsuarioService } from 'src/app/services/usuario/usuario.service';
+import { DialogUtilsService } from 'src/app/services/dialog-utils/dialog-utils.service';
 
 
 @Component({
@@ -25,15 +26,20 @@ export class LoginComponent implements OnInit {
     private _formBuilder: FormBuilder,
     private router: Router,
     public _dialog: MatDialog,
-    private _snackBar: MatSnackBar,
     private serviceAuth: AuthService,
     private dataUtilsService: DataUtilsService<DataUtilsIds>,
+    private dialogUtilsService: DialogUtilsService<ResetPasswordDialogComponent>,
     private usuariosService: UsuarioService
   ) { }
 
   hide = true;
   formData!: FormGroup;
   dialog: any;
+
+  togglePasswordVisibility(event: MouseEvent) {
+    event.preventDefault();  // Impede o envio do formulário
+    this.hide = !this.hide;  // Alterna a visibilidade da senha
+  }
 
   private createFormData(): FormGroup {
     return this.formData = this._formBuilder.group({
@@ -50,7 +56,7 @@ export class LoginComponent implements OnInit {
   //   throw new Error('Method not implemented.');
   // }
 
-  public getErrorMessage() {
+  public getErrorMessage(): String {
     if (this.formData.get('email')!.hasError('required')) {
       return 'Você deve inserir um valor';
     }
@@ -62,41 +68,30 @@ export class LoginComponent implements OnInit {
 
     this.serviceAuth.authenticate(this.formData.value).subscribe(async resposta => {
       if (this.serviceAuth.isAuthenticated()) {
-        this.openDialogSnackBar('Auth');
+        // this.openDialogSnackBar('Auth');
         let data =  new DataUtilsIds;
         data.usuarioId = parseInt(this.serviceAuth.returnUserId()!);
         this.usuariosService.findById(data.usuarioId).subscribe( user => {
           data.cursoId = user.cursoid;
           this.dataUtilsService.sendData(data);
         });
-        this.router.navigate(['home']);
+        this.router.navigate(['home/quiz-screen']);
       }
     }, (err: HttpErrorResponse) => {
       if (err.status == 0) {
-        this.openDialogSnackBar('Erro de Conexão Com Servidor');
+        this.dialogUtilsService.openDialogSnackBar('Erro de Conexão Com Servidor');
       } else {
         if (this.formData.valid)
-          this.openDialogSnackBar('Email e/ou Senha Incorreta');
+          this.dialogUtilsService.openDialogSnackBar('Email e/ou Senha Incorreta');
         else
-          this.openDialogSnackBar('Email e/ou Senha Não Informados');
+          this.dialogUtilsService.openDialogSnackBar('Email e/ou Senha Não Informados');
       }
     });
   }
 
   openDialog(): void {
-    const dialogRef = this._dialog.open(ResetPasswordDialogComponent, {
-    });
-
-    dialogRef.afterClosed().subscribe(() => {
-      console.log("fechou")
-    });
+    this.dialogUtilsService.openDialog(ResetPasswordDialogComponent);
   }
-
-  private openDialogSnackBar(message: string): void {
-    this._snackBar.open(message, 'Fechar',
-      { duration: 2000, verticalPosition: 'top', horizontalPosition: 'right' });
-  }
-
 
   redirect(): void{
     this.router.navigate(['inscricao']);

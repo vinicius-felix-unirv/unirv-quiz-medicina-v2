@@ -48,7 +48,7 @@ export class HomeComponent {
   }
 
   public createMenu(): MenuItem[]{
-    return this.menu.filter(item => item.roleUser.includes(this.role)).map(item => item);
+    return this.menu.filter(item => item.roleUser.includes(this.role));
   }
 
   logout(): void {
