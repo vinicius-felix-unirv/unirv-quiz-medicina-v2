@@ -1,6 +1,8 @@
-import { Component, Inject, ViewEncapsulation } from '@angular/core';
+import { Component, ViewEncapsulation } from '@angular/core';
 import { FormControl, Validators } from '@angular/forms';
-import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
+import { MatDialogRef } from '@angular/material/dialog';
+import { Email } from 'src/app/models/email';
+import { EmailService } from 'src/app/services/email/email.service';
 
 @Component({
   selector: 'app-reset-password-dialog',
@@ -10,8 +12,8 @@ import { MAT_DIALOG_DATA, MatDialogRef } from '@angular/material/dialog';
 })
 export class ResetPasswordDialogComponent {
   constructor(
-    public dialogRef: MatDialogRef<ResetPasswordDialogComponent>,
-    // @Inject(MAT_DIALOG_DATA) public data: string,
+    private dialogRef: MatDialogRef<ResetPasswordDialogComponent>,
+    private emailService: EmailService
   ) {}
 
   teste: boolean = true;
@@ -26,10 +28,22 @@ export class ResetPasswordDialogComponent {
     return this.email.hasError('email') ? 'Não é um e-mail válido' : '';
   }
 
+  public sendEmail(): void {
+
+    const emailToBeSend = new Email();
+    emailToBeSend.to = this.email.value!;
+    emailToBeSend.subject = "recebe ai";
+    emailToBeSend.text = "vai dar bom nego";
+
+    this.emailService.create(emailToBeSend).subscribe(data => console.log(data));
+  }
+
   onSubmit(event: Event): void {
     this.email.markAsTouched();
+    console.log(this.email.value);
     if(this.email.valid){
       this.teste = false;
+      this.sendEmail();
     }else{
       event.preventDefault();
     }

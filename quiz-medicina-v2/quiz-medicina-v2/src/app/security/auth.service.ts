@@ -56,7 +56,6 @@ export class AuthService {
   }
 
   public isAuthenticated() {
-    console.log(1, this.returnLoginInfo?.token);
     let token = this.returnLoginInfo?.token;
     if (token != null) {
       return !this.jwtService.isTokenExpired(token)

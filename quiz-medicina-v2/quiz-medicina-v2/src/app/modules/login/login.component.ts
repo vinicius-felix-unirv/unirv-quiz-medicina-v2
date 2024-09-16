@@ -1,8 +1,7 @@
-import { AfterViewInit, Component, OnInit, ViewEncapsulation } from '@angular/core';
+import { Component, OnInit, ViewEncapsulation } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { ResetPasswordDialogComponent } from './reset-password-dialog/reset-password-dialog.component';
 import { MatDialog } from '@angular/material/dialog';
-import { MatSnackBar } from '@angular/material/snack-bar';
 import { AuthService } from 'src/app/security/auth.service';
 import { Router } from '@angular/router';
 import { HttpErrorResponse } from '@angular/common/http';
@@ -21,7 +20,6 @@ import { DialogUtilsService } from 'src/app/services/dialog-utils/dialog-utils.s
 
 export class LoginComponent implements OnInit {
 
-  // O que falta: fazer o submiti, mensagem de erro caso o email ou a senha não sejam validos
   constructor(
     private _formBuilder: FormBuilder,
     private router: Router,
@@ -37,8 +35,8 @@ export class LoginComponent implements OnInit {
   dialog: any;
 
   togglePasswordVisibility(event: MouseEvent) {
-    event.preventDefault();  // Impede o envio do formulário
-    this.hide = !this.hide;  // Alterna a visibilidade da senha
+    event.preventDefault(); 
+    this.hide = !this.hide;  
   }
 
   private createFormData(): FormGroup {
@@ -52,10 +50,6 @@ export class LoginComponent implements OnInit {
     this.createFormData();
   }
 
-  // ngAfterViewInit(): void {
-  //   throw new Error('Method not implemented.');
-  // }
-
   public getErrorMessage(): String {
     if (this.formData.get('email')!.hasError('required')) {
       return 'Você deve inserir um valor';
@@ -68,7 +62,7 @@ export class LoginComponent implements OnInit {
 
     this.serviceAuth.authenticate(this.formData.value).subscribe(async resposta => {
       if (this.serviceAuth.isAuthenticated()) {
-        // this.openDialogSnackBar('Auth');
+ 
         let data =  new DataUtilsIds;
         data.usuarioId = parseInt(this.serviceAuth.returnUserId()!);
         this.usuariosService.findById(data.usuarioId).subscribe( user => {
