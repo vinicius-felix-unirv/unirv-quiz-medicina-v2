@@ -35,7 +35,6 @@ export class HomeComponent {
   value = 'Insirir pergunta'
 
   menu: MenuItem[] = [
-    { menuIcon: "fa-solid fa-house", menuName: "Home", menuUrl: "home", roleUser: [1, 2, 3] },
     { menuIcon: "fa-solid fa-play", menuName: "Play", menuUrl: "home/quiz-screen", roleUser: [1, 2, 3] },
     { menuIcon: "fa-solid fa-user", menuName: "Ranking", menuUrl: "home/ranking", roleUser: [1, 2, 3] },
     { menuIcon: "fa-solid fa-bars", menuName: "Quiz", menuUrl: "home/tela-criacao-quiz", roleUser: [1, 2] },
