@@ -10,29 +10,30 @@ import { PerguntanivelService } from 'src/app/services/perguntanivel/perguntaniv
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
 
-
 @Component({
   selector: 'app-tela-perguntas',
   templateUrl: './tela-perguntas.component.html',
   styleUrls: ['./tela-perguntas.component.css']
 })
 export class TelaPerguntasComponent implements OnInit {
-
   listaPerguntas!: Pergunta[];
   alternativasByPergunta$!: Observable<Alternativa[]>;
-  perguntaAtual!: Pergunta | null;
+  perguntaAtual: Pergunta | null = null;
   contadorPergunta: number = 0;
   layout: boolean = false;
+  confirmar_continuar = true;
   alternativaCorreta: number = 0;
   alternativaEscolhida: number = 0;
-  qtdTentativas: number = 0;
   pontuacao: number = 0;
+  tempoRestante: number = 0;
 
   userId!: number;
   quizId!: number;
   categoriaId!: number;
   skip: number = 0;
   take: number = 3;
+  alternativaErrada: number = 0;
+  shakeAlternativaId: number | null = null;
 
   constructor(
     private perguntasService: PerguntaService,
@@ -41,83 +42,89 @@ export class TelaPerguntasComponent implements OnInit {
     private alternativasService: AlternativasService,
     private perguntasNivel: PerguntanivelService,
     private dataUtilsService: DataUtilsService<DataUtilsIds>
-  ) {
-
-  }
+  ) {}
 
   ngOnInit(): void {
-
     this.dataUtilsService.getData().subscribe(data => {
       this.userId = data?.usuarioId!;
       this.categoriaId = data?.categoriaId!;
       this.quizId = data?.quizId!;
+      this.carregarPerguntas();
     });
-    this.perguntaAtual = null;
+  }
+
+  carregarPerguntas(): void {
     this.perguntasService.getAllPerguntasQuizByCategoria(this.userId, this.quizId, this.categoriaId, this.skip, this.take).subscribe(perguntas => {
-      if(!perguntas.length) {
+      if (!perguntas.length) {
         this.trocarLayout();
         return;
       }
       this.listaPerguntas = perguntas;
-      this.perguntaAtual = perguntas[0];
-      this.alternativasByPergunta$ = this.alternativasService.getAllAlternativasByPerguntaId(perguntas[0].id!);
-      this.alternativasByPergunta$.subscribe(al => al.forEach( x => {
-        if(x.correta === true){
-          this.alternativaCorreta = x.id!;
-          return;
-        }
-      }));
-      this.perguntasNivel.findById(this.perguntaAtual?.perguntasnivelid).subscribe(p => {
-        this.pontuacao = p.pontuacao;
-      });
+      this.carregarPerguntaDaVez();
     });
+  }
+
+  carregarPerguntaDaVez(): void {
+    if (this.listaPerguntas.length === 0) {
+      this.trocarLayout();
+      return;
+    }
+
+    this.perguntaAtual = this.listaPerguntas[this.contadorPergunta];
+    this.tempoRestante = this.perguntaAtual.tempo ?? 0;
+    
+    this.alternativasByPergunta$ = this.alternativasService.getAllAlternativasByPerguntaId(this.perguntaAtual.id!);
+    this.alternativasByPergunta$.subscribe(alternativas => {
+      const correta = alternativas.find(x => x.correta);
+      if (correta) {
+        this.alternativaCorreta = correta.id!;
+      }
+    });
+
+    this.perguntasNivel.findById(this.perguntaAtual.perguntasnivelid!).subscribe(p => {
+      this.pontuacao = p.pontuacao;
+    });
+
+    // this.startTimer();
+  }
+
+  startTimer(): void {
+    const timerInterval = setInterval(() => {
+      if (this.tempoRestante > 0) {
+        this.tempoRestante--;
+      } else {
+        clearInterval(timerInterval);
+        this.finalizarPergunta(false);
+      }
+    }, 1000);
   }
 
   getAllAlternativas(perguntaId: number): void {
     this.alternativasByPergunta$ = this.alternativasService.getAllAlternativasByPerguntaId(perguntaId);
-    this.alternativasByPergunta$.subscribe(al => al.forEach( x => {
-      if(x.correta === true){
-        this.alternativaCorreta = x.id!;
-        return;
+    this.alternativasByPergunta$.subscribe(alternativas => {
+      const correta = alternativas.find(x => x.correta);
+      if (correta) {
+        this.alternativaCorreta = correta.id!;
       }
-    }));
+    });
   }
 
   proximaPergunta(): void {
-
     this.alternativaEscolhida = 0;
     this.alternativaCorreta = 0;
-    this.qtdTentativas = 0;
     this.perguntaAtual = null;
-    if(this.contadorPergunta  == this.take - 1) {
-      this.perguntasService.getAllPerguntasQuizByCategoria(this.userId, this.quizId, this.categoriaId, this.skip, this.take).subscribe(perguntas => {
-        this.listaPerguntas = perguntas;
-        this.contadorPergunta = 0;
-        this.carregarPerguntaDaVez();
-        console.log(perguntas);
-      });
-    }else{
+
+    if (this.contadorPergunta >= this.listaPerguntas.length - 1) {
+      this.carregarPerguntas();
+      this.contadorPergunta = 0;
+    } else {
       this.contadorPergunta += 1;
       this.carregarPerguntaDaVez();
     }
   }
 
-  carregarPerguntaDaVez(): void {
-
-    if(!this.listaPerguntas[this.contadorPergunta]){
-      this.trocarLayout();
-      return;
-    }
-    this.perguntaAtual = this.listaPerguntas[this.contadorPergunta];
-    this.perguntasNivel.findById(this.perguntaAtual?.perguntasnivelid).subscribe(p => {
-      this.pontuacao = p.pontuacao;
-    });
-    this.getAllAlternativas(this.perguntaAtual.id!);
-
-  }
-
-  trocarLayout(){
-    this.layout = !this.layout;
+  trocarLayout(): void {
+    this.layout = true;
   }
 
   addNewProgresso(): Promise<void> {
@@ -129,55 +136,38 @@ export class TelaPerguntasComponent implements OnInit {
     });
   }
 
-  addPontuacao(): Promise<void> {
-    return new Promise<void>((resolve, reject) => {
-      this.usuarioService.addPontuacao(this.calcPontuacao(this.qtdTentativas), this.userId).subscribe({
-        next: () => resolve(),
-        error: (err) => reject(err)
-      });
-    });
-  }
 
-  onSelect(id: number): void{
+  onSelect(id: number): void {
     this.alternativaEscolhida = id;
-    this.qtdTentativas++;
-  }
-
-  calcPontuacao(qtdTentativas: number): number {
-    let valorPorcentagem = 0;
-    switch (qtdTentativas) {
-      case 1:
-        return this.pontuacao;
-      case 2:
-        valorPorcentagem = 20;
-        break;
-      case 3:
-        valorPorcentagem = 40;
-        break;
-      case 4:
-        valorPorcentagem = 60;
-        break;
-      case 5:
-        valorPorcentagem = 80;
-        break;
-      default:
-        valorPorcentagem = 80;
-    }
-
-    return this.pontuacao - ((this.pontuacao * valorPorcentagem)/ 100);
   }
 
   async checkAcerto(): Promise<void> {
-    if(this.alternativaEscolhida === this.alternativaCorreta){
-
+    this.confirmar_continuar = !this.confirmar_continuar;
+    if (this.alternativaEscolhida === this.alternativaCorreta) {
+      console.log('acertouu');
+      this.shakeAlternativaId = this.alternativaCorreta;
       await Promise.all([
         this.addNewProgresso(),
-        this.addPontuacao()
       ]);
+    } else {
+      console.log('errou');
+      this.alternativaErrada = this.alternativaEscolhida;
+      this.shakeAlternativaId = this.alternativaCorreta;
+      await this.addNewProgresso();
+    }
+  }
 
-      this.pontuacao = 0;
-      this.proximaPergunta();
+  continuar(): void {
+    this.shakeAlternativaId = null;
+    this.alternativaErrada = 0;
+    this.proximaPergunta();
+    this.confirmar_continuar = !this.confirmar_continuar;
+  }
+
+  finalizarPergunta(acertou: boolean): void {
+    if (!acertou) {
+      this.confirmar_continuar = !this.confirmar_continuar;
+      this.shakeAlternativaId = this.alternativaCorreta; // Define a alternativa correta para o shake
     }
   }
 }
-
