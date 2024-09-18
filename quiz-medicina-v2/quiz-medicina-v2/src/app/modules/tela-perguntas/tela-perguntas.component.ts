@@ -9,6 +9,7 @@ import { Observable } from 'rxjs';
 import { PerguntanivelService } from 'src/app/services/perguntanivel/perguntanivel.service';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-tela-perguntas',
@@ -26,6 +27,7 @@ export class TelaPerguntasComponent implements OnInit {
   alternativaEscolhida: number = 0;
   pontuacao: number = 0;
   tempoRestante: number = 0;
+  timerInterval: any;
 
   userId!: number;
   quizId!: number;
@@ -41,7 +43,8 @@ export class TelaPerguntasComponent implements OnInit {
     private usuarioService: UsuarioService,
     private alternativasService: AlternativasService,
     private perguntasNivel: PerguntanivelService,
-    private dataUtilsService: DataUtilsService<DataUtilsIds>
+    private dataUtilsService: DataUtilsService<DataUtilsIds>,
+    private router: Router
   ) {}
 
   ngOnInit(): void {
@@ -85,16 +88,15 @@ export class TelaPerguntasComponent implements OnInit {
       this.pontuacao = p.pontuacao;
     });
 
-    // this.startTimer();
+    this.startTimer();
   }
 
   startTimer(): void {
-    const timerInterval = setInterval(() => {
+    this.timerInterval = setInterval(async () => {
       if (this.tempoRestante > 0) {
         this.tempoRestante--;
       } else {
-        clearInterval(timerInterval);
-        this.finalizarPergunta(false);
+        await this.finalizarPergunta(false);
       }
     }, 1000);
   }
@@ -143,18 +145,19 @@ export class TelaPerguntasComponent implements OnInit {
 
   async checkAcerto(): Promise<void> {
     this.confirmar_continuar = !this.confirmar_continuar;
+    clearInterval(this.timerInterval);
+
     if (this.alternativaEscolhida === this.alternativaCorreta) {
       console.log('acertouu');
       this.shakeAlternativaId = this.alternativaCorreta;
-      await Promise.all([
-        this.addNewProgresso(),
-      ]);
+      // colocar aqui para add pontuação;
     } else {
       console.log('errou');
       this.alternativaErrada = this.alternativaEscolhida;
       this.shakeAlternativaId = this.alternativaCorreta;
-      await this.addNewProgresso();
     }
+
+    this.addNewProgresso()
   }
 
   continuar(): void {
@@ -164,10 +167,14 @@ export class TelaPerguntasComponent implements OnInit {
     this.confirmar_continuar = !this.confirmar_continuar;
   }
 
-  finalizarPergunta(acertou: boolean): void {
+  async finalizarPergunta(acertou: boolean): Promise<void> {
     if (!acertou) {
-      this.confirmar_continuar = !this.confirmar_continuar;
+      await this.checkAcerto();
       this.shakeAlternativaId = this.alternativaCorreta; // Define a alternativa correta para o shake
     }
+  }
+
+  redirect(): void {
+    this.router.navigate(["/home/category-screen"]);
   }
 }
