@@ -138,6 +138,14 @@ export class TelaPerguntasComponent implements OnInit {
     });
   }
 
+  addPontuacao(): Promise<void> {
+    return new Promise<void>((resolve, reject) => {
+      this.usuarioService.addPontuacao(this.pontuacao, this.userId).subscribe({
+        next: () => resolve(),
+        error: (err) => reject(err)
+      });
+    });
+  }
 
   onSelect(id: number): void {
     this.alternativaEscolhida = id;
@@ -148,16 +156,16 @@ export class TelaPerguntasComponent implements OnInit {
     clearInterval(this.timerInterval);
 
     if (this.alternativaEscolhida === this.alternativaCorreta) {
-      console.log('acertouu');
       this.shakeAlternativaId = this.alternativaCorreta;
-      // colocar aqui para add pontuação;
+      await this.addPontuacao();
+
     } else {
-      console.log('errou');
       this.alternativaErrada = this.alternativaEscolhida;
       this.shakeAlternativaId = this.alternativaCorreta;
     }
-
-    this.addNewProgresso()
+    
+    this.pontuacao = 0;
+    await this.addNewProgresso()
   }
 
   continuar(): void {
