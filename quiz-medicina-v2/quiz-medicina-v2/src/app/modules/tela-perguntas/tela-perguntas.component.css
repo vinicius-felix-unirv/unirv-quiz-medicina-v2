@@ -83,7 +83,7 @@ input[type="radio"] {
 .incorrect {
   border-color: #d31b0e !important;
   background-color: #ffffff;
-  color: #d31b0e;
+  color: #d31b0e !important;
 }
 
 .shake {

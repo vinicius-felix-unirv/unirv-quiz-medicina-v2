@@ -18,7 +18,7 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Senha</mat-label>
-          <input matInput [type]="hide ? 'password' : 'text'" formControlName="senha">
+          <input (keydown.enter)="onSubmit()" matInput [type]="hide ? 'password' : 'text'" formControlName="senha">
           <mat-error *ngIf="formData.get('senha')!.invalid">{{"senha é um campo obrigatorio"}}</mat-error>
           <button mat-icon-button matSuffix (click)="togglePasswordVisibility($event)" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hide">
@@ -33,7 +33,7 @@
 
       <div id="submit-container">
         <button mat-flat-button class="submit-button" [disabled]="this.formData.invalid"
-          (click)="onSubmit()">Entrar</button>
+         (click)="onSubmit()">Entrar</button>
       </div>
 
       <div id="button-img">
