@@ -5,7 +5,7 @@ import { UsuarioService } from 'src/app/services/usuario/usuario.service';
 import { Pergunta } from 'src/app/models/pergunta';
 import { Alternativa } from 'src/app/models/alternativa';
 import { AlternativasService } from 'src/app/services/alternativas/alternativas.service';
-import { Observable } from 'rxjs';
+import { Observable, Subject, takeUntil } from 'rxjs';
 import { PerguntanivelService } from 'src/app/services/perguntanivel/perguntanivel.service';
 import { DataUtilsService } from 'src/app/services/dados/dataUtils.service';
 import { DataUtilsIds } from 'src/app/models/dataUtils';
@@ -37,6 +37,8 @@ export class TelaPerguntasComponent implements OnInit {
   alternativaErrada: number = 0;
   shakeAlternativaId: number | null = null;
 
+  private destroy$ = new Subject<void>();
+
   constructor(
     private perguntasService: PerguntaService,
     private progressoService: ProgressoPerguntasService,
@@ -48,7 +50,9 @@ export class TelaPerguntasComponent implements OnInit {
   ) {}
 
   ngOnInit(): void {
-    this.dataUtilsService.getData().subscribe(data => {
+    this.dataUtilsService.getData().pipe(
+      takeUntil(this.destroy$)  // Adiciona o controle de ciclo de vida
+    ).subscribe(data => {
       this.userId = data?.usuarioId!;
       this.categoriaId = data?.categoriaId!;
       this.quizId = data?.quizId!;
@@ -57,7 +61,9 @@ export class TelaPerguntasComponent implements OnInit {
   }
 
   carregarPerguntas(): void {
-    this.perguntasService.getAllPerguntasQuizByCategoria(this.userId, this.quizId, this.categoriaId, this.skip, this.take).subscribe(perguntas => {
+    this.perguntasService.getAllPerguntasQuizByCategoria(this.userId, this.quizId, this.categoriaId, this.skip, this.take).pipe(
+      takeUntil(this.destroy$)  // Adiciona o controle de ciclo de vida
+    ).subscribe(perguntas => {
       if (!perguntas.length) {
         this.trocarLayout();
         return;
@@ -77,14 +83,18 @@ export class TelaPerguntasComponent implements OnInit {
     this.tempoRestante = this.perguntaAtual.tempo ?? 0;
     
     this.alternativasByPergunta$ = this.alternativasService.getAllAlternativasByPerguntaId(this.perguntaAtual.id!);
-    this.alternativasByPergunta$.subscribe(alternativas => {
+    this.alternativasByPergunta$.pipe(
+      takeUntil(this.destroy$)  // Adiciona o controle de ciclo de vida
+    ).subscribe(alternativas => {
       const correta = alternativas.find(x => x.correta);
       if (correta) {
         this.alternativaCorreta = correta.id!;
       }
     });
 
-    this.perguntasNivel.findById(this.perguntaAtual.perguntasnivelid!).subscribe(p => {
+    this.perguntasNivel.findById(this.perguntaAtual.perguntasnivelid!).pipe(
+      takeUntil(this.destroy$)  // Adiciona o controle de ciclo de vida
+    ).subscribe(p => {
       this.pontuacao = p.pontuacao;
     });
 
@@ -101,15 +111,15 @@ export class TelaPerguntasComponent implements OnInit {
     }, 1000);
   }
 
-  getAllAlternativas(perguntaId: number): void {
-    this.alternativasByPergunta$ = this.alternativasService.getAllAlternativasByPerguntaId(perguntaId);
-    this.alternativasByPergunta$.subscribe(alternativas => {
-      const correta = alternativas.find(x => x.correta);
-      if (correta) {
-        this.alternativaCorreta = correta.id!;
-      }
-    });
-  }
+  // getAllAlternativas(perguntaId: number): void {
+  //   this.alternativasByPergunta$ = this.alternativasService.getAllAlternativasByPerguntaId(perguntaId);
+  //   this.alternativasByPergunta$.subscribe(alternativas => {
+  //     const correta = alternativas.find(x => x.correta);
+  //     if (correta) {
+  //       this.alternativaCorreta = correta.id!;
+  //     }
+  //   });
+  // }
 
   proximaPergunta(): void {
     this.alternativaEscolhida = 0;
@@ -184,5 +194,11 @@ export class TelaPerguntasComponent implements OnInit {
 
   redirect(): void {
     this.router.navigate(["/home/category-screen"]);
+  }
+
+  ngOnDestroy(): void {
+    this.destroy$.next();
+    this.destroy$.complete();
+    clearInterval(this.timerInterval);  // Para o timer quando o componente for destruído
   }
 }
