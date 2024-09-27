@@ -1,0 +1,17 @@
+<div class="container">
+  <!-- Componente base para exibição de quiz -->
+  <app-categoria-quiz-base
+    [Titulo]="titulo"
+    [dataToView]="quiz"
+    [redirect]="redirectForQuiz"
+    [dataUtils]="dataUtils"
+  ></app-categoria-quiz-base>
+
+  <!-- Botão para abrir o diálogo de criação de quiz -->
+  <div class="add-quiz-container">
+    <button class="add-quiz-button" (click)="openDialog()">
+      <i class="fa-solid fa-plus"></i>
+      Adicionar Quiz
+    </button>
+  </div>
+</div>

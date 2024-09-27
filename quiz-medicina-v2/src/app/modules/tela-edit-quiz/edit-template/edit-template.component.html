@@ -1,0 +1,27 @@
+<div class="container">
+  <div class="header">
+    <div class="back-button-container">
+      <button class="back-button" (click)="goBack()">
+        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+      </button>
+    </div>
+    <p>{{titulo}}</p>
+    <div class="data-count">{{dataForEdit.length}} items</div>
+    <button class="create-button" (click)="openDialog()">Criar</button>
+  </div>
+
+  <div *ngIf="dataForEdit.length > 0">
+    <ul class="data-list">
+      <li *ngFor="let data of dataForEdit" (click)="redirect(data.dataOfRequest.id!)">
+        <img class="imagem" *ngIf="data.dataOfRequest.imagem" src="../../../../assets/anatomia.png" alt="Imagem">
+        <div class="data-content">
+          {{data.dataOfRequest.descricao ? data.dataOfRequest.descricao : data.dataOfRequest.conteudo}}
+        </div>
+      </li>
+    </ul>
+  </div>
+
+  <div *ngIf="dataForEdit.length == 0" class="image-default">
+    <p>Nenhum item disponível</p>
+  </div>
+</div>

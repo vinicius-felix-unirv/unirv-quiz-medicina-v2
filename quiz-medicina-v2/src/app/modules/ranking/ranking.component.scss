@@ -1,0 +1,179 @@
+.ranking-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 20px;
+  box-sizing: border-box;
+  width: 90vw;  /* Ocupa toda a largura da viewport */
+  height: 100vh
+}
+
+.podium {
+  display: flex;
+  justify-content: center;
+  align-items: flex-end; // Alinha os pódios na parte inferior
+  gap: 1rem;
+  width: 100%;
+  max-width: 1000px;
+  margin-bottom: 20px;
+}
+
+.podium-item {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  text-align: center;
+  font-weight: bold;
+  background-color: #fff;
+  border-radius: 1rem;
+  padding: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  width: 120px;
+  height: 200px; // Altura padrão
+  position: relative;
+  transition: transform 0.3s ease;
+
+  &-first {
+    height: 250px; // Pódio maior para o primeiro lugar
+    z-index: 3;
+    margin: 0 20px; 
+    transform: scale(1.05); 
+  }
+
+  &-second {
+    height: 200px;
+    z-index: 2;
+    transform: scale(1.05);
+  }
+
+  &-third {
+    height: 150px;
+    z-index: 1;
+    transform: scale(1.05);
+  }
+}
+
+.podium-img {
+  border: 2px solid #e74c3c;
+  border-radius: 50%;
+  padding: 2px;
+  transition: width 0.3s ease, height 0.3s ease;
+
+  &-first {
+    width: 100px;
+    height: 100px;
+  }
+
+  &-second {
+    width: 80px;
+    height: 80px;
+  }
+
+  &-third {
+    width: 60px;
+    height: 60px;
+  }
+}
+
+.crown {
+  position: absolute;
+  top: -30px;
+  animation: elevation 1s infinite;
+}
+
+@keyframes elevation {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.2); }
+  100% { transform: scale(1); }
+}
+
+.rank-list {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  width: 100%;
+  max-width: 600px;
+}
+
+.rank-item {
+  display: flex;
+  align-items: center;
+  border-radius: 8px;
+  padding: 10px;
+  margin-bottom: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  width: 100%;
+  transition: background-color 0.3s ease;
+
+  &:hover {
+    background-color: #f8f8f8;
+  }
+}
+
+.ranking-image {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  margin-right: 10px;
+  transition: width 0.3s ease, height 0.3s ease;
+
+  &.ranking-image-center {
+    width: 50px;
+    height: 50px;
+    border: 2px solid #e74c3c;
+  }
+}
+
+.rank-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.rank-name {
+  font-weight: bold;
+  font-size: 14px;
+}
+
+.rank-score {
+  color: #555;
+  font-size: 12px;
+}
+
+.position {
+  font-weight: bold;
+  font-size: 14px;
+  color: #e74c3c;
+  margin-bottom: 5px;
+}
+
+@media only screen and (max-width: 768px) {
+ 
+
+  .podium-item {
+    width: 100%;
+    max-width: 300px;
+    margin: 0; // Remove o espaçamento lateral
+  }
+
+  .podium-img {
+    width: 60px;
+    height: 60px;
+  }
+
+ s
+  .podium-item-third {
+    height: 150px;
+  }
+
+  .rank-item {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .ranking-image {
+    width: 30px;
+    height: 30px;
+  }
+}

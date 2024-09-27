@@ -1,0 +1,34 @@
+<div class="container">
+  <!-- Componente para edição de perguntas -->
+  <app-edit-template
+    [titulo]="titulo"
+    [dataForEdit]="dataForEdit"
+    [redirect]="redirectForPerguntas"
+    [dataUtils]="dataUtils"
+    [goBack]="goBack"
+    [take]="take"
+    [component]="component"
+    [onDialogClosed]="loadPerguntas.bind(this)"
+  ></app-edit-template>
+
+  <!-- Contêiner para botões de navegação -->
+  <div class="navigation-buttons">
+    <button class="navigate-button advance" (click)="advancePage()">
+      <i class="fa-solid fa-arrow-right"></i>
+      Avançar para próxima página
+    </button>
+
+    <button class="navigate-button return" (click)="returnPage()">
+      <i class="fa-solid fa-arrow-left"></i>
+      Voltar para página anterior
+    </button>
+  </div>
+
+  <!-- Botão para retornar à tela anterior -->
+  <div class="back-button-container">
+    <button class="back-button" (click)="goBack()">
+      <i class="fa-solid fa-arrow-left"></i>
+      Voltar à tela anterior
+    </button>
+  </div>
+</div>

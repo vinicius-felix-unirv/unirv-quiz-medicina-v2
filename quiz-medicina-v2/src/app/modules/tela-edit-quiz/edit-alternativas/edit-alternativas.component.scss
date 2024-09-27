@@ -1,0 +1,86 @@
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1); // Adiciona uma sombra para destaque
+    border-radius: 8px; // Adiciona bordas arredondadas
+  }
+  
+  // Grupo de botões de navegação
+  .button-group {
+    display: flex;
+    justify-content: space-between;
+    width: 100%;
+    max-width: 600px;
+    margin-top: 20px;
+  
+    .button-container {
+      flex: 1;
+      margin: 0 10px;
+    }
+  }
+  
+  // Botão de navegação
+  .navigate-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    
+    // Estilo geral dos botões
+    &:hover {
+      background-color: darken(#007bff, 10%); // Escurece a cor de fundo para hover
+      transform: translateY(-2px);
+      box-shadow: 0 6px 12px rgba(0, 0, 0, 0.2); // Adiciona sombra para efeito de elevação
+    }
+  
+    &:focus {
+      outline: none;
+      box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.5); // Adiciona destaque ao foco
+    }
+  
+    i {
+      margin-right: 8px;
+    }
+  
+    &.return {
+      background-color: #ff5722; // Laranja para o botão de voltar
+    }
+  
+    &.advance {
+      background-color: #4caf50; // Verde para o botão de avançar
+    }
+  }
+  
+  // Responsividade para dispositivos móveis
+  @media (max-width: 768px) {
+    .button-group {
+      flex-direction: column;
+      align-items: center;
+    }
+  
+    .button-container {
+      margin: 10px 0;
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .navigate-button {
+      padding: 10px 18px;
+      font-size: 0.9rem;
+  
+      i {
+        margin-right: 6px;
+      }
+    }
+  }

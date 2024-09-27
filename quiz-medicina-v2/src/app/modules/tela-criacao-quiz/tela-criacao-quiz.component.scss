@@ -1,0 +1,81 @@
+// tela-criacao-quiz.component.scss
+
+// Container principal
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+  }
+  
+  // Contêiner do botão de adicionar quiz
+  .add-quiz-container {
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+  }
+  
+  // Botão de adicionar quiz
+  .add-quiz-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 12px 24px;
+    font-size: 1rem;
+    font-weight: 600;
+    color: #fff;
+    background-color: #007bff; // Azul padrão
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+  
+    i {
+      margin-right: 8px;
+    }
+  
+    &:hover {
+      background-color: #0056b3; // Azul escuro para hover
+      transform: translateY(-2px);
+    }
+  
+    &:focus {
+      outline: none;
+    }
+  }
+  
+  // Responsividade para dispositivos móveis
+  @media (max-width: 768px) {
+    .container {
+      padding: 15px;
+    }
+  
+    .add-quiz-button {
+      padding: 10px 20px;
+      font-size: 0.9rem;
+      border-radius: 4px;
+  
+      i {
+        margin-right: 6px;
+      }
+    }
+  }
+  
+  @media (max-width: 480px) {
+    .container {
+      padding: 10px;
+    }
+  
+    .add-quiz-button {
+      padding: 8px 16px;
+      font-size: 0.8rem;
+      border-radius: 3px;
+  
+      i {
+        margin-right: 4px;
+      }
+    }
+  }
+  

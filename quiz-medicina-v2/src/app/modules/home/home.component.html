@@ -1,0 +1,41 @@
+<div class="container">
+  <!-- Sidebar -->
+  <div class="sidebar" [ngClass]="{'open': isSidebarOpen}">
+    <nav class="nav">
+      <ul>
+        <li *ngFor="let item of menu" (click)="redirect(item)">
+          <i class="{{ item.menuIcon }}"></i>
+          <a>{{ item.menuName }}</a>
+        </li>
+      </ul>
+    </nav>
+
+    <footer>
+      <div class="containerBTN" (click)="logout()">
+        <i class="fa-solid fa-sign-out-alt"></i>
+        <a>Sair</a>
+      </div>
+    </footer>
+  </div>
+
+  <!-- Main Content -->
+  <div class="main" [ngClass]="{'sidebar-open': isSidebarOpen}">
+    <div class="header">
+      <!-- Botão de abrir/fechar fora do sidebar -->
+      <button (click)="toggleSidebar()" [ngClass]="{'open': isSidebarOpen}">&#9776;</button>
+
+      <!-- Logo dentro do header com funcionalidade de clique -->
+      <div class="logo" (click)="goToHome()">
+        <img src="assets/Logo UniRV_Prancheta 1 cópia 4.png" alt="Logo">
+      </div>
+
+      <div class="perfil-img">
+        <img src="../../../assets/perfil-img.png" alt="Perfil">
+      </div>
+    </div>
+
+    <div class="content">
+      <router-outlet></router-outlet>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,52 @@
+<div class="container">
+  <div class="question-container" *ngIf="perguntaAtual != null">
+    <div *ngIf="alternativasByPergunta$ | async as alternativas">
+
+      <div class="temporizador" *ngIf="tempoRestante !== undefined && perguntaAtual?.tempo">
+        <div class="barra-progresso" [style.width.%]="(tempoRestante / (perguntaAtual?.tempo ?? 1)) * 100"></div>
+      </div>
+
+      <div class="question-content">
+        <div>{{ perguntaAtual.conteudo }}</div>
+        <img src="./src/assets/anatomia.png" alt="" *ngIf="perguntaAtual.pathimage != null" class="responsive-image">
+      </div>
+      
+      <ul>
+        <li *ngFor="let alternativa of alternativas">
+          <label class="alternativa-label">
+            <div 
+              (click)="onSelect(alternativa.id!)"
+              [ngClass]="{
+                'alternativa-box': true,
+                'selected': alternativa.id === alternativaEscolhida,
+                'incorrect': alternativa.id === alternativaErrada,
+                'shake': alternativa.id === shakeAlternativaId && alternativa.imagem == null
+              }"
+            >
+              {{ alternativa.conteudo }}
+              <img *ngIf="alternativa.imagem != null" src="./assets/anatomia.png" alt="" class="responsive-image">
+            </div>
+          </label>
+        </li>
+      </ul>
+
+      <div *ngIf="confirmar_continuar" class="button-container">
+        <button class="confirm-button" (click)="checkAcerto()">Verificar</button>
+      </div>
+
+      <div *ngIf="!confirmar_continuar" class="button-container">
+        <button class="confirm-button" (click)="continuar()">Continuar</button>
+      </div>
+      
+    </div>
+  </div>
+
+  <div *ngIf="layout">
+    <img src="/src/assets/farmacologia.png" alt="" class="responsive-image">
+    <h1>As perguntas acabaram</h1>
+
+    <div class="button-container">
+      <button class="confirm-button" (click)="redirect()">Voltar</button>
+    </div>
+  </div>
+</div>

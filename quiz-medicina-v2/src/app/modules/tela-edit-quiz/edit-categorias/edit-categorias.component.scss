@@ -1,0 +1,144 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  gap: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+ 
+  min-height: 100vh;
+ 
+}
+
+.box {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 20px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  transition: box-shadow 0.3s ease;
+}
+
+.box:hover {
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+
+.navigate-button {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  border-radius: 8px;
+  color: #fff;
+  padding: 12px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  font-weight: bold;
+  text-align: center;
+  position: relative;
+
+  i {
+    margin-right: 8px;
+    font-size: 18px;
+  }
+
+  &.advance {
+    background-color: #007bff;
+
+    &:hover {
+      background-color: #0056b3;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(0, 123, 255, 0.3);
+    }
+  }
+
+  &.return {
+    background-color: #28a745;
+
+    &:hover {
+      background-color: #218838;
+      transform: translateY(-2px);
+      box-shadow: 0 4px 12px rgba(40, 167, 69, 0.3);
+    }
+  }
+}
+
+.back-button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 20px;
+}
+
+.back-button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: #6c757d;
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 12px 24px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+  font-weight: bold;
+
+  i {
+    margin-right: 10px;
+    font-size: 20px;
+  }
+
+  &:hover {
+    background-color: #5a6268;
+    transform: translateY(-2px);
+    box-shadow: 0 4px 12px rgba(108, 117, 125, 0.3);
+  }
+}
+
+@media (max-width: 768px) {
+  .button-group {
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .navigate-button {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+
+  .back-button {
+    width: 100%;
+    font-size: 14px;
+    padding: 10px 20px;
+  }
+
+  .navigate-button.return {
+    display: none;
+  }
+}
+
+@media (min-width: 769px) {
+  .button-group {
+    flex-direction: row;
+  }
+
+  .navigate-button {
+    width: auto;
+    font-size: 16px;
+    padding: 12px 20px;
+  }
+
+  .back-button {
+    font-size: 18px;
+    padding: 12px 24px;
+  }
+}
