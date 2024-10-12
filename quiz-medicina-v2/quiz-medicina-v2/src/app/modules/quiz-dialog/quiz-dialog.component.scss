@@ -1,28 +1,36 @@
 .container {
   border-radius: 12px;
-
   padding: 2.5rem 6rem 2rem;
+  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 100%;
+  box-sizing: border-box;
 
   .content {
-    width: 350px;
-    height: 430px;
-    // border: 1px solid blue;
+    width: 100%; /* Mudar para 100% para melhor responsividade */
+    max-width: 350px; /* Definindo uma largura máxima */
+    height: auto;
+    display: flex;
+    flex-direction: column;
 
     h1 {
       font-weight: 700;
       font-size: 30px;
       margin-bottom: 15px;
+      text-align: center; /* Centraliza o título */
     }
 
     form {
       display: flex;
       flex-direction: column;
+      gap: 20px;
 
       h2 {
         margin: 0;
         font-weight: 700;
         font-size: 25px;
         margin-bottom: 5px;
+        text-align: left; /* Alinhamento para h2 */
       }
 
       .inputImage {
@@ -38,7 +46,6 @@
           align-items: center;
           justify-content: center;
           gap: 10px;
-
           font-weight: 700;
           font-size: 20px;
           color: var(--gray-lite);
@@ -56,23 +63,8 @@
       }
 
       .mat-mdc-text-field-wrapper {
-        width: 350px;
+        width: 100%;
         height: 45px;
-      }
-
-      .mdc-text-field {
-        align-items: center;
-      }
-
-      .mdc-floating-label {
-        top: 50%;
-      }
-
-      .mat-mdc-text-field-wrapper.mdc-text-field--outlined
-        .mdc-notched-outline--upgraded
-        .mdc-floating-label--float-above {
-        --mat-mdc-form-field-label-transform: translateY(-28px)
-          scale(var(--mat-mdc-form-field-floating-label-scale, 0.75));
       }
 
       .inputType {
@@ -81,24 +73,21 @@
 
         li {
           list-style-type: none;
-          // border: 1px solid red;
           display: flex;
           align-items: center;
           gap: 4px;
-
           padding-left: 10px;
 
           input {
             width: 14px;
             height: 14px;
-            // color: red;
           }
         }
       }
 
       #submit-btn {
         .mat-mdc-unelevated-button {
-          width: 350px;
+          width: 100%;
           height: 45px;
         }
 
@@ -109,6 +98,88 @@
         .mat-mdc-unelevated-button.mat-unthemed {
           --mdc-filled-button-container-color: var(--green);
           --mdc-filled-button-label-text-color: #fff;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 768px) {
+    padding: 2rem;
+
+    .content {
+      width: 100%; /* Certifique-se de que a largura é 100% */
+      max-width: 90%; /* Para garantir que não fique muito próximo das bordas */
+
+      .inputImage {
+        height: 120px; /* Dimensões ajustadas para mobile */
+
+        label {
+          font-size: 18px;
+        }
+
+        img {
+          width: 40px;
+          height: 40px;
+        }
+      }
+
+      .mat-mdc-text-field-wrapper {
+        width: 100%;
+      }
+
+      #submit-btn {
+        .mat-mdc-unelevated-button {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  @media screen and (max-width: 480px) {
+    padding: 1rem; 
+
+    .content {
+      width: 100%; 
+      height: auto; 
+
+      h1 {
+        font-size: 24px;
+      }
+
+      form {
+        gap: 15px; 
+
+        h2 {
+          font-size: 20px;
+        }
+
+        .inputImage {
+          height: 100px; 
+          margin-bottom: 15px; 
+
+          label {
+            font-size: 16px; 
+          }
+
+          img {
+            width: 30px;
+            height: 30px; 
+          }
+        }
+
+        .inputType {
+          margin-bottom: 30px;
+        }
+
+        #submit-btn {
+          .mat-mdc-unelevated-button {
+            width: 100%;
+            height: 40px; 
+          }
+
+          .mat-mdc-button-touch-target {
+            height: 40px;
+          }
         }
       }
     }

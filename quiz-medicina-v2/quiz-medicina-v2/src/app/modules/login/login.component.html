@@ -3,14 +3,15 @@
     <div class="container">
 
       <div id="img">
-        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcTcUpgClOXzl0qhIqggyLUtbzdwnSlsast9YUEnH6dyRw&s"
+        <img src="assets/Logo UniRV_Prancheta 1 cópia.png"
           class="img-class" alt="img">
       </div>
 
       <h1>Doctor <span id="title">UNIRV</span>erse Quiz</h1>
 
-      <form id="search-form" [formGroup]="formData" (submit)="onSubmit()">
-        <mat-form-field appearance="outline" #myFormField>
+      <!-- Form -->
+      <form id="search-form" [formGroup]="formData" (ngSubmit)="onSubmit()" (keydown.enter)="$event.preventDefault()">
+        <mat-form-field appearance="outline">
           <mat-label>Email</mat-label>
           <input matInput placeholder="pat@example.com" formControlName="email" required>
           <mat-error *ngIf="formData.get('email')!.invalid">{{getErrorMessage()}}</mat-error>
@@ -18,8 +19,8 @@
 
         <mat-form-field appearance="outline">
           <mat-label>Senha</mat-label>
-          <input (keydown.enter)="onSubmit()" matInput [type]="hide ? 'password' : 'text'" formControlName="senha">
-          <mat-error *ngIf="formData.get('senha')!.invalid">{{"senha é um campo obrigatorio"}}</mat-error>
+          <input matInput [type]="hide ? 'password' : 'text'" formControlName="senha" required>
+          <mat-error *ngIf="formData.get('senha')!.invalid">{{"Senha é obrigatória"}}</mat-error>
           <button mat-icon-button matSuffix (click)="togglePasswordVisibility($event)" [attr.aria-label]="'Hide password'"
             [attr.aria-pressed]="hide">
             <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
@@ -27,15 +28,17 @@
         </mat-form-field>
       </form>
 
+      <!-- Esqueceu a senha -->
       <div class="new-password">
         <button mat-raised-button (click)="openDialog()">Esqueceu a senha?</button>
       </div>
 
+      <!-- Entrar -->
       <div id="submit-container">
-        <button mat-flat-button class="submit-button" [disabled]="this.formData.invalid"
-         (click)="onSubmit()">Entrar</button>
+        <button mat-flat-button class="submit-button" [disabled]="this.formData.invalid" (click)="onSubmit()">Entrar</button>
       </div>
 
+      <!-- Login com Google -->
       <div id="button-img">
         <button mat-stroked-button>
           <svg xmlns="http://www.w3.org/2000/svg" x="0px" y="0px" width="25" height="25" viewBox="0 0 48 48">
@@ -56,6 +59,7 @@
         </button>
       </div>
 
+      <!-- Inscreva-se -->
       <div class="register">
         <span>não tem uma conta?</span>
         <a (click)="redirect()">inscreva-se</a>

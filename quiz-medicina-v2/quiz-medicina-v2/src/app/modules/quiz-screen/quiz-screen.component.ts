@@ -21,7 +21,7 @@ interface IDataToView{
 })
 export class QuizScreenComponent extends CategoriaQuizBaseComponent implements OnInit {
 
-  titulo: string = 'tela-Quiz';
+  titulo: string = 'Tela de Quiz';
   progressoAndQuiz!: IDataToView[];
 
   userId!: number;

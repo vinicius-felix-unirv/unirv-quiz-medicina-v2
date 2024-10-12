@@ -1,0 +1,100 @@
+// Container principal para o componente
+.container {
+    display: flex;
+    flex-direction: column;
+    padding: 20px;
+    gap: 20px;
+    background-color: #f8f9fa;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    min-height: 100vh; // Garante que o container ocupe pelo menos a altura total da tela
+  }
+  
+  // Contêiner para botões de navegação
+  .navigation-buttons {
+    display: flex;
+    justify-content: space-between;
+    gap: 20px;
+  }
+  
+  // Estilo dos botões de navegação
+  .navigate-button {
+    flex: 1;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: none;
+    border-radius: 8px;
+    color: #fff;
+    padding: 12px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+    text-align: center;
+  
+    i {
+      margin-right: 8px;
+      font-size: 18px;
+    }
+  
+    &.advance {
+      background-color: #007bff;
+  
+      &:hover {
+        background-color: #0056b3;
+        transform: scale(1.05);
+      }
+    }
+  
+    &.return {
+      background-color: #28a745;
+  
+      &:hover {
+        background-color: #218838;
+        transform: scale(1.05);
+      }
+    }
+  }
+  
+  // Estilo do botão de voltar
+  .back-button-container {
+    display: flex;
+    justify-content: center;
+    margin-top: 20px; // Adiciona espaçamento superior
+  }
+  
+  .back-button {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #6c757d;
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    padding: 12px 24px; // Aumenta o padding para tornar o botão mais proeminente
+    font-size: 18px; // Aumenta o tamanho da fonte para melhor legibilidade
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    font-weight: bold;
+  
+    i {
+      margin-right: 10px; // Aumenta o espaçamento entre o ícone e o texto
+      font-size: 20px; // Aumenta o tamanho do ícone para mais destaque
+    }
+  
+    &:hover {
+      background-color: #5a6268;
+      transform: scale(1.05);
+    }
+  }
+  
+  // Responsividade para dispositivos móveis
+  @media (max-width: 768px) {
+    .navigation-buttons {
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+    }
+  }
+  

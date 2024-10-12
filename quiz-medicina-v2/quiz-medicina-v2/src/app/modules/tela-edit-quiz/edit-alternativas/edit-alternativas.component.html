@@ -1,9 +1,29 @@
-<app-edit-template
-[titulo]="titulo"
-[dataForEdit]="dataForEdit"
-[dataUtils]="dataUtils"
-[goBack]="goBack"
-[component]="component"
-[redirect]="redirec"
-[onDialogClosed]="loadAlternativas.bind(this)"
-></app-edit-template>
+<div class="container">
+    <!-- Componente para edição de alternativas -->
+    <app-edit-template
+      [titulo]="titulo"
+      [dataForEdit]="dataForEdit"
+      [dataUtils]="dataUtils"
+      [goBack]="goBack"
+      [component]="component"
+      [redirect]="redirec"
+      [onDialogClosed]="loadAlternativas.bind(this)"
+    ></app-edit-template>
+  
+    <!-- Botões de navegação -->
+    <div class="button-group">
+      <div class="button-container">
+        <button class="navigate-button return" (click)="goBack()">
+          <i class="fa-solid fa-arrow-left"></i>
+          Voltar às Perguntas
+        </button>
+      </div>
+  
+      <div class="button-container">
+        <button class="navigate-button advance" (click)="redirec()">
+          <i class="fa-solid fa-arrow-right"></i>
+          Avançar para Revisão
+        </button>
+      </div>
+    </div>
+  </div>

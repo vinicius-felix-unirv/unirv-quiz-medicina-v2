@@ -1,12 +1,12 @@
 .container {
   border-radius: 12px;
-
   padding: 2.5rem 6rem 2rem;
 
   .content {
-    width: 350px;
-    height: 430px;
-    // border: 1px solid blue;
+    width: 100%; // Ajuste para a largura ser flexível
+    max-width: 350px; // Definindo um limite máximo para telas maiores
+    height: auto; // Para altura se ajustar ao conteúdo
+    margin: 0 auto; // Centraliza no mobile
 
     h1 {
       font-weight: 700;
@@ -56,7 +56,7 @@
       }
 
       .mat-mdc-text-field-wrapper {
-        width: 350px;
+        width: 100%; // Ajuste para preencher 100% da tela no mobile
         height: 45px;
       }
 
@@ -81,24 +81,21 @@
 
         li {
           list-style-type: none;
-          // border: 1px solid red;
           display: flex;
           align-items: center;
           gap: 4px;
-
           padding-left: 10px;
 
           input {
             width: 14px;
             height: 14px;
-            // color: red;
           }
         }
       }
 
       #submit-btn {
         .mat-mdc-unelevated-button {
-          width: 350px;
+          width: 100%; // Preenche 100% da tela no mobile
           height: 45px;
         }
 
@@ -109,6 +106,34 @@
         .mat-mdc-unelevated-button.mat-unthemed {
           --mdc-filled-button-container-color: var(--green);
           --mdc-filled-button-label-text-color: #fff;
+        }
+      }
+    }
+  }
+}
+
+// Media Query para dispositivos móveis
+@media (max-width: 768px) {
+  .container {
+    padding: 2rem 1.5rem; // Ajuste do padding para telas menores
+
+    .content {
+      width: 100%; // Garante que o conteúdo ocupe a tela inteira
+      padding: 0; // Remove espaços extras
+
+      form {
+        .inputImage {
+          height: auto; // Altura ajustável para mobile
+        }
+
+        .mat-mdc-text-field-wrapper {
+          width: 100%; // Preenche completamente a largura no mobile
+        }
+
+        #submit-btn {
+          .mat-mdc-unelevated-button {
+            width: 100%; // Botão responsivo no mobile
+          }
         }
       }
     }

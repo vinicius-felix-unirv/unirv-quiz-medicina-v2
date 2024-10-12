@@ -21,7 +21,7 @@ interface IDataToView{
 })
 export class CategoryScreenComponent extends CategoriaQuizBaseComponent implements OnInit  {
 
-  titulo = 'tela-categorias'
+  titulo = 'Categorias'
   quizId!: number;
   userId!: number;
   override dataUtils: DataUtilsIds = {} as DataUtilsIds;

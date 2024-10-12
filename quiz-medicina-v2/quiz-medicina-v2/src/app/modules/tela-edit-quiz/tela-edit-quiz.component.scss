@@ -1,0 +1,67 @@
+// Container principal
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 20px;
+    background-color: #f4f4f4;
+    min-height: 100vh;
+}
+
+// Contêiner da imagem
+.image-container {
+    width: 100%;
+    max-width: 600px;
+    margin-bottom: 20px;
+
+    .quiz-image {
+        width: 100%;
+        height: auto;
+        border-radius: 8px;
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        object-fit: cover; // Adiciona esse estilo para garantir que a imagem cubra o contêiner sem distorcer
+        transition: transform 0.3s ease; // Adiciona transição suave
+
+        &:hover {
+            transform: scale(1.05); // Efeito de zoom na imagem ao passar o mouse
+        }
+    }
+}
+
+// Seção principal do Quiz
+.quiz-content {
+    width: 100%;
+    max-width: 800px;
+    background-color: #fff;
+    border-radius: 8px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 20px;
+    transition: box-shadow 0.3s ease; // Transição suave para sombra
+
+    &:hover {
+        box-shadow: 0 8px 16px rgba(0, 0, 0, 0.2); // Efeito de hover na seção do quiz
+    }
+
+    .quiz-title {
+        font-size: 2rem;
+        font-weight: bold;
+        color: #333;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .router-outlet {
+        margin-top: 20px;
+    }
+}
+
+// Estilos Responsivos
+@media (max-width: 768px) {
+    .container {
+        padding: 10px; // Reduzir padding em telas menores
+    }
+
+    .quiz-title {
+        font-size: 1.5rem; // Ajuste do tamanho da fonte em telas menores
+    }
+}

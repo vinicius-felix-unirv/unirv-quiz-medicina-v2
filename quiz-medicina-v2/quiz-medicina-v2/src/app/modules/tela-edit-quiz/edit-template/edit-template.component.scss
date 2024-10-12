@@ -1,4 +1,118 @@
-.imagem {
-  height: 60px;
-  width: 60px;
+// Container principal para o componente
+.container {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: #f8f9fa;
+  border-radius: 8px;
+ 
+}
+
+// Contêiner para o botão de voltar
+.back-button-container {
+  display: flex;
+  justify-content: flex-start;
+  margin-bottom: 20px;
+}
+
+.back-button {
+  background-color: #007bff; // Azul para o botão de voltar
+  border: none;
+  border-radius: 8px;
+  color: #ffffff;
+  padding: 10px 15px;
+  font-size: 18px;
+  cursor: pointer;
+  transition: background-color 0.3s ease, transform 0.2s ease;
+  display: flex;
+  align-items: center;
+  
+  i {
+    margin-right: 8px;
+  }
+
+  &:hover {
+    background-color: #0056b3;
+    transform: scale(1.05);
+  }
+}
+
+// Cabeçalho com título e botões
+.header {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+  margin-bottom: 20px;
+
+  h1 {
+    font-size: 24px;
+    margin-bottom: 10px;
+  }
+
+  .data-count {
+    font-size: 16px;
+    color: #6c757d;
+  }
+
+  .create-button {
+    background-color: #28a745; // Verde para o botão de criar
+    border: none;
+    border-radius: 8px;
+    color: #ffffff;
+    padding: 10px 15px;
+    font-size: 16px;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease;
+    margin-top: 10px;
+
+    &:hover {
+      background-color: #218838;
+      transform: scale(1.05);
+    }
+  }
+}
+
+// Lista de dados
+.data-list {
+  list-style: none;
+  padding: 0;
+
+  li {
+    display: flex;
+    align-items: center;
+    padding: 10px;
+    border: 1px solid #e9ecef;
+    border-radius: 8px;
+    margin-bottom: 10px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+
+    &:hover {
+      background-color: #e9ecef;
+    }
+
+    .imagem {
+      width: 50px;
+      height: 50px;
+      margin-right: 15px;
+      border-radius: 4px;
+      object-fit: cover;
+    }
+
+    .data-content {
+      flex: 1;
+    }
+  }
+}
+
+// Mensagem padrão quando não há dados
+.image-default {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 200px;
+  border: 1px solid #e9ecef;
+  border-radius: 8px;
+  background-color: #f8f9fa;
+  color: #6c757d;
 }

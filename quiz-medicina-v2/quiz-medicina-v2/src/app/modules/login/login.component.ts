@@ -68,9 +68,8 @@ export class LoginComponent implements OnInit {
         this.usuariosService.findById(data.usuarioId).subscribe( user => {
           data.cursoId = user.cursoid;
           this.dataUtilsService.sendData(data);
-          this.router.navigate(['home/quiz-screen']);
         });
-        
+        this.router.navigate(['home/quiz-screen']);
       }
     }, (err: HttpErrorResponse) => {
       if (err.status == 0) {

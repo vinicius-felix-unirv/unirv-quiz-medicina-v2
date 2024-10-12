@@ -22,7 +22,7 @@ interface IDataToView{
 export class TelaCriacaoQuizComponent extends CategoriaQuizBaseComponent implements OnInit {
 
 
-  titulo: string = 'tela-criacao-Quiz';
+  titulo: string = 'Criar Novo Quiz';
   quiz!: IDataToView[];
   override dataUtils: DataUtilsIds = {} as DataUtilsIds;
 

@@ -1,39 +1,35 @@
 <div class="ranking-container">
-
   <div class="podium">
-
-    <div *ngFor="let item of ranking.slice(0, 3); let i = index"
-         [class]="returnClassByPodium(i)"
+    <!-- Display the top 3 players in a podium style -->
+    <div *ngFor="let item of ranking.slice(0, 3); let i = index" 
+         [ngClass]="getPodiumItemClass(i)" 
          class="podium-item">
-      <div *ngIf="i == 0"
-           [ngClass]="'crown'">
-        <img src="../../../assets/coroa.png"
-             alt="Coroa">
+      <!-- Crown for the top player -->
+      <div *ngIf="i === 0" class="crown">
+        <img src="../../../assets/coroa.png" alt="Coroa">
       </div>
-      <ng-container *ngIf="showRanking(i)">
-        <p class="position">{{i + 1}}</p>
-      </ng-container>
+      <!-- Position number -->
+      <p class="position">{{ i + 1 }}</p>
       <div class="player-info">
-        <p>{{item.nome}}</p>
-        <p>{{item.pontuacao}} pontos</p>
+        <p>{{ item.nome }}</p>
+        <p>{{ item.pontuacao }} pontos</p>
       </div>
-      <img [src]="item.foto || '../../../assets/coroa.png'"
-           alt="{{item.nome}}"
-           [class]="returnClassByPosition(i)"
+      <!-- Player image -->
+      <img [src]="item.foto || '../../../assets/coroa.png'" 
+           alt="{{ item.nome }}" 
+           [ngClass]="getPodiumImageClass(i)" 
            class="podium-img">
     </div>
-
   </div>
 
   <div class="rank-list">
-    <div *ngFor="let item of ranking.slice(3); let i = index"
+    <!-- Display remaining players -->
+    <div *ngFor="let item of ranking.slice(3); let i = index" 
          class="rank-item">
-      <p class="position"
-         *ngIf="showRanking(i + 3)">{{i + 4}}</p>
-      <img [src]="item.foto || 'assets/default-image.jpg'"
-           alt="{{item.nome}}"
-           class="ranking-image"
-           style="width: 100px;height: 100px;">
+      <p class="position" *ngIf="shouldShowRanking(i + 3)">{{ i + 4 }}</p>
+      <img [src]="item.foto || 'assets/default-image.jpg'" 
+           alt="{{ item.nome }}" 
+           class="ranking-image">
       <div class="rank-info">
         <p class="rank-name">{{ item.nome }}</p>
         <p class="rank-score">{{ item.pontuacao }} pontos</p>

@@ -1,9 +1,30 @@
-<app-edit-template
-[titulo]="titulo"
-[dataForEdit]="dataForEdit"
-[redirect]="redirectForPerguntas"
-[dataUtils]="dataUtils"
-[goBack]="goBackCriacao"
-[component]="component"
-[onDialogClosed]="loadCategorias.bind(this)"
-></app-edit-template>
+<div class="container">
+    <!-- Componente para edição de categorias -->
+    <app-edit-template
+        [titulo]="titulo"
+        [dataForEdit]="dataForEdit"
+        [redirect]="redirectForPerguntas"
+        [dataUtils]="dataUtils"
+        [goBack]="goBackCriacao"
+        [component]="component"
+        [onDialogClosed]="loadCategorias.bind(this)"
+    ></app-edit-template>
+  
+    <!-- Botões de navegação -->
+    <div class="button-group">
+        <div class="button-container">
+            <button class="navigate-button return" (click)="goBackCriacao()">
+                <i class="fa-solid fa-arrow-left"></i>
+                Voltar à tela de criação
+            </button>
+        </div>
+  
+        <div class="button-container">
+            <button class="navigate-button advance" (click)="redirectForPerguntas(dataForEdit[0].dataOfRequest.id!)">
+                <i class="fa-solid fa-arrow-right"></i>
+                Avançar para Perguntas
+            </button>
+        </div>
+    </div>
+  </div>
+  
